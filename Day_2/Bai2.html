@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2</title>
+    <style>
+        /* body {
+            font-size: 30px;
+        } */
+        .content {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            justify-content: center;
+            border: 2px solid #ccc;       
+        }
+        #result {
+            height: 24px;
+            text-align: right;
+            margin: 5px 4px 5px 4px;
+            font-size: 20px;
+        }
+        .row {
+            display: block;
+            margin: 5px 4px 5px 4px;
+            height: 30px;
+            text-align: center;
+        }
+        .row div {
+            display: inline-block;
+            border: 1px solid #bbb;
+            border-radius: 1px;
+            width: calc(100%/4 - 5px);
+            height: 100%;
+            cursor: pointer;
+            line-height: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <input type="text" id="result" value="0">
+        <div class="row">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>+</div>
+        </div>
+        <div class="row">
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>-</div>
+        </div>
+        <div class="row">
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>x</div>
+        </div>
+        <div class="row">
+            <div>C</div>
+            <div>0</div>
+            <div>=</div>
+            <div>/</div>
+        </div>
+    </div>
+</body>
+</html>

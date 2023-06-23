@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3</title>
+    <style>
+        body {
+            font-size: 10px;
+        }
+        .form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 400px;
+        }
+        .form input {
+            width: calc(100%/2 - 10px);
+            margin: 5px 0 5px 0;
+        }
+        #comment {
+            color: #ccc;
+            margin-bottom: 14px;
+        }
+        span {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get in touch with us by filling contact form below</h1>
+    <div class="form">
+        <input type="text" placeholder="*Enter your fullname" required>
+        <input type="email" placeholder="*Enter your email address" required>
+        <input type="text" placeholder="*Enter your subject" required>
+    </div>
+    <div>
+        <textarea name="comment" id="comment" cols="50" rows="10">* Your message here...</textarea>
+    </div>
+    <div>
+        <input type="submit" value="Send message">
+        <span>*Please fill all require form field, thanks!</span>
+    </div>
+</body>
+</html>

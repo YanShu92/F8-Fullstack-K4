@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+    <style>
+        body {
+            font-size: 14px;
+        }
+        .content{
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 2px solid #000;
+            margin: auto;
+            padding: 10px 10px;
+        }
+        .user {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px 0 12px 0;
+        }
+        .input-box {
+            margin-bottom: 10px;
+            width: calc(100%/2-30px);
+        }
+        .detail {
+            display: block;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+        .input-box input {
+            height: 20px;
+            border: 1px solid #ccc;
+        }
+        select {
+            height: 24px;
+            border: 1px solid #ccc;
+            width: 168px;
+        }
+        .button input {
+            height: 30px;
+            width: 200px;
+            font-size: 12px;
+            align-items: center;
+            background: #1792b1;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1 style="margin: 0;">Try a free sample</h1>
+        <p>
+            Sign up to get a coupon you can redeem at your nearest Dancing Goat
+            cafe for a sample of the Colombia Carlos Imbachi coffee. We'll also
+            make sure you don't miss out on news introducing the new coffees
+            that we add to our store regularly.
+        </p>
+        <form action="#" >
+            <div class="user">
+                <div class="input-box">
+                    <span class="detail">First name</span>
+                    <input type="text" placeholder="John">
+                </div>
+                <div class="input-box">
+                    <span class="detail">Last name</span>
+                    <input type="text" placeholder="Smith">
+                </div>
+    
+                <div class="input-box">
+                    <span class="detail">Email address</span>
+                    <input type="email" placeholder="john@example.com">
+                </div>
+                <div class="input-box">
+                    <span class="detail">Address</span>
+                    <input type="text" placeholder="Silk St">
+                </div>
+    
+                <div class="input-box">
+                    <span class="detail">City</span>
+                    <input type="text" placeholder="London">
+                </div>
+                <div class="input-box">
+                    <span class="detail">State <span style="color:#ccc; font-weight: normal;">(optional)</span> </span>
+                    <input type="text">
+                </div>
+    
+                <div class="input-box">
+                    <span class="detail">ZIP code</span>
+                    <input type="text" placeholder="EC2Y 8DS">
+                </div>
+                <div class="input-box">
+                    <span class="detail">Country</span>
+                    <!-- <input type="select" placeholder="John"> -->
+                    <select name="option-sl" id="option-sl">
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Viet Nam">Việt Nam</option>
+                        <option value="Russia">Russia</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="SEND ME FREE COFFEE">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
