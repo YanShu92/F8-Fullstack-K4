@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.landpage {
+    width: 1000px;
+    margin: 40px auto 40px auto;
+}
+
+h1 {
+    text-align: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    margin-bottom: 50px;
+}
+h1::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 5px;
+    margin: 0 auto;
+    background-color: rgb(177, 196, 11);
+}
+.list-exercises {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.8rem;
+}
+.exercises-by-day {
+    min-width: 180px;
+}
+.exercises-by-day p {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.exercises-by-day a{
+    text-decoration: none;
+}
+.exercises-by-day li{
+    margin-left: 30px;
+}
+.exercises-by-day ul{
+    border-left: 2px solid #9ca70d;
+}
+
+
