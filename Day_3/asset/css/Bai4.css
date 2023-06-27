@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.contact-map {
+    margin: 40px auto 0 auto;
+    width: 1000px;
+    font-size: 1.4rem;
+}
+.contact-map__nav {
+    border: 2px solid #8f7a06;
+    display: flex;
+    width: 540px;    
+}
+
+.contact-map__nav div{
+    padding: 6px 26px;
+}
+.contact-map__nav--checked {
+    background-color: #8f7a06;
+    color: #fff;
+}
+.contact-map__detail {
+    display: flex;
+    margin-top: 40px;
+    height: 350px;
+}
+.contact-map_info {
+    width: 350px;
+    padding: 50px 40px;
+    background-color: #ddd;
+}
+
+.contact-map_info h3 {
+    margin-bottom: 20px;
+}
+.contact-map_info div {
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+.contact-map_info a {
+    color: #8f7a06;
+}
+.contact-map_info div + div{
+    margin-top: 20px;
+}
+.contact-map__iframe iframe{
+    width: 650px;
+    height: 100%;
+}

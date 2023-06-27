@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="./asset/css/Bai3.css">
+    <title>Bài 3</title>
+</head>
+<body>
+    <form action="#" class="access-manager">
+        <div class="access-manager__info">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div class="access-manager__info">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="access-manager__info">
+            <label for="city">City of <br> Employment</label>
+            <input type="text" name="city" id="city">
+        </div>
+        <div class="access-manager__info">
+            <label for="server">Web server</label>
+            <select name="server" id="server">
+                <option value="" hidden>- Choose a server -</option>
+                <option value="apache">Apache</option>
+                <option value="tomcat">Tomcat</option>
+                <option value="nginx">Ngnix</option>
+            </select>
+        </div>
+        <div class="access-manager__info">
+            <label>Please specify <br>your role</label>
+            <ul>
+                <li>
+                    <label>
+                        <input type="radio" name="role" value="0"> Admin
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="role" value="1"> Engineer
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="role" value="2"> Manager
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="role" value="3"> Guest
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="access-manager__info">
+            <label>Single Sign-on<br>to the following</label>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" name="sign-on" value="0"> Mall
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" name="sign-on" value="1"> Payroll
+                    </label>
+
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" name="sign-on" value="2"> Self-service
+                    </label>
+                </li>
+            </ul>
+        </div>       
+        <div class="access-manage__btn">
+            <button>Login</button>
+            <button>Reset</button>
+        </div>
+    </form>    
+</body>
+</html>

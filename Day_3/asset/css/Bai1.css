@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.contact {
+    margin-top: 4rem;
+    font-size: 2.6rem;
+    margin-left: 30px;
+
+}
+.contact::after {
+    content: '';
+    width: 54px;
+    background-color: #faa300;
+    display: block;
+    height: 3px;
+}
+.contact-form {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.contact-info {
+    flex: 1;
+    margin-left: 30px;
+}
+.contact-info__title, .query__title {
+    font-size: 2.2rem;
+    margin: 20px 0 20px 0;
+}
+.contact-info__detail {
+    list-style: none;
+    font-size: 1.4rem;
+    color: #9b9a9a;
+    width: 100%;
+    padding: 4px 0 15px 0;
+}
+
+.contact-info__content {
+    display: flex;
+}
+.contact-info__content i{
+    font-size: 2rem;
+    padding: 2px 20px 20px 0;
+}
+.query {
+    flex: 2;
+}
+.query input, .query #message {
+    width: 90%;
+    padding: 10px;
+    font-size: 1.4rem;
+    margin: 4px 0 10px 0;
+    border: 1px solid #ccc;
+}
+.btn {
+    width: 130px;
+    padding: 10px 0 10px 0;
+    color: #fff;
+    background: #0cb7b5;
+    border: none;
+}
