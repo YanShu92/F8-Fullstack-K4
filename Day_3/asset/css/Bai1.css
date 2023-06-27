@@ -54,6 +54,7 @@ html {
 .contact-info__content i{
     font-size: 2rem;
     padding: 2px 20px 20px 0;
+    width: 40px;
 }
 .query {
     flex: 2;
