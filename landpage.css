@@ -8,34 +8,228 @@ html {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 }
-
-.landpage {
-    width: 1000px;
-    margin: 40px auto 40px auto;
+body {
+    background-color: #2b2a2a;
+    margin: 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.info {
+    flex: 1;
+    margin-left: 80px;
+    font-size: 2.2rem;
+    color: #fff;
+}
+.info__detail{
+    width: 100%;
+    margin: 80px auto 50px auto;
+    display: flex;
+    justify-content: center;
+}
+.info .info__avatar img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.info__detail div + div{
+    margin-top: 22px;
+}
+.info__detail p{
+    font-size: 3rem;
+    margin-bottom: 4px;
+}
+.info__detail p + p{
+    font-size: 1.3rem;
+    font-style: italic;
+}
+.info__detail b{
+    font-size: 2rem;
+    color: #f73333;
+    font-style: bold;
+}
+.info__title {
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.info__title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    height: 4px;
+    background: linear-gradient(to right,#20e70d,#1f32db);
 }
 
-h1 {
+.project > p{
+    margin: 0 0 20px 30px;
+}
+.selected {
+    position: fixed;
+    height: 0px; 
+}
+
+.project-name {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+
+.selected-name > p{
+    font-size: 1.4rem;   
+    text-align: center;
+    margin-top: 10px;
+}
+.project-html__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    position: relative;
+}
+.project-css__img {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 6px;
+}
+.selected-name i {
+    font-size: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.project-html__img i {
+    color: rgb(248, 4, 4);
+}
+.project-css__img i {
+    color: blue;
+}
+.project-js__img i {
+    color: yellow;
+}
+.project-js__img {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 6px;
+}
+.selected-name:hover p, #selected-html:checked ~  .project-name .html-label p,
+#selected-css:checked ~  .project-name .css-label p,#selected-js:checked ~  .project-name .js-label p
+{
+    color: rgb(248, 10, 236);
+    font-size: 1.8rem;
+    font-style: bold;    
+}
+.selected-name:hover {
+    cursor: pointer;
+}
+
+#selected-html:checked ~  .project-name .project-html__img::after{
+    content: "";
+    display: block;
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    top: -6px;
+    left: -5px;
+    background-color: transparent;
+    border: 2px solid rgb(248, 4, 4);
+    border-radius: 4px;
+}
+#selected-css:checked ~  .project-name .project-css__img::after {
+    content: "";
+    display: block;
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    top: -6px;
+    left: -5px;
+    background-color: transparent;
+    border: 2px solid blue;
+    border-radius: 4px;
+}
+#selected-js:checked ~  .project-name .project-js__img::after {
+    content: "";
+    display: block;
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    top: -6px;
+    left: -5px;
+    background-color: transparent;
+    border: 2px solid yellow;
+    border-radius: 4px;
+}
+
+.form-exercises {
+    flex: 2;
+    padding: 20px auto 40px auto;
+    margin: 10px 20px 10px 30px;
+    background: linear-gradient(-45deg, #6264d4, #db5f8f, #e7de5c, #d6e2df);
+	background-size: 400% 400%;
+	animation: fxgradient 15s ease infinite;
+    border-radius: 5px;
+}
+@keyframes fxgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.form-exercises h1 {
     text-align: center;
     justify-content: center;
     font-size: 3.5rem;
-    margin-bottom: 50px;
+    margin: 20px 0 50px 0;
+    /* color: red; */
 }
-h1::after {
+.form-exercises h1::after {
     content: "";
     display: block;
     width: 100px;
     height: 5px;
     margin: 0 auto;
-    background-color: rgb(177, 196, 11);
+    background: linear-gradient(to right, red, rgb(243, 5, 223));
+    border-radius: 50%;
 }
 .list-exercises {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     font-size: 1.8rem;
+    margin: 0 60px;
 }
 .exercises-by-day {
-    min-width: 180px;
+    flex: 1;
+    min-width: 200px;
+    /* max-width: calc(100%/2 - 10px); */
+    padding: 10px 0 0 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin: 0 5px 10px 5px;
 }
+.exercises-by-day p:hover,
+.exercises-by-day li:hover{
+    background-color: pink;
+}
+.exercises-by-day p:hover,
+.exercises-by-day li:hover,
+.exercises-by-day li:hover a{
+    color: red;
+}
+.link-repo a:hover {
+    color: red;
+}
+
 .exercises-by-day p {
     font-size: 2rem;
     font-weight: 600;
@@ -47,8 +241,17 @@ h1::after {
 .exercises-by-day li{
     margin-left: 30px;
 }
-.exercises-by-day ul{
-    border-left: 2px solid #9ca70d;
+.link-repo {
+    display: flex;
+    justify-content: flex-end;
+    color: #ccc;
+    font-style: italic;
+    font-size: 1.2rem;
 }
+.form-css, 
+.form-js {
+    display: none;
+}
+
 
 
