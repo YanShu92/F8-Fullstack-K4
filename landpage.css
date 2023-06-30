@@ -204,7 +204,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin: 0 60px;
 }
 .exercises-by-day {
@@ -230,12 +230,14 @@ body {
 }
 
 .exercises-by-day p {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 600;
     margin-bottom: 10px;
 }
-.exercises-by-day a{
+.exercises-by-day ul a{
     text-decoration: none;
+    display: block;
+    width: 100%;
 }
 .exercises-by-day li{
     margin-left: 30px;
@@ -245,7 +247,7 @@ body {
     justify-content: flex-end;
     color: #ccc;
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 .form-css, 
 .form-js {

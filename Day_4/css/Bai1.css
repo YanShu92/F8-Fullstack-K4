@@ -9,12 +9,12 @@ html {
     box-sizing: border-box;
 }
 .subscribe {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #fff;
-    max-width: 1200px;
+    width: 1200px;
     background-color: #334455;
     border-radius: 6px;
-    margin: 30px 60px;
+    margin: 30px auto;
     padding: 20px 40px;
     font-weight: 400;
 }
@@ -23,12 +23,13 @@ html {
 }
 .subscribe p {
     line-height: 26px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin: 10px 0;
 }
 
 .subscribe__info {
     display: flex;
+    font-size: 1.6rem;
 }
 .subscribe__info input#email {
     padding: 10px 10px;
