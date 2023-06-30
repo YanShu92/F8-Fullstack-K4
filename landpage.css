@@ -168,7 +168,7 @@ body {
 .form-exercises {
     flex: 2;
     padding: 20px auto 40px auto;
-    margin: 10px 20px 10px 30px;
+    margin: 50px 20px 10px 30px;
     background: linear-gradient(-45deg, #6264d4, #db5f8f, #e7de5c, #d6e2df);
 	background-size: 400% 400%;
 	animation: fxgradient 15s ease infinite;
@@ -190,7 +190,6 @@ body {
     justify-content: center;
     font-size: 3.5rem;
     margin: 20px 0 50px 0;
-    /* color: red; */
 }
 .form-exercises h1::after {
     content: "";
