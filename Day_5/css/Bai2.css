@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+.guide {
+    margin: 0 auto;
+    max-width: 1000px;
+    margin-top: 50px;
+    font-size: 1.4rem;
+}
+.guide ul {
+    list-style: none;
+}
+.guide ul > li{
+    margin-top: 10px;
+}
+label[for] i + i.minus {
+    display: none;
+}
+input:checked ~ label > i.minus {
+    display: block;
+    position: absolute;
+    padding: 10px 9px;
+    color: #fff;
+    background-color: rgb(241, 97, 14);
+    top: 3px;
+    left: 6px;    
+}
+input {
+    display: none;
+}
+label[for] {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(241, 97, 14);
+    color: #fff;
+    border-radius: 2px;
+    position: relative;
+}
+label[for] h3{
+    padding: 10px 0;
+    flex: 1;
+}
+label[for] i{
+    padding: 10px 15px;
+}
+div.guide-answer {
+    margin: 14px 10px 20px 14px;
+}
+
+div.guide-answer ol li {
+    margin-left: 14px;
+}
+div.guide-answer {
+    display: none;
+}
+input:checked ~ div.guide-answer {
+    display: block;
+    animation: fade-in 1s linear;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;        
+    }
+}

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Lobster&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+.services {
+    text-align: center;
+    margin: 30px auto;
+    width: 850px;
+    font-size: 1.6rem;
+}
+.services p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+.service-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+.service-item {
+    width: calc(100%/3 - 15px);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5); 
+    border-radius: 3px;
+    padding: 20px 25px;
+}
+.service-item-icon {
+    border-radius: 50%;
+    border: 1px solid rgb(228, 153, 15);
+    width: 100px;
+    height: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.service-item i {
+    color: rgb(228, 153, 15);
+    font-size: 4rem;
+}
+.service-item h3 a{
+    font-size: 2.2rem;
+    text-decoration: none;
+    color: #000;
+}
+.service-item p {
+    font-size: 1.2rem;
+    color: #a1a1a1;
+    margin: 30px 0;
+}
+.service-item button {
+    background-color: rgb(228, 153, 15);
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 2px;
+    padding: 15px 25px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.service-item button:hover {
+    opacity: 1;
+}
+
+
+.service-item:hover {
+    transform: scale(1.1);
+}
+.service-item h3 a:hover {
+    color: rgb(228, 153, 15);
+}
