@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,700;1,300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.menu-dropdown {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin-top: 50px;
+    border: 1px solid #666;
+}
+ul.menu-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+.menu-item__link {
+    text-decoration: none;
+    color: #666;
+}
+.menu-item__contain {
+    padding: 16px;
+    margin: 4px;
+    display: inline-block;
+    color: #666;
+}
+
+.menu-item span, .menu-item i:nth-of-type(2),.menu-item__link span  {
+    margin-left: 10px;
+}
+.menu-item {
+    border-right: 1px solid #666;
+    position: relative;
+}
+.menu-item:hover .menu-item__contain, .contact:hover .menu-item__contain {
+    background-color: #2da5da;
+    background-position: center;
+    color: #fff;
+    cursor: pointer;
+}
+.contact {
+    border-left: 1px solid #666;
+}
+
+/* News-list */
+.news-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    box-shadow: 0 0 4px #666;
+    width: calc(150%);
+    border-radius: 2px;
+    display: none;    
+}
+
+.news-list::after {
+    content: "";
+    position: absolute;
+    top: -28px;
+    left: 15px;
+    border: 14px solid;
+    border-color: transparent transparent #fff transparent;
+}
+.news-list::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: 70px;
+    width: 50%;
+    border: none;
+    background-color: transparent;
+    height: 10px;
+}
+
+.menu-item:hover .news-list {
+    display: block;
+}
+.news-list li {
+    padding: 0px 15px;
+    height: 44px;
+}
+.news-list__item a {
+    text-decoration: none;    
+    color: #666;
+    line-height: 44px;
+    display: inline-block;
+    width: 100%;
+}
+.news-list__item li:hover {
+    background-color: #ddd;    
+}
+.news-list__item li:hover a {
+    color: rgb(255, 0, 0);     
+}
+.news-list__item {
+    list-style: none;
+    padding-left: 0;    
+}
+.news-list__item li + li {
+    border-top: 1px solid #ddd;
+}

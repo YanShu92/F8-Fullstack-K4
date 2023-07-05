@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background-color: #ebf5fe;
+}
+.grid {
+    width: 1000px;
+    max-width: 100%;
+    margin: 50px auto;
+}
+.content {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 1.6rem;
+}
+.content-list {
+    list-style: none;
+    width: calc(100%/3 - 10px);
+    margin-left: 0;
+    border: 3px solid transparent;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 18px;
+    box-shadow: 0 0 3px #ccc;
+}
+.content-list:hover {
+    border-color: red;
+}
+
+.content-item__heading {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.content-item__icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 2rem;
+}
+.icon-brush {
+    transform: rotate(45deg);
+    background: linear-gradient(to right,rgb(228, 90, 124), rgb(229, 121, 146));
+}
+.icon-theme {
+    background: linear-gradient(to right,rgb(53, 175, 173), rgb(161, 230, 230));
+}
+
+.icon-marketing {
+    background: linear-gradient(to right,rgb(247, 127, 7),rgb(247, 201, 156));
+}
+
+.icon-web {
+    background: linear-gradient(to right,rgb(45, 105, 209), rgb(119, 150, 204));
+}
+
+.icon-repo {
+    background: linear-gradient(to right,rgb(120, 35, 211), rgb(159, 125, 199));
+}
+
+.icon-support {
+    background: linear-gradient(to right,rgb(100, 143, 14), rgb(130, 145, 101));
+}
+
+.content-item p {
+    margin: 10px 0 20px 0;
+    opacity: 0.6;
+    font-size: 1.4rem;
+}
+.content-item a {    
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
