@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Asap:wght@300;400;500;700&display=swap');
 
+@font-face {
+    font-family: "SFU";
+    src: url("../font/SFU.woff2");
+    font-weight: 600;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -47,12 +53,12 @@ html {
     margin-left: 5px;
 }
 .project-price {
-    font-family: 'SFU', sans-serif;
+    font-family: "SFU", sans-serif;
     position: absolute;
     bottom: -25px;
     right: 30px;
     font-size: 2rem;
-    padding: 15px;
+    padding: 10px;
     color: #fff;
     border-radius: 5px;
     background-color: #bf4240;
