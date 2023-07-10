@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Asap', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background-color: #F3F1EF;
+
+}
+.real-estate {
+    max-width: 1200px;
+    margin: 30px auto;
+    position: relative;
+}
+.real-estate__title {
+    display: inline;
+    background-color: #F3F1EF;
+    padding-right: 18px;
+    z-index: 0;
+    font-size: 1.6rem;
+}
+.real-estate__title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 100%;
+    height: 0;
+    border-top: 1px solid #bdbdbd;
+    z-index: -1;
+}
+
+.real-estate__area {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 15px 0 20px 0;
+    row-gap: 10px;
+    justify-content: space-between;
+}
+.real-estate__area input {
+    display: none;
+}
+
+.real-estate__area label {
+    padding: 10px 17px;
+    font-size: 1.3rem;
+    background-color: #E4E4E4;
+    border-radius: 99px;   
+}
+.real-estate__area label[for="brvt"] {
+    padding: 10px 20px;
+}
+.real-estate__area label > h3 {
+    margin-bottom: 3px;
+}
+.real-estate__area label > span{
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 500;
+}
+input:checked + label {
+    background-color: #B07D3A;
+    color: #F3F1EF;
+    cursor: pointer;
+}
+label:hover {
+    background-color: #B07D3A;
+    color: #F3F1EF;
+    cursor: pointer;
+}
+.real-estate__list {
+}
+.real-estate__list ul{
+    margin-left: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.real-estate__list .real-estate__district{
+    position: relative;
+    width: calc((100% - 40px)/3);
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #383636;
+}
+.real-estate__list .real-estate__district img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 0 5px #ccc;
+    filter: blur(0px);
+    transition: all 0.4s ease;
+}
+
+.real-estate__district-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    padding: 25px 20px;
+    font-size: 2rem;
+    color: #fff;
+    text-decoration: none;
+}
+.real-estate__district-info span{
+    font-size: 1.4rem;
+    display: block;
+    margin-top: 125px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+.real-estate__district:hover img {
+    transform: scale(1.1);
+    filter: blur(3px);
+}
+
+.real-estate__district:hover .real-estate__district-info span {
+    margin-top: 0;    
+}
+.real-estate__district:hover .real-estate__district-info {
+    color: #B07D3A;
+}

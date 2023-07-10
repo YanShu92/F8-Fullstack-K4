@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/Bai2.css">
+    <title>Bài 2</title>
+</head>
+<body>
+    <nav class="navbar">
+        <input type="checkbox" id="icon-cart" name="icon-cart">
+        <label class="icon-cart" for="icon-cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </label>
+        <section class="layout-cart">
+            <label for="icon-cart" class="overlay"></label>
+            <div class="shopping-cart">
+                <div class="shopping-cart__heading">
+                    <h2>
+                        Shopping Cart
+                        <!-- <span class="shopping-cart__number">4</span> -->
+                    </h2>
+                    <label for="icon-cart" class="xmark-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </label>
+                </div>    
+                <div class="shopping-cart__list">
+                    <input type="checkbox" id="iphone_14promax" checked>
+                    <input type="checkbox" id="laptop_acerAspire7" checked>
+                    <input type="checkbox" id="camera_sony" checked>
+                    <input type="checkbox" id="xiaomi_watch" checked>
+                    <div class="shopping-cart__item iphone">
+                        <img src="./img/iphone_14promax.jpg" alt="iphone_14promax">
+                        <div class="shopping-cart__info">
+                            <h3 class="shopping-cart__name">Iphone 14 pro max 128Gb</h3>
+                            <div class="shopping-cart__value">
+                                <div class="shopping-cart__quantity">
+                                    <button class="minus_iphone">-</button>
+                                    <span class="number_iphone">01</span>
+                                    <button class="plus_iphone">+</button>
+                                </div>
+                                <div class="shopping-cart__price">
+                                    <span id="quatity_iphone">01</span>
+                                    <span>x$1299</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="iphone_14promax" class="xmark_item xmark_item_iphone">
+                            <i class="fa-solid fa-xmark"></i>
+                        </label>
+                    </div>
+                    <!-- End item iphone -->
+                    <div class="shopping-cart__item laptop">
+                        <img src="./img/laptop_acerAspire7.jpg" alt="laptop_acerAspire7">
+                        <div class="shopping-cart__info">
+                            <h3 class="shopping-cart__name">Laptop gaming Acer Aspire 7</h3>
+                            <div class="shopping-cart__value">
+                                <div class="shopping-cart__quantity">
+                                    <button class="minus_laptop">-</button>
+                                    <span class="number_laptop">01</span>
+                                    <button class="plus_laptop">+</button>
+                                </div>
+                                <div class="shopping-cart__price">
+                                    <span id="quatity_laptop">01</span>
+                                    <span>x$999</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="laptop_acerAspire7" class="xmark_item xmark_item_laptop">
+                            <i class="fa-solid fa-xmark"></i>
+                        </label>
+                    </div>
+                    <!-- End item laptop -->
+                    <div class="shopping-cart__item camera">
+                        <img src="./img/camera_sony.jpg" alt="camera_sony">
+                        <div class="shopping-cart__info">
+                            <h3 class="shopping-cart__name">Sony Alpha Digital Camera </h3>
+                            <div class="shopping-cart__value">
+                                <div class="shopping-cart__quantity">
+                                    <button class="minus_camera">-</button>
+                                    <span class="number_camera">01</span>
+                                    <button class="plus_camera">+</button>
+                                </div>
+                                <div class="shopping-cart__price">
+                                    <span id="quatity_camera">01</span>
+                                    <span>x$1849</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="camera_sony" class="xmark_item xmark_item_camera">
+                            <i class="fa-solid fa-xmark"></i>
+                        </label>
+                    </div>
+                    <!-- End item camera -->
+                    <div class="shopping-cart__item watch">
+                        <img src="./img/xiaomi_watch.jpg" alt="xiaomi_watch">
+                        <div class="shopping-cart__info">
+                            <h3 class="shopping-cart__name">Xiaomi Redmi Watch 3</h3>
+                            <div class="shopping-cart__value">
+                                <div class="shopping-cart__quantity">
+                                    <button class="minus_watch">-</button>
+                                    <span class="number_watch">01</span>
+                                    <button class="plus_watch">+</button>
+                                </div>
+                                <div class="shopping-cart__price">
+                                    <span id="quatity_watch">01</span>
+                                    <span>x$129</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="xiaomi_watch" class="xmark_item xmark_item_watch">
+                            <i class="fa-solid fa-xmark"></i>
+                        </label>
+                    </div>
+                    <!-- End item watch -->
+                </div>
+                <div class="shopping-cart__sum">
+                    <div class="shopping-cart__subtotal">
+                        <h3>Subtotal</h3>
+                        <span id="shopping-cart__total-price">$4276.00</span>
+                    </div>
+                    <p>Taxes amd shipping calculated at checkout</p>
+                    <button class="view-cart">View Cart</button>
+                    <button class="adding-to-cart">Add To Cart</button>
+                    <div class="shipping">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Spend $ 499.00 to Free Shipping</span>
+                    </div>
+                </div>    
+            </div>            
+        </section>  
+    </nav>
+    <script>
+        const minusButtonIphone = document.querySelector(".minus_iphone"),
+        plusButtonIphone = document.querySelector(".plus_iphone"),
+        numberIphone = document.querySelector(".number_iphone");
+        let a = 1, a4 = 1, a2 = 1, a3 = 1;
+        // click xmark to delete items
+        const b1 = document.querySelector(".xmark_item_iphone"),
+        b2 = document.querySelector(".xmark_item_laptop"),
+        b3 = document.querySelector(".xmark_item_camera"),
+        b4 = document.querySelector(".xmark_item_watch");
+        b1.addEventListener("click", ()=> {
+            a = 0;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        b2.addEventListener("click", ()=> {
+            a2 = 0;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        b3.addEventListener("click", ()=> {
+            a3 = 0;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        b4.addEventListener("click", ()=> {
+            a4 = 0;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+
+        // click minus-plus button
+        plusButtonIphone.addEventListener("click", ()=> {
+            a++;
+            a = (a < 10 ) ? "0" + a : a;
+            numberIphone.innerHTML = a;
+            document.getElementById("quatity_iphone").innerHTML = a;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        minusButtonIphone.addEventListener("click", ()=> {
+            if (a > 1) {
+                a--;
+                a = (a < 10 ) ? "0" + a : a;
+            }
+            numberIphone.innerHTML = a;
+            document.getElementById("quatity_iphone").innerHTML = a;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+
+        const minusButtonLaptop = document.querySelector(".minus_laptop"),
+        plusButtonLaptop = document.querySelector(".plus_laptop"),
+        numberLaptop = document.querySelector(".number_laptop");
+        plusButtonLaptop.addEventListener("click", ()=> {
+            a2++;
+            a2 = (a2 < 10 ) ? "0" + a2 : a2;
+            numberLaptop.innerHTML = a2;
+            document.getElementById("quatity_laptop").innerHTML = a2;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        minusButtonLaptop.addEventListener("click", ()=> {
+            if (a2 > 1) {
+                a2--;
+                a2 = (a2 < 10 ) ? "0" + a2 : a2;
+            }
+            numberLaptop.innerHTML = a2;
+            document.getElementById("quatity_laptop").innerHTML = a2;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+
+        const minusButtonCamera = document.querySelector(".minus_camera"),
+        plusButtonCamera = document.querySelector(".plus_camera"),
+        numberCamera = document.querySelector(".number_camera");
+        plusButtonCamera.addEventListener("click", ()=> {
+            a3++;
+            a3 = (a3 < 10 ) ? "0" + a3 : a3;
+            numberCamera.innerHTML = a3;
+            document.getElementById("quatity_camera").innerHTML = a3;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        minusButtonCamera.addEventListener("click", ()=> {
+            if (a3 > 1) {
+                a3--;
+                a3 = (a3 < 10 ) ? "0" + a3 : a3;
+            }
+            numberCamera.innerHTML = a3;
+            document.getElementById("quatity_camera").innerHTML = a3;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+
+        const minusButtonWatch = document.querySelector(".minus_watch"),
+        plusButtonWatch = document.querySelector(".plus_watch"),
+        numberWatch = document.querySelector(".number_watch");
+        plusButtonWatch.addEventListener("click", ()=> {
+            a4++;
+            a4 = (a4 < 10 ) ? "0" + a4 : a4;
+            numberWatch.innerHTML = a4;
+            document.getElementById("quatity_watch").innerHTML = a4;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        minusButtonWatch.addEventListener("click", ()=> {
+            if (a4 > 1) {
+                a4--;
+                a4 = (a4 < 10 ) ? "0" + a4 : a4;
+            }
+            numberWatch.innerHTML = a4;
+            document.getElementById("quatity_watch").innerHTML = a4;
+            const total = a * 1299 + a2 * 999 + a3 * 1849 + a4 * 129;
+            document.getElementById("shopping-cart__total-price").innerHTML = "$" + total + ".00";
+        })
+        
+    </script>
+
+</body>
+</html>

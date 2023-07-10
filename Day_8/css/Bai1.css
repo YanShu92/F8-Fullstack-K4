@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'Manrope', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background-color: #F7F7F9;
+}
+.project-header {
+    max-width: 1100px;
+    margin: 16px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6rem;    
+}
+.project-logo{
+    height: 40px;
+    width: 120px;
+    overflow: hidden;
+}
+.project-logo img{
+    transform: translateY(-25%);
+}
+.project-nav .project-nav-list {
+    display: flex;
+    margin-left: 0;
+    list-style: none;
+    justify-content: center;
+}
+.project-nav__item:not(:nth-last-of-type(-n+2)) {
+    padding: 0  15px;
+    font-weight: 700;
+}
+.project-nav__item i.fa-chevron-down{
+    font-size: 1.1rem;
+}
+.project-nav__info {
+    padding: 0 15px 0 25px;
+    line-height: 22px;
+    font-size: 1.6rem;
+}
+.project-nav__item:hover {
+    color: #aaa;
+    cursor: pointer;
+}
+.menu-documentation {
+    position: relative;
+}
+.project-menu-documentation {
+    position: absolute;
+    right: -80px;
+    top: 68px;
+    width: 1100px;
+    display: none;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #eee;
+    font-size: 1.4rem;
+}
+.menu-documentation:hover::after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: transparent;
+    width: 145px;
+    height: 52px;
+    top: 18px;
+    right: 11px;
+}
+.menu-documentation:hover .project-menu-documentation {
+    display: flex;
+}
+.project-menu-documentation h3 {
+    font-size: 1.4rem;
+    width: 100%;
+}
+.project-usage-styleguide {
+    width: 400px;
+    height: 100%;
+    padding: 35px;
+}
+.project-usage-styleguide::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 290px;
+    width: 1px;
+    background-color: #ccc;
+    left: 400px;
+    top: 34px;
+}
+.project-usage ul,  
+.project-styleguide ul,
+.project-list-elements ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    row-gap: 10px;
+    margin-top: 15px;
+}
+.project-styleguide {
+    margin-top: 33px;
+}
+.project-usage li,  
+.project-styleguide li {
+    width: calc(100%/2 - 10px);
+}
+.project-list-elements {
+    flex: 1;
+    padding: 35px;
+}
+.project-list-elements li {
+    width: calc((100% - 20px)/3);
+}
+.project-usage a,  
+.project-styleguide a,
+.project-list-elements a {
+    text-decoration: none;
+    color: #1d1d1d;
+    font-weight: 600;
+}
+.project-usage__element:hover > a,  
+.project-styleguide__element:hover > a,
+.project-element:hover > a {
+    color: rgb(212, 140, 7);
+    border-bottom: 2px solid rgb(212, 140, 7);
+}
