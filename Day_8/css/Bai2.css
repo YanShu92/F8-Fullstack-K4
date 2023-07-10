@@ -84,6 +84,22 @@ input:checked ~ .layout-cart {
     right: 186px;
     border-radius: 50%;
 }
+/* crollbar */
+.shopping-cart__list::-webkit-scrollbar {
+    width: 5px;
+}
+.shopping-cart__list::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #ccc;
+}
+.shopping-cart__list::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #707070;
+}
+.shopping-cart__list::-webkit-scrollbar-thumb:hover {
+    background: #acabab;
+}
+
 .shopping-cart__item {
     padding: 20px;
     display: flex;
