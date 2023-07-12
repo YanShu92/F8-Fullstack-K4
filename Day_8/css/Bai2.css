@@ -19,7 +19,9 @@ html {
 .icon-cart {
     font-size: 2rem;
     float: right;
-    margin: 10px 80px;}
+    margin: 10px 80px;
+    cursor: pointer;
+}
 .navbar > input {
     display: none;
 }
@@ -60,6 +62,7 @@ input:checked ~ .layout-cart {
     font-size: 2rem;
     color: #EB5B2C;
     padding-right: 15px;
+    cursor: pointer;
 }
 .shopping-cart__list {
     width: 100%;
