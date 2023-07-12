@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.road-map {
+    margin: 10px auto;
+    max-width: 1000px;
+    position: relative;
+}
+
+.road-map .images {
+    width: 270px;
+    height: 320px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url(../img/interview.jpg) no-repeat 0 0 / cover;
+}
+
+.road-map .point-awards {
+    position: absolute;
+    width: 179px;
+    height: 295px;
+    top: 85px;
+    left: -116px;
+    background: url(../img/interview.jpg) no-repeat 0 0 / cover;
+}
+
+.point-awards .overlay{
+    margin: 10px;
+    background-color: rgb(65, 90, 175);
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    color: #fff;
+}
+.overlay .number {
+    font-size: 5rem;
+    font-weight: 700;
+    padding-right: 20px;
+}
+.overlay span + span {
+    font-size: 1.2rem;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.road-map_period {
+    width: 500px;
+    list-style: inside none;
+    line-height: 1.7;
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+.road-map__timeline {
+    margin-bottom: 20px;
+    position: relative;
+    transition: all 0.3s ease-in;
+}
+
+.road-map__timeline .road-map__content {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease-in;
+}
+
+.road-map__timeline .road-map__content h2 {
+    font-size: 2rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.dot-time {
+    position: absolute;
+    top: 8px;
+    left: 264px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(rgb(161, 228, 161), green);
+    border-radius: 50%;
+    border: 6px solid #ebf1f0;
+}
+
+li.road-map__timeline:not(:last-child) .dot-time::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    border-right: 1px solid #F4F4F6;
+    height: 95px;
+    top: 20px;
+    left: 4px;
+}
+.road-map__time {
+    position: absolute;
+    top: 8px;
+    left: 296px;
+    transition: all 0.4s ease-in;
+}
+
+.road-map__content button {
+    font-family: 'Inter', sans-serif;
+    padding: 4px 10px;
+    border: none;
+    outline: none;
+    background-color: #F3F3F3;
+    border-radius: 99px;
+    font-weight: 500;
+    margin-top: 10px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+.road-map__timeline:hover .road-map__content {
+    transform: translateX(300px);
+    text-align: start;
+}
+.road-map__timeline:hover .road-map__content button{
+    align-self: flex-start;
+    background-color: #A26F5A;
+    color: #fff;
+}
+.road-map__timeline:hover .road-map__time {
+    transform: translateX(-112px);
+}
+
+.road-map__content h2:hover {
+    color: rgb(170, 170, 3);
+}
+.road-map__timeline:hover .road-map__content button:hover {
+    background-color: #884122;
+}
+.road-map__timeline:hover .dot-time {
+    animation: pulse 1s infinite;
+    background: linear-gradient(rgb(187, 243, 187), rgb(6, 202, 6));    
+}
+@keyframes pulse {
+    to {
+        transform: scale(1.5);
+    }
+}
