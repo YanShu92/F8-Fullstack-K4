@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ddd;
+}
+
+.menu-nav {
+    margin: 150px auto;
+    width: 800px;
+    position: relative;
+    display: flex;
+    color: #646464;
+}
+
+input {
+    display: none;
+}
+
+.menu-nav label {
+    display: inline-block;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.menu-nav label:not(:last-child) {
+    border-right: 1px solid #ddd;
+}
+
+.menu-nav label > span{
+    font-size: 1.7rem;
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+}
+
+
+input:checked + label > span,
+label:hover span {
+    background-color: #288acb;
+    color: #fff;
+}
+
+.menu-nav__content {
+    list-style: inside none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    font-size: 2rem;    
+    perspective: 1000px;
+}
+
+.menu-nav__content li { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 778px;
+    padding: 20px;
+    background-color: #fff;
+    opacity: 0;
+    overflow: auto;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+    transition: all 0.6s ease;
+}
+
+.menu-nav__content li p {
+    font-size: 1.6rem;
+    width: 780px;
+    margin-top: 10px;
+}
+
+input:nth-of-type(1):checked ~ ul li:nth-of-type(1),
+input:nth-of-type(2):checked ~ ul li:nth-of-type(2),
+input:nth-of-type(3):checked ~ ul li:nth-of-type(3),
+input:nth-of-type(4):checked ~ ul li:nth-of-type(4) {
+    position: relative;
+    transform: rotateX(0deg);
+    opacity: 1;
+    transition-delay: 0.2s;
+}

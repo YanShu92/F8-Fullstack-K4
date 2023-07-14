@@ -209,7 +209,8 @@ body {
 }
 .exercises-by-day {
     flex: 1;
-    min-width: 200px;
+    /* min-width: 200px; */
+    min-width: 150px;
     /* max-width: calc(100%/2 - 10px); */
     padding: 10px 0 0 10px;
     border: 2px solid #ccc;

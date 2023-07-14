@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #43475a;
+}
+
+.envelope-wrap {
+    width: 800px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    background-color: #CB5044;
+    transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+    transform: translateY(60px);
+}
+
+.envelope__front {
+    position: absolute;
+    inset: 0;
+    border-width: 75px 150px;
+    border-style: solid;
+    border-color: transparent #E16256 #E16256 #D9544A;
+    z-index: 2;
+}
+
+.envelope__top {
+    position: absolute;
+    inset: 0;
+    border-width: 75px 150px;
+    border-style: solid;
+    border-color: #ca4b3f transparent transparent;
+    z-index: 0;
+    transform-origin: top;
+    transition: transform 0.5s ease;
+    transition-delay: 0.2s;
+}
+
+.envelope:hover .envelope__top {
+    transform: rotateX(180deg);
+}
+
+.envelope__letter {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: 0;
+    top: 50%;
+    left: 30px;
+    background-color: #fff;
+    z-index: 1;
+    transition: transform 0.5s ease, height 0.5s ease;
+}
+
+.envelope:hover .envelope__letter {
+    transform: translateY(-235px);
+    transition-delay: 0.2s;
+    height: 275px;
+}
+
+.envelope__letter .letter__skew-list {
+    list-style: inside none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.letter__skew-list .letter__skew {
+    width: 15px;
+    height: 15px;
+    background-color: #C65D5C;
+    transform: skew(-50deg);
+}
+
+.letter__rectangle--long {
+    position: absolute;
+    top: 30px;
+    left: 12px;
+    width: 105px;
+    height: 17px;
+    background-color: #C65D5C;
+}
+
+.letter__rectangle--short {
+    position: absolute;
+    top: 56px;
+    left: 12px;
+    width: 55px;
+    height: 17px;
+    background-color: #C65D5C;
+}
+
+.letter__cirle {
+    position: absolute;
+    top: 60%;
+    right: 18px;
+    width: 55px;
+    height: 55px;
+    border-radius: 99px;
+    background-color: #EBCFD3;
+}
+
+.envelope__shadown {
+    margin-top: 80px;
+    width: 340px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(#272727, #575656);
+    filter: blur(6px);
+    transition: width 0.3s ease;    
+}
+
+.envelope:hover ~ .envelope__shadown {
+    width: 250px;
+}
