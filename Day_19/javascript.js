@@ -51,12 +51,14 @@ var checkInterger = function(arr) {
 if (!Array.isArray(array) || !checkInterger(array) || !array.length) {
     console.log("Nhập lại mảng nguyên");
 } else {
-    var primeNumber = [];
+    var primeNumber = [], sum = 0;
     array.forEach(function(value) {
-        if (isPrime(value)) primeNumber.push(value);
+        if (isPrime(value)) {
+            primeNumber.push(value);
+            sum += value;
+        }
     });
     if (primeNumber.length) {
-        var sum = primeNumber.reduce((a,b) => a + b);    
         console.log(`Số nguyên tố trong mảng là: ${primeNumber}`);
         console.log(`Trung bình các số nguyên tố trong mảng là: ${sum / primeNumber.length}`);
 
