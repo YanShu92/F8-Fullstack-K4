@@ -176,7 +176,10 @@
     line-height: 1.4;
     display: block;
 }
+
 .form-content label span.message--format,
+.account-error span,
+.account_register-error span,
 .form-content label span.message{
     color: #ef4444;
     font-style: italic;
@@ -186,6 +189,12 @@
 }
 
 
+.account-error {
+    margin-top: 16px;
+}
+
+.account-error span.error,
+.account_register-error span.error,
 .form-content label span.message.error,
 .form-content label span.message--format.error {
     display: block;

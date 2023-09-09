@@ -26,6 +26,12 @@ const inputPassword = document.querySelectorAll("input[type = 'password']");
 const emailFormat = document.querySelectorAll(".message--format");
 const inputEmail = document.querySelectorAll("input.email");
 
+const btnLogin = document.querySelector(".form-login button.submit");
+const btnRegister = document.querySelector(".form-register button.submit");
+const inputLogin = document.querySelectorAll(".form-login input")
+const inputRegister = document.querySelectorAll(".form-register input")
+const accountCheck = document.querySelector(".account-error span");
+const accountRegisterCheck = document.querySelector(".account_register-error span");
 
 navLogin.addEventListener("click", function() {
     if (!this.classList.contains("active")) {
@@ -42,7 +48,8 @@ navLogin.addEventListener("click", function() {
         });
         emailFormat.forEach(function(item) {
             if (item.classList.contains("error"))  (item.classList.remove("error"));
-        })    
+        });
+        if (accountCheck.classList.contains("error")) accountCheck.classList.remove("error");
     }
 });
 
@@ -59,10 +66,11 @@ navRegister.addEventListener("click", function() {
             if (item.classList.contains("error"))  (item.classList.remove("error"));
             if (item.classList.contains("error-email"))  (item.classList.remove("error-email"));
             if (message[index].classList.contains("error"))  (message[index].classList.remove("error"));
-        }) 
+        });
         emailFormat.forEach(function(item) {
             if (item.classList.contains("error"))  (item.classList.remove("error"));
-        }) 
+        });
+        if (accountRegisterCheck.classList.contains("error")) accountRegisterCheck.classList.remove("error");
     }
 });
 
@@ -135,9 +143,41 @@ inputEmail.forEach(function(item, index) {
 });
 
 
-const btnLogin = document.querySelectorAll("button.submit");
 
-btnLogin.forEach(function(item, index) {
-    item.addEventListener("click", check);
+
+btnLogin.addEventListener("click", function() {
+    var count = 0;
+    inputLogin.forEach(function(item, index) {
+        if (item.value === "") {
+            item.classList.add("error");
+            message[index].classList.add("error");
+        } else {
+            count++;
+            if (item.classList.contains("error")) item.classList.remove("error");
+            if (message[index].classList.contains("error")) message[index].classList.remove("error");
+        }
+    });
+    if (count === 2) accountCheck.classList.add("error");
+    else {
+        if (accountCheck.classList.contains("error")) accountCheck.classList.remove("error");
+    };
+});
+
+btnRegister.addEventListener("click", function() {
+    var count = 0;
+    inputRegister.forEach(function(item, index) {
+        if (item.value === "") {
+            item.classList.add("error");
+            message[index + 2].classList.add("error");
+        } else {
+            count++;
+            if (item.classList.contains("error")) item.classList.remove("error");
+            if (message[index + 2].classList.contains("error")) message[index + 2].classList.remove("error");
+        }
+    });
+    if (count === 3) accountRegisterCheck.classList.add("error");
+    else {
+        if (accountRegisterCheck.classList.contains("error")) accountRegisterCheck.classList.remove("error");
+    };
 })
 
