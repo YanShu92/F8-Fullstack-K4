@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <title>Bài 23 DOM</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="login">
+            <button>Đăng nhập</button>
+            <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="form-auth hide">
+            <div class="overlay"></div>
+            <section class="login-register">
+                <div class="form-nav">
+                    <button class="btn-login active">Đăng nhập</button>
+                    <button class="btn-register">Đăng ký</button>
+                </div>
+                <div class="form-main form-login">
+                    <div class="form-desc">với các tài khoản mạng xã hội</div>
+                    <div class="form-social">
+                        <button class="google">
+                            <img src="./img/google.svg" alt="google">
+                            <span>Google</span>
+                        </button>
+                        <button class="fb">
+                            <img src="./img/fb.svg" alt="fb">
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                    <div class="form-desc line">
+                        <span>hoặc</span>
+                    </div>
+                    <form action="#" class="form-content">
+                        <label for="email-login">
+                            <span>Email</span>
+                            <input type="email" placeholder="Email" id="email-login" class="email">
+                            <span class="message">Vui lòng nhập thông tin</span>
+                            <span class="message--format">Vui lòng nhập đúng định dạng email</span>
+                        </label>
+                        <label for="password-login">
+                            <span>Mật khẩu</span>
+                            <div class="row-password">
+                                <input type="password" placeholder="Mật khẩu" id="password-login" class="password">
+                                <div class="view">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <i class="fa-regular fa-eye-slash hide"></i>
+                                </div>
+                            </div>
+                            <span class="message">Vui lòng nhập thông tin</span>
+                        </label>
+                        <div class="form-control">
+                            <button>
+                                <a href="#">Quên mật khẩu?</a>
+                            </button>
+                        </div>
+                        <button type="submit" class="submit">Đăng nhập</button>
+                    </form>
+                </div>
+                <div class="form-main form-register hide">
+                    <div class="form-desc">Hoàn thành đăng ký, và bắt đầu trải nghiệm ngay!</div> 
+                    <form action="#" class="form-content">
+                        <label for="name-register">
+                            <span>Họ và tên</span>
+                            <input type="text" placeholder="Họ và tên" id="name-register">
+                            <span class="message">Vui lòng nhập thông tin</span>
+                        </label>
+                        <label for="email-register">
+                            <span>Email</span>
+                            <input type="email" placeholder="Email" id="email-register" class="email">
+                            <span class="message">Vui lòng nhập thông tin</span>
+                            <span class="message--format">Vui lòng nhập đúng định dạng email</span>
+                        </label>
+                        <label for="password-register">
+                            <span>Mật khẩu</span>
+                            <div class="row-password">
+                                <input type="password" placeholder="Mật khẩu" id="password-register" class="password">
+                                <div class="view">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <i class="fa-regular fa-eye-slash hide"></i>
+                                </div>
+                            </div>
+                            <span class="message">Vui lòng nhập thông tin</span>
+                        </label>
+                        <div class="form-control">
+                            <span>Bằng cách đăng ký tài khoản, bạn cũng đồng thời chấp nhận mọi
+                                <a href="#">điều kiện về qui định và chính sách của Dân trí</a>
+                            </span>
+                        </div>
+                        <button type="submit" class="submit">Đăng ký</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
