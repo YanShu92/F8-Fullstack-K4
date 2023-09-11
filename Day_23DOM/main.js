@@ -120,7 +120,6 @@ inputForm.forEach(function(item, index) {
 })
 
 
-
 const validateEmail = function(email) {
     var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -141,7 +140,6 @@ inputEmail.forEach(function(item, index) {
     });
     item.addEventListener("keyup", check);
 });
-
 
 
 

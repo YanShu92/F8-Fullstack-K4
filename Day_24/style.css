@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --main-color: #ffa630;
+  --secondary-color: #0d3f5c;
+  --text-color: #fff;
+}
+
+html {
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: center;
+}
+
+
+.container .main {
+  margin: 80px auto 50px auto;
+  background-color: var(--secondary-color);
+  text-align: center;
+  border-radius: 5px;
+  padding: 32px;
+}
+
+.main h1 {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+
+.input-row, ul.list form {
+  margin: 16px 0 32px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.container .main input,
+ul.list input {
+  padding: 8px 16px;
+  border: 2px solid var(--main-color);
+  font-size: 1.3rem;
+  width: 270px;
+}
+
+.container .main button,
+ul.list button {
+  width: 80px;
+  background-color: var(--main-color);
+  color: var(--text-color);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+ul.list li {
+  margin-bottom: 16px;
+  cursor: pointer;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: var(--main-color);
+}
+
+ul.list li p {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: #fff;
+}
+
+ul.list li p.completed {
+  color: #000;
+  text-decoration: line-through;
+}
+
+ul.list form.hide,
+ul.list li.hide {
+    display: none;
+}
+
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  margin-left: 10px;
+}
+
+.icons i {
+  color: #fff;
+  font-size: 1.6rem;
+}
