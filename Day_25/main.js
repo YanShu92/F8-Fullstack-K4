@@ -79,11 +79,13 @@ items.forEach(function (item, index) {
       mouseMove = e.clientX - mouseStart;
       var pos = position + mouseMove;
       item.parentElement.style.translate = `${pos}px`;
+      item.parentElement.style.transition = "translate 0s ease";
 
       if (Math.abs(mouseMove) >= limit) {
         if (mouseMove < 0) {
           if (index === items.length - 1) return;
           position -= itemWidth;
+          item.parentElement.style.transition = "translate 0.4s ease";
           item.parentElement.style.translate = `${position}px`;
           dot.children[-position / itemWidth].classList.add("active");
           dot.children[-position / itemWidth - 1].classList.remove("active");
@@ -91,15 +93,13 @@ items.forEach(function (item, index) {
         } else {
           if (index === 0) return;
           position += itemWidth;
+          item.parentElement.style.transition = "translate 0.4s ease";
           item.parentElement.style.translate = `${position}px`;
           dot.children[-position / itemWidth].classList.add("active");
           dot.children[-position / itemWidth + 1].classList.remove("active");
           isDown = false;
         }
       }
-      //  else {
-      //   item.parentElement.style.translate = `${pos}px`;
-      // }
     }
   });
 
@@ -107,5 +107,6 @@ items.forEach(function (item, index) {
     item.style.cursor = "default";
     isDown = false;
     item.parentElement.style.translate = `${position}px`;
+    item.parentElement.style.transition = "translate 0.4s ease";
   });
 });
