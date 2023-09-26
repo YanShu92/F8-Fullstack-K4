@@ -237,11 +237,13 @@ audio.addEventListener("play", function () {
         firstLine.textContent = getTextLine(lyrics[lineIndex]);
         firstLine.style.opacity = 1;
         firstHl.textContent = getTextLine(lyrics[lineIndex]);
+        firstHl.style.width = "0%";
         firstHl.style.opacity = 1;
 
         secondLine.textContent = getTextLine(lyrics[lineIndex + 1]);
         secondLine.style.opacity = 1;
         secondHl.textContent = getTextLine(lyrics[lineIndex + 1]);
+        secondHl.style.width = "0%";
         secondHl.style.opacity = 1;
       }
     } else {
@@ -291,11 +293,8 @@ audio.addEventListener("play", function () {
     }
     // waiting
     if (lyrics[lineIndex].waiting === 1) {
-      if (audio.currentTime <  lyrics[lineIndex].words[0].startTime / 1000 - 3) {
+      if (audio.currentTime < lyrics[lineIndex].words[0].startTime / 1000 - 3) {
         waitingTime();
-    firstHl.style.opacity = 0;
-    secondHl.style.opacity = 0;
-
       }
     }
   }, 1000 / 60);
@@ -307,11 +306,12 @@ var findLyricIndex = function () {
   }
   for (var i = 0; i < lyrics.length - 1; i++) {
     if (
-      (audio.currentTime >= lyrics[i].words[0].startTime / 1000) &&
-      (audio.currentTime <= lyrics[i].words[lyrics[i].words.length - 1].endTime / 1000)
-      ) {
-        return i;
-      } else if (lyrics[i].words[0].startTime / 1000 >= audio.currentTime) {
+      audio.currentTime >= lyrics[i].words[0].startTime / 1000 &&
+      audio.currentTime <=
+        lyrics[i].words[lyrics[i].words.length - 1].endTime / 1000
+    ) {
+      return i;
+    } else if (lyrics[i].words[0].startTime / 1000 >= audio.currentTime) {
       return i;
     }
   }
