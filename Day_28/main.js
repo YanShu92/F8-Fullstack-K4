@@ -259,7 +259,7 @@ audio.addEventListener("play", function () {
       }
       // giai doạn 50% thì hiện dòng mới
       if (audio.currentTime >= startTime + 0.5 * duration) {
-        if (lineIndex + 2 < totalSentences) {
+        if (lineIndex + 1 < totalSentences) {
           if (lyrics[lineIndex + 1].waiting !== 1) nextLine(lineIndex);
         }
       }
@@ -291,9 +291,12 @@ audio.addEventListener("play", function () {
     }
     // waiting
     if (lyrics[lineIndex].waiting === 1) {
-      waitingTime();
-      firstHl.style.opacity = 0;
-      secondHl.style.opacity = 0;
+      if (audio.currentTime <  lyrics[lineIndex].words[0].startTime / 1000 - 3) {
+        waitingTime();
+    firstHl.style.opacity = 0;
+    secondHl.style.opacity = 0;
+
+      }
     }
   }, 1000 / 60);
 });
@@ -303,7 +306,6 @@ var findLyricIndex = function () {
     return 0;
   }
   for (var i = 0; i < lyrics.length - 1; i++) {
-    console.log(lyrics[i].words[0].startTime);
     if (
       (audio.currentTime >= lyrics[i].words[0].startTime / 1000) &&
       (audio.currentTime <= lyrics[i].words[lyrics[i].words.length - 1].endTime / 1000)
@@ -324,16 +326,12 @@ document.addEventListener("mouseup", function () {
     var currentTime = (value / 100) * audio.duration;
     audio.currentTime = currentTime;
     lineIndex = findLyricIndex();
-    console.log(lineIndex);
     if (!lyrics[lineIndex]) return;
-    console.log(lineIndex);
     if (lyrics[lineIndex].id === true) {
       firstLine.textContent = getTextLine(lyrics[lineIndex]);
       firstLine.style.opacity = 1;
       firstHl.textContent = getTextLine(lyrics[lineIndex]);
       firstHl.style.opacity = 1;
-      // ratio = 
-      // firstHl.style.width = `${startHl + ratio}%`;
 
       secondLine.textContent = getTextLine(lyrics[lineIndex + 1]);
       secondLine.style.opacity = 1;
@@ -349,7 +347,6 @@ document.addEventListener("mouseup", function () {
       secondLine.style.opacity = 1;
       secondHl.textContent = getTextLine(lyrics[lineIndex]);
       secondHl.style.opacity = 1;
-      // secondHl.style.width = `${startHl + ratio}%`;
     }
   }
 });
