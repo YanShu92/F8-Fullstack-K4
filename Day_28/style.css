@@ -1,0 +1,265 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --play-bg: #130c1c;
+  --karaoke-bg: #170f23;
+  --border-box: #fff;
+  --text-primary: #fff;
+  --text-secondary: #b3b1b1;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  background-image: url(./img/bg-khanhphuong.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  position: relative;
+}
+
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--play-bg);
+  padding: 0 20px;
+  border-top: 1px solid var(--border-box);
+  z-index: 1;
+}
+
+.song {
+  flex: 1;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.song img {
+  display: block;
+  width: 64px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-info h3 {
+  font-size: 1.6rem;
+}
+
+.song-info span {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+}
+
+.icon-love {
+  font-size: 2rem;
+  margin-left: 20px;
+}
+
+.player-bar {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.player-wrap {
+  display: flex;
+}
+
+.play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.play-btn button {
+  background-color: var(--play-bg);
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.play-btn button.play {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  width: 100%;
+  position: relative;
+  height: 5px;
+  background: gray;
+  margin: 0 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+/* 
+.progress-bar:hover {
+  background: greenyellow;
+} */
+
+.progress-bar .progress {
+  position: absolute;
+  background: var(--border-box);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 5px;
+}
+
+.progress-bar .progress span {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  width: 15px;
+  height: 15px;
+  display: block;
+  border-radius: 50%;
+  background: var(--border-box);
+  translate: 50% -50%;
+  display: none;
+}
+
+.progress-bar:hover .progress span {
+  display: block;
+}
+
+.progress-bar:hover .progress {
+  background-color: orange;
+}
+
+.progress-bar .time-preview {
+  position: absolute;
+  top: 0;
+  translate: -50% -110%;
+  background: var(--play-bg);
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 2px 5px;
+  display: none;
+  border-radius: 2px;
+}
+
+.progress-bar .time-preview.show {
+  display: block;
+}
+
+.player-wrap > span {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+}
+
+.lyric-icon {
+  flex: 1;
+  font-size: 2rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  cursor: pointer;
+}
+
+.karaoke-canvas {
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--karaoke-bg);
+  z-index: 0;
+  transition: top 0.3s ease;
+}
+
+.karaoke-canvas.show {
+  top: 0;
+}
+
+.down-icon {
+  position: relative;
+}
+
+.down-icon {
+  position: absolute;
+  color: #fff;
+  font-size: 4rem;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+#karaoke {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+  row-gap: 40px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#karaoke .first-line,
+#karaoke .second-line,
+#karaoke .highlight {
+  display: inline-block;
+  font-size: 5rem;
+  white-space: nowrap;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+#karaoke .highlight {
+  display: flex;
+}
+
+#karaoke .highlight span {
+  display: inline-block;
+}
+
+#karaoke .first-line,
+#karaoke .second-line {
+  position: relative;
+}
+
+#karaoke .highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: violet;
+  text-shadow: 0px 0px 5px violet;
+  overflow: hidden;
+}

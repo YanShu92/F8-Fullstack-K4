@@ -18,10 +18,8 @@ var timing = document.querySelector("span.time-timing");
 
 progressBar.addEventListener("mousedown", function (e) {
   if (e.which === 1) {
-    // lấy offsetX -> tính % theo chiều rộng
     value = (e.offsetX * 100) / progressBarWidth;
     progress.style.width = `${value}%`;
-
     document.addEventListener("mousemove", handleDrag);
     initialClientX = e.clientX;
     currentValue = value;

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="player">
+            <div class="song">
+                <div>
+                    <img src="./img/khanh-phuong.webp" alt="khanh-phuong">
+                </div>
+                <div class="song-info">
+                    <h3>Chiếc Khăn Gió Ấm</h3>
+                    <span>Khánh Phương</span>
+                </div>
+                <div class="icon-love">
+                    <i class="fa-regular fa-heart"></i>
+                    <!-- <i class="fa-solid fa-heart"></i> -->
+                </div>
+            </div>
+            <div class="player-bar">
+                <div class="play-btn">
+                    <button>
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    <button>
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+                    <button class="play">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button>
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+                    <button>
+                        <i class="fa-solid fa-repeat"></i>
+                    </button>
+                  </div>
+                  <div class="player-wrap">
+                    <span>00:00</span>
+                    <div class="progress-bar">
+                      <div class="progress">
+                        <span></span>
+                      </div>
+                      <span class="time-preview">00:00</span>
+                    </div>
+                    <span>00:00</span>
+                  </div>
+            </div>
+            <div class="lyric-icon">
+                <h3>Karaoke</h3>
+                <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+        </div>
+        <div class="karaoke-canvas">
+            <div class="down-icon">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="lyric" id="karaoke">
+                <div class="first-line">
+                    <div class="text"></div>
+                    <div class="highlight"></div>
+                </div>
+                <div class="second-line">
+                    <div class="text"></div>
+                    <div class="highlight"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <audio class="audio" src="./mp3/chiec_khan_gio_am.mp3"></audio>
+  <script src="./lyric.js"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>
