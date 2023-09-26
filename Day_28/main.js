@@ -302,13 +302,14 @@ var findLyricIndex = function () {
   if (audio.currentTime === 0) {
     return 0;
   }
-  for (var i = 0; i < lyrics.length; i++) {
+  for (var i = 0; i < lyrics.length - 1; i++) {
+    console.log(lyrics[i].words[0].startTime);
     if (
-      audio.currentTime >= lyrics[i].words[0].startTime &&
-      audio.currentTime <= lyrics[i].words[lyrics[i].words.length - 1].endTime
+      (audio.currentTime >= lyrics[i].words[0].startTime / 1000) &&
+      (audio.currentTime <= lyrics[i].words[lyrics[i].words.length - 1].endTime / 1000)
       ) {
         return i;
-      } else if (lyrics[i].words[0].startTime >= audio.currentTime) {
+      } else if (lyrics[i].words[0].startTime / 1000 >= audio.currentTime) {
       return i;
     }
   }
@@ -323,30 +324,31 @@ document.addEventListener("mouseup", function () {
 
     var currentTime = (value / 100) * audio.duration;
     audio.currentTime = currentTime;
-    var currentLineIndex = findLyricIndex();
-    if (!lyrics[currentLineIndex]) return;
-    console.log(currentLineIndex);
-    if (lyrics[currentLineIndex].id === true) {
-      firstLine.textContent = getTextLine(lyrics[currentLineIndex]);
+    lineIndex = findLyricIndex();
+    console.log(lineIndex);
+    if (!lyrics[lineIndex]) return;
+    console.log(lineIndex);
+    if (lyrics[lineIndex].id === true) {
+      firstLine.textContent = getTextLine(lyrics[lineIndex]);
       firstLine.style.opacity = 1;
-      firstHl.textContent = getTextLine(lyrics[currentLineIndex]);
+      firstHl.textContent = getTextLine(lyrics[lineIndex]);
       firstHl.style.opacity = 1;
       // ratio = 
       // firstHl.style.width = `${startHl + ratio}%`;
 
-      secondLine.textContent = getTextLine(lyrics[currentLineIndex + 1]);
+      secondLine.textContent = getTextLine(lyrics[lineIndex + 1]);
       secondLine.style.opacity = 1;
-      secondHl.textContent = getTextLine(lyrics[currentLineIndex + 1]);
+      secondHl.textContent = getTextLine(lyrics[lineIndex + 1]);
       secondHl.style.opacity = 1;
     } else {
-      firstLine.textContent = getTextLine(lyrics[currentLineIndex + 1]);
+      firstLine.textContent = getTextLine(lyrics[lineIndex + 1]);
       firstLine.style.opacity = 1;
-      firstHl.textContent = getTextLine(lyrics[currentLineIndex + 1]);
+      firstHl.textContent = getTextLine(lyrics[lineIndex + 1]);
       firstHl.style.opacity = 1;
 
-      secondLine.textContent = getTextLine(lyrics[currentLineIndex]);
+      secondLine.textContent = getTextLine(lyrics[lineIndex]);
       secondLine.style.opacity = 1;
-      secondHl.textContent = getTextLine(lyrics[currentLineIndex]);
+      secondHl.textContent = getTextLine(lyrics[lineIndex]);
       secondHl.style.opacity = 1;
       // secondHl.style.width = `${startHl + ratio}%`;
     }
