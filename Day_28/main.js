@@ -316,7 +316,6 @@ var findLyricIndex = function () {
   return lyrics.length;
 };
 
-// var findwidth()
 document.addEventListener("mouseup", function () {
   if (isDrag) {
     isDrag = false;
