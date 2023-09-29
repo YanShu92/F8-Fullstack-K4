@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    object-fit: contain;
+    background: url(./img/flower-bg.jpg);
+}
+
+.container .list {
+    width: 800px;
+    padding: 10px;
+}
+
+.list .item {
+    background-color: #a1bbbadc;
+    border: 1px solid #fff;
+    margin: 1px 0;
+    padding: 8px;
+    user-select: none;
+}
+
+.list .item.module {
+    background-color: #e04526da;
+    font-weight: bold;
+}
+
+.item.dragging {
+    opacity: 0.4;
+}
