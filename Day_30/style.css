@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 20px auto 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.container > h3 {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 30px;
+}
+
+.container .editor {
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.container .editor .menu {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 10px 12px;
+}
+
+.container .editor .menu .menu-item {
+  margin: 5px 8px 6px 0;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  position: relative;
+}
+
+.file-wrap .file-inner{
+  position: absolute;
+  column-gap: 5px;
+  display: none;
+  top: 100%;
+  left: 0;
+  width: 150px;
+  padding: 10px;
+  background-color: #fff;
+  z-index: 1;
+  border-radius: 6px;
+  box-shadow: 0 0 2px 0 rgba(34,47,62,.2), 0 4px 8px 0 rgba(34,47,62,.15);
+}
+
+.file-wrap:hover .file-inner,
+.file-wrap.show .file-inner {
+    display: block;
+}
+
+.file-inner .new-file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.show {
+  background-color: #a6ccf7!important;
+}
+
+.container .editor .menu .menu-item:hover {
+  background-color: #a6ccf7;
+}
+
+.container .toolbar-wrap {
+  box-shadow: 0 2px 2px -2px rgba(34, 47, 62, 0.1),
+    0 8px 8px -4px rgba(34, 47, 62, 0.07);
+  display: flex;
+}
+
+.container .toolbar-wrap {
+  display: flex;
+}
+
+.container .toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  margin-bottom: 10px;
+}
+
+.container .toolbar img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 2px 5px;
+}
+
+.container .toolbar button {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.container .toolbar button:hover {
+  background-color: #a6ccf7;
+}
+
+.container .toolbar.color {
+  column-gap: 5px;
+}
+
+.container .toolbar.color input {
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.content-wrap {
+    position: relative;
+}
+
+.content {
+  border: 0;
+  outline: 0;
+  height: 250px;
+  padding: 30px 50px 20px 20px;
+  font-size: 20px;
+}
+
+.content-wrap .clear-content {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.content-wrap .clear-content.clear {
+    display: flex;
+}
+
+.content-wrap .clear-content:hover {
+    background-color: #ccc;
+}
+
+.download {
+    margin-top: 10px;
+}
+
+.download input {
+  padding: 10px;
+  outline: none;
+}
+
+.download input#download {
+  cursor: pointer;
+}
+
+.download input#name {
+  border-width: 2px;
+  border-radius: 4px;
+}
+
+.count {
+    display: flex; 
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+    font-size: 16px;
+    column-gap: 15px;
+}
+
+.count > div:nth-child(1) {
+    flex: 0 0 120px;
+}
+
+.count > div:nth-child(2) {
+    flex: 0 0 80px;
+}
+
+select#extension {
+    padding: 10px;
+    border-radius: 3px;
+}

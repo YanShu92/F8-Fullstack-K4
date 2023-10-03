@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 30</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Doc Editor</h3>
+      <section class="editor">
+        <nav class="menu">
+          <button class="file-wrap menu-item">
+            <span>File</span>
+            <div class="file-inner">
+              <div class="new-file">
+                <i class="fa-regular fa-file"></i>
+                <span>New document</span>
+              </div>
+            </div>
+          </button>
+          <button class="edit-wrap menu-item">
+            <span>Edit</span>
+          </button>
+          <button class="View-wrap menu-item">
+            <span>View</span>
+          </button>
+          <button class="insert-wrap menu-item">
+            <span>Insert</span>
+          </button>
+          <button class="format-wrap menu-item">
+            <span>Format</span>
+          </button>
+        </nav>
+        <div class="toolbar-wrap">
+          <div class="toolbar history" title="history">
+            <button class="undo" title="Undo">
+              <img src="./images/undo-50.png" alt="undo" />
+            </button>
+            <button class="redo" title="Redo">
+              <img src="./images/redo-50.png" alt="redo" />
+            </button>
+          </div>
+          <div class="toolbar formatting" title="formatting">
+            <button class="bold" title="Bold">
+              <img src="./images/bold-30.png" alt="bold" />
+            </button>
+            <button class="italic" title="Italic">
+              <img src="./images/italic-48.png" alt="italic" />
+            </button>
+            <button class="underline" title="Underline">
+              <img src="./images/underline-50.png" alt="underline" />
+            </button>
+          </div>
+          <div class="toolbar alignment" title="alignment" title="Align Left">
+            <button class="align-left align">
+              <img src="./images/align-left-50.png" alt="align left" />
+            </button>
+            <button class="align-center align" title="Align Center">
+              <img src="./images/align-center-50.png" alt="align center" />
+            </button>
+            <button class="align-right align" title="Align Right">
+              <img src="./images/alignment-50.png" alt="align right" />
+            </button>
+            <button class="justify align" title="Justify">
+              <img src="./images/align-justify-50.png" alt="justify" />
+            </button>
+          </div>
+          <div class="toolbar indentation" title="indentation">
+            <button class="decrease-indent" title="Decrease Indent">
+              <img src="./images/indent-50.png" alt="decrease-indent" />
+            </button>
+            <button class="increase-indent" title="Increase Indent">
+              <img src="./images/indent-50.png" alt="increase-indent" />
+            </button>
+          </div>
+          <div class="toolbar color">
+            <label for="text">Color: </label>
+            <input type="color" id="text" name="text" value="#000000" />
+          </div>
+        </div>
+        <div class="content-wrap">
+          <div class="content" contenteditable="true" spellcheck="false"></div>
+          <div class="clear-content" title="Clear">
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+        <hr />
+        <div class="count">
+          <div class="count-char"></div>
+          <div class="count-word"></div>
+        </div>
+      </section>
+      <div class="download">
+        <input type="text" name="name" id="name" value="Untitled" />
+        <input type="submit" value="Download" id="download" />
+        <span>as</span>
+        <select name="extension" id="extension">
+          <option value=".pdf" selected>PDF</option>
+          <option value=".txt">TXT</option>
+        </select>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+    <script src="./toolbar.js"></script>
+    <script src="./download.js"></script>
+  </body>
+</html>
