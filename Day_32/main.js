@@ -10,6 +10,12 @@ class F8 {
         window[key] = temp[key];
       });
 
+      const update = () => {
+        Object.keys(temp).forEach((key) => {
+          temp[key] = window[key];
+        });
+      };
+
       // đổi biến
       const changeValue = (element) => {
         // đổi biến từ data
@@ -19,7 +25,7 @@ class F8 {
           results.forEach((result) => {
             const variables = result.match(/{{(.+?)}}/);
             const newKey = variables[1].trim();
-            const newInner = inner.replace(variables[0], window[newKey]);
+            const newInner = inner.replace(variables[0], `<span class="${newKey}">${window[newKey]}</span>`);
             element.innerHTML = newInner;
           });
         }
@@ -32,7 +38,6 @@ class F8 {
 
       Array.from(templateNode.children).forEach((item) => {
         changeValue(item);
-
         // lấy attribute
         const attributes = item.attributes;
         if (attributes.length) {
@@ -45,16 +50,12 @@ class F8 {
               const eventName = attArrKey[1];
               item.addEventListener(eventName, function () {
                 eval(attValue);
-
+                update();
                 Object.keys(temp).forEach((key) => {
-                  if (attValue.includes(key)) {
-                    Array.from(templateNode.children).forEach((ele) => {
-                      if (ele.innerHTML.includes(key)) {
-                        changeValue(ele);
-                      }
-                    });
-                  }
-                });
+                    if (attValue.includes(key)) {
+                        (document.querySelector(`.${key}`)).innerHTML = window[key];
+                    }
+                  });
               });
             }
           });
@@ -66,6 +67,33 @@ class F8 {
         class extends HTMLElement {
           constructor() {
             super();
+            // const tag = this;
+            // // bóc template
+            // const templateEl = document.createElement("template");
+            // templateEl.innerHTML = template;
+            // const templateNode = templateEl.content.cloneNode(true);
+
+            // Array.from(templateNode.children).forEach((item) => {
+            //   changeValue(item);
+            //   // lấy attribute
+            //   const attributes = item.attributes;
+            //   if (attributes.length) {
+            //     Array.from(attributes).forEach((att) => {
+            //       const attKey = att.name;
+            //       const attValue = att.value;
+            //       // lấy event
+            //       const attArrKey = attKey.split(":");
+            //       if (attArrKey[0] === "v-on") {
+            //         const eventName = attArrKey[1];
+            //         item.addEventListener(eventName, function () {
+            //           eval(attValue);
+            //           update();
+            //           console.log(count, title);
+            //         });
+            //       }
+            //     });
+            //   }
+            // });
             this.append(templateNode);
           }
         }
