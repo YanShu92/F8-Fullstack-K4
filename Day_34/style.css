@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Nunito", sans-serif;
+}
+
+.todo-list {
+  max-width: 750px;
+  text-align: center;
+  margin: 40px auto;
+}
+
+.todo-list h1 {
+  font-size: 3.6rem;
+}
+
+.todo-list h1 span {
+  background: -webkit-linear-gradient(-145deg, #d54ff7, #052c96);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.todo-list .add-todos {
+  margin: 20px 0;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.search-box {
+  display: flex;
+  position: relative;
+  flex: 1;
+}
+
+.search-box input[type="search"] {
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 16px;
+  border: 1px solid #ccc;
+}
+
+.search-box button.search-btn {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  padding: 12px 16px;
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+  background-color: rgb(29, 78, 216);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-box button.search-btn:hover {
+  background-color: rgb(6, 53, 182);
+}
+
+.add-todos button.add-btn {
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(4, 120, 87);
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.add-todos button.add-btn:hover {
+  background-color: rgb(4, 88, 65);
+}
+
+.list-todos {
+  text-align: left;
+}
+
+.list-todos button.btn-completed {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 1.7rem;
+  border-radius: 8px;
+  border: none;
+  background-color: rgb(156, 163, 175);
+  color: #fff;
+  display: flex;
+  column-gap: 10px;
+  cursor: pointer;
+}
+
+.list-todos button.btn-completed:hover {
+  background-color: rgb(123, 126, 129);
+}
+
+.list-todos button.btn-completed .arrow {
+  display: block;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  width: 20px;
+  height: 20px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  transition: rotate 0.4s ease;
+}
+
+.list-todos button.btn-completed.active {
+  background-color: rgb(4, 120, 87);
+}
+
+.list-todos button.btn-completed.active .arrow {
+  rotate: 90deg;
+}
+
+.list-todos button.btn-completed.active:hover {
+  background-color: rgb(3, 92, 67);
+}
+
+.list-todos .todo {
+  margin-top: 10px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 1.7rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.list-todos .todo .icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.list-todos .todo .icons button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.list-todos .todo button.delete {
+  background-color: rgb(190, 18, 60);
+}
+
+.list-todos .todo button.delete:hover {
+  background-color: rgb(155, 10, 46);
+}
+
+.list-todos .todo button.modify {
+  background-color: rgb(29, 78, 216);
+}
+
+.list-todos .todo button.modify:hover {
+  background-color: rgb(11, 52, 165);
+}
+
+.list-todos .todo button.done.no-checked {
+  background-color: rgb(156, 163, 175);
+}
+
+.list-todos .todo button.done {
+  background-color: rgb(4, 120, 87);
+}
+
+.list-todos .todo button.done:hover,
+.list-todos .todo button.done.no-checked:hover {
+  background-color: rgb(5, 92, 67);
+}

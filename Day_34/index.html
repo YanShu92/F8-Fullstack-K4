@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoList</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="root">
+      <div class="todo-list">
+        <h1><span>Smartyx</span> Todos App</h1>
+        <div class="add-todos">
+          <div class="search-box">
+            <input type="search" placeholder="Search Todos" />
+            <button type="button" class="search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <button type="button" class="add-btn">Add Todos</button>
+        </div>
+        <div class="list-todos">
+          <!-- <div class="todo">
+            <span>asasdasd</span>
+            <div class="icons">
+                <button type="button" class="delete">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+                <button type="button" class="modify">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button type="button" class="done no-checked">
+                    <i class="fa-regular fa-square-check"></i>
+                </button>
+            </div>
+          </div> -->
+          <button type="button" class="btn-completed">
+            <span>Completed Todos 0</span>
+            <span class="arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
