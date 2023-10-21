@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Nunito", sans-serif;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 5px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main nav.nav {
+  width: 250px;
+  padding: 0 8px;
+}
+
+.main nav.nav .logo img {
+  padding: 12px;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.main nav.nav .logo img:hover {
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.main nav.nav .nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.main nav.nav .nav-item.home span {
+  font-weight: 700;
+}
+
+.main nav.nav .nav-item.home {
+  background-color: #ccc;
+  border-radius: 99px;
+}
+
+.main nav.nav .nav-item:hover {
+  background-color: #ccc;
+  border-radius: 99px;
+}
+
+.main nav.nav .nav-item img {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.main nav.nav .nav-item span {
+  font-size: 2rem;
+}
+
+.main .post-btn {
+  width: 90%;
+  border-radius: 99px;
+  border: none;
+  background-color: rgb(29, 155, 240);
+  color: #fff;
+  padding: 12px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.main .post-btn:hover {
+  background-color: rgb(13, 126, 202);
+}
+
+.main .info {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.main .avatar img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.main .info .info-profile {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.main .info {
+  padding: 7px;
+  cursor: pointer;
+}
+
+.main .info:hover {
+  background-color: #ccc;
+  border-radius: 99px;
+}
+
+.main .info .info-profile span:nth-child(1) {
+  font-weight: 700;
+}
+
+.main .info .info-profile span:nth-child(2) {
+  font-style: italic;
+}
+
+.main main {
+  flex: 1;
+  display: flex;
+  column-gap: 20px;
+  position: relative;
+}
+
+.main main aside {
+  width: 300px;
+}
+
+.main main aside .subscribe {
+  border-radius: 10px;
+  background-color: rgb(235, 243, 243);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  font-weight: 700;
+}
+
+.main main aside .subscribe h3 {
+  font-size: 2rem;
+}
+
+.main main aside .subscribe p {
+  font-size: 1.5rem;
+}
+
+.main main aside .subscribe button {
+  background-color: rgb(15, 20, 25);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 99px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 5px 25px;
+  margin-right: auto;
+}
+
+.main main aside .trends {
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: rgb(235, 243, 243);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  font-size: 1.3rem;
+}
+
+.main main aside .trends h3 {
+  font-size: 2rem;
+}
+
+.main main aside .trends .trend {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.main main aside .trends .trend:hover {
+  background-color: rgb(215, 231, 231);
+  border-radius: 10px;
+}
+
+.main main aside .trends .trend p {
+  font-weight: 700;
+}
+
+.main main aside .trends .trend span {
+  font-weight: 500;
+  color: rgb(83, 100, 113);
+}
+
+.main main aside .trends .btn-show {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: left;
+  color: rgb(29, 155, 240);
+  padding-left: 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.main main article {
+  flex: 1;
+  position: relative;
+}
+
+.main main article .main-bar {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  backdrop-filter: blur(12px);
+  position: sticky;
+}
+
+.main main article .main-bar h2 {
+  padding: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.main main article .main-bar .home-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main main article .main-bar .home-nav div {
+  flex-basis: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 15px;
+}
+
+.main main article .main-bar .home-nav div:hover {
+  background-color: #ccc;
+}
+
+.main main article .main-bar .home-nav div span {
+  position: relative;
+}
+
+.main main article .main-bar .home-nav div:nth-child(1) span:after {
+  content: "";
+  display: block;
+  bottom: -5px;
+  border-radius: 5px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 3px;
+  background-color: rgb(13, 126, 202);
+}
+
+.posts .post-item {
+  padding: 15px;
+  display: flex;
+  column-gap: 10px;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+}
+
+.posts .post-item .avatar-user {
+}
+
+.posts .post-item .avatar-user img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.posts .post-item .user-info .title {
+  font-weight: 600;
+}
+
+.posts .post-item .interact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 10px;
+}
+
+.posts .post-item .interact div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 7px;
+  cursor: pointer;
+}
+
+.posts .post-item .interact div img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.posts .post-item .interact div span {
+  font-size: 1.4rem;
+}
+
+.posts .post-box .img-post {
+  margin-top: 10px;
+}
+
+.posts .post-box .img-post img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+main article .loading {
+    display: none;
+    /* display: flex; */
+   justify-content: center;
+   margin: 20px;
+}
+
+main article .loading .dots-3 {
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+  background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+  background-size: calc(100% / 3) 50%;
+  animation: d3 0.8s infinite linear;
+}
+@keyframes d3 {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
+  }
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
+  }
+}
