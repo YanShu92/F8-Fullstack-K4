@@ -4,6 +4,8 @@ const { PAGE_LIMIT } = config;
 const questions = document.querySelector(".questions");
 const witch = document.querySelector(".witch");
 const saitaman = document.querySelector(".saitaman");
+const nice = document.querySelector(".nice");
+const ohNo = document.querySelector(".oh-no");
 
 var aText =
   "Bối cảnh: Ở xứ sở Ép-Tám-Tám nọ, công túa Mỹ Nhân bị mụ phù thủy độc ác chuẩn bị táo hãm hại. Hãy cùng SaitamAnnn đánh tráo táo ngon để phù thủy đưa công túa__";
@@ -32,16 +34,17 @@ function typewriter() {
 }
 typewriter();
 
-let timeQuestion = 5000;
+let timeQuestion = 10000;
 let currentTime = 0;
 let count = 1;
 let countAll = 0;
 let streak = 0;
-let correct = 0,
-  incorrect = 0;
-let score = 0;
+let correct = 0;
 let index = 0,
   temp = 0;
+let timeProgress;
+let isStop = false;
+
 const app = {
   rootEl: document.querySelector(".questions"),
 
@@ -51,7 +54,7 @@ const app = {
       this.showQuestion(questions[index]);
       this.timeBar();
     } else {
-      setTimeout(this.showResults(), 5000);
+      this.showResults();
     }
     this.timerOut(questions);
   },
@@ -67,79 +70,83 @@ const app = {
         this.timeBar();
         this.timerOut(questions);
       } else {
-        setTimeout(this.showResults(), 5000);
+        this.showResults();
       }
     }, timeQuestion);
   },
 
   timeBar: function () {
     const timeBox = document.querySelector(".time-bar");
-    let width;
-    // time = setInterval(() => {
-    //   if (currentTime < timeQuestion) {
-    //     currentTime += 1000;
-    //     width = (1 - currentTime / timeQuestion) * 100;
-    //     timeBox.style.width = `${width}%`;
-    //   } else {
-    //     clearInterval(time);
-    //   }
-    // }, 1000);
+    if (isStop) return;
+    currentTime += 500;
     if (currentTime < timeQuestion) {
-      currentTime += 500;
-      width = (1 - currentTime / timeQuestion) * 100;
-      timeBox.style.width = `${width}%`;
-      setTimeout(this.timeBar, 500);
-    } else {
-      
-    }
+      timeProgress = (1 - currentTime / timeQuestion) * 100;
+      console.log(timeProgress);
+      timeBox.style.width = `${timeProgress}%`;
+       setTimeout(() => {
+        this.timeBar();
+      }, 500);
+    };
   },
 
   handleQuestion: function (question) {
     const answers = document.querySelector(".answers");
     const listAnswers = Array.from(document.querySelectorAll(".answser"));
     const result = document.querySelector(".result");
+    let isClick = 0; // ngăn cản click trả lời lần 2
     answers.addEventListener("click", function (e) {
-      if (e.target.dataset.index === question.correct) {
-        e.target.style.backgroundColor = "green";
-        correct++;
-        temp++;
-        result.innerHTML = "Ngon luôn!";
-        result.classList.add("correct");
-        saitaman.innerHTML = `
-        <img src="./imgs/saitaman-ngon1.png" alt="saitaman">
-        `;
-        const other = listAnswers.filter(
-          (item) => item.dataset.index !== question.correct
-        );
-        other.map((item) => {
-          item.style.visibility = "hidden";
-        });
-        listAnswers.map((item) => item.removeEventListener("click"));
-      } else {
-        if (temp >= streak) {
-          streak = temp;
-          temp = 0;
+      isClick++;
+      if (isClick === 1) {
+        if (e.target.dataset.index === question.correct) {
+          e.target.style.backgroundColor = "green";
+          correct++;
+          const scoreBox = document.querySelector(".score");
+          scoreBox.innerHTML = correct * 100;
+          temp++;
+          if (temp >= streak) {
+            streak = temp;
+          }
+          const streakBox = document.querySelector(".streak");
+          streakBox.innerHTML = streak;
+          result.innerHTML = "Ngon luôn!";
+          result.classList.add("correct");
+          saitaman.innerHTML = `
+          <img src="./imgs/saitaman-ngon1.png" alt="saitaman">
+          `;
+          const other = listAnswers.filter(
+            (item) => item.dataset.index !== question.correct
+          );
+          other.map((item) => {
+            item.style.visibility = "hidden";
+          });
+          nice.play();
+        } else {
+          if (temp >= streak) {
+            streak = temp;
+            temp = 0;
+          }
+          e.target.style.backgroundColor = "red";
+          const correctAnswer = listAnswers.find(
+            (item) => item.dataset.index === question.correct
+          );
+          correctAnswer.style.backgroundColor = "green";
+          const other = listAnswers.filter(
+            (item) =>
+              item.dataset.index !== question.correct &&
+              item.dataset.index != e.target.dataset.index
+          );
+          other.map((item) => {
+            item.style.visibility = "hidden";
+          });
+  
+          result.innerHTML = "Chúc may mắn lần sau!";
+          result.classList.add("incorrect");
+          saitaman.innerHTML = `
+          <img src="./imgs/saitaman-ok.png" alt="saitaman">
+          `;
+          ohNo.play();
         }
-        e.target.style.backgroundColor = "red";
-        const correctAnswer = listAnswers.find(
-          (item) => item.dataset.index === question.correct
-        );
-        correctAnswer.style.backgroundColor = "green";
-        const other = listAnswers.filter(
-          (item) =>
-            item.dataset.index !== question.correct &&
-            item.dataset.index != e.target.dataset.index
-        );
-        other.map((item) => {
-          item.style.visibility = "hidden";
-        });
-
-        result.innerHTML = "Chúc may mắn lần sau!";
-        result.classList.add("incorrect");
-        saitaman.innerHTML = `
-        <img src="./imgs/saitaman-ok.png" alt="saitaman">
-        `;
-        listAnswers.map((item) => item.removeEventListener("click"));
+        isStop = true;
       }
     });
   },
@@ -147,6 +154,7 @@ const app = {
   showQuestion: function (question) {
     const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
     let { title, a, b, c, d } = question;
+    isStop = false;
     this.rootEl.style.margin = "0";
     this.rootEl.innerHTML = `<div class="time-bar"></div>
     <div class="score-box">
@@ -206,18 +214,14 @@ const app = {
     const countIncorrect = document.querySelector(".count-incorrect");
     const scoreBox = document.querySelector(".score");
     const btnAgain = document.querySelector(".btn-again");
-
     scoreBox.innerHTML = correct * 100;
     streakBox.innerHTML = streak;
     countCorrect.innerHTML = correct;
     countIncorrect.innerHTML = countAll - correct;
-
+    
+    nice.play();
     btnAgain.addEventListener("click", function () {
-      app.start();
-      streak = 0;
-      count = 0;
-      correct = 0;
-      incorrect = 0;
+      location.reload();
     });
   },
 
