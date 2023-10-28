@@ -6,11 +6,10 @@ client.setUrl(SERVER_API_AUTH);
 const app = {
   root: document.querySelector(".container"),
   isLogin: function () {
-    const status = localStorage.getItem("login_token") ? true : false;
+    const status = localStorage.getItem("access_token") ? true : false;
     return status;
   },
   render: function () {
-    // const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
     let html;
     if (!this.isLogin()) {
       html = `<header class="header">
@@ -158,20 +157,6 @@ const app = {
         this.loginForm();
       }
     });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("btn-post")) {
-        this.toast({
-          title: "Thành công!",
-          message: "Bạn đã đăng bài thành công",
-          type: "success",
-          duration: 5000,
-        });
-      }
-    });
-
-    // this.renderPost();
-    // this.getProfile();
   },
 
   loginForm: function () {
@@ -259,104 +244,6 @@ const app = {
       this.loginForm();
     });
   },
-
-  // addEventSignup: function () {
-  //   this.root.addEventListener("submit", (e) => {
-  //     e.preventDefault();
-  //     if (e.target.classList.contains("signup-form")) {
-  //       const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
-
-  //       const nameEl = e.target.querySelector(".name");
-  //       const emailEl = e.target.querySelector(".email");
-  //       const passwordEl = e.target.querySelector(".password");
-
-  //       const name = stripHtml(nameEl.value.trim());
-  //       const email = stripHtml(emailEl.value.trim());
-  //       const password = stripHtml(passwordEl.value.trim());
-
-  //       if (name === null || name === "") {
-  //         this.toast({
-  //           title: "Error",
-  //           message: "Vui lòng nhập tên",
-  //           type: "warning",
-  //           duration: 5000,
-  //         });
-  //         return;
-  //       }
-
-  //       if (email === null || email === "") {
-  //         this.toast({
-  //           title: "Error",
-  //           message: "Vui lòng nhập email",
-  //           type: "warning",
-  //           duration: 5000,
-  //         });
-  //         return;
-  //       }
-
-  //       // validate email
-  //       const emailFormat = /^\S+@\S+\.\S+$/;
-  //       if (email && !email.match(emailFormat)) {
-  //         this.toast({
-  //           title: "Error",
-  //           message: "Email không hợp lệ",
-  //           type: "warning",
-  //           duration: 5000,
-  //         });
-  //         return;
-  //       }
-
-  //       if (password === null || password === "") {
-  //         this.toast({
-  //           title: "Error",
-  //           message: "Vui lòng nhập mật khẩu",
-  //           type: "warning",
-  //           duration: 5000,
-  //         });
-  //         return;
-  //       }
-
-  //       // validate password
-  //       var errors = {
-  //         uppercase: {
-  //           regex: /[A-Z]/,
-  //           description: "Cần ít nhất 1 kí tự hoa",
-  //         },
-  //         lowercase: {
-  //           regex: /[a-z]/,
-  //           description: "Cần ít nhất 1 kí tự chữ thường",
-  //         },
-  //         digit: { regex: /[0-9]/, description: "Cần ít nhất 1 kí tự số" },
-  //         special: {
-  //           regex: /[^A-Za-z0-9]/,
-  //           description: "Cần ít nhất 1 kí tự đặc biệt",
-  //         },
-  //         length: {
-  //           test: (e) => e.length > 8,
-  //           description: "Cần nhiều hơn 8 kí tự",
-  //         },
-  //       };
-
-  //       const isValidate = Object.entries(errors).flatMap(
-  //         ([name, { test, regex, description }]) => {
-  //           const isValid = test ? test(password) : regex.test(password);
-  //           return isValid ? [] : { description, name };
-  //         }
-  //       );
-  //       if (isValidate) {
-  //         this.toast({
-  //           title: "Error",
-  //           message: `${isValidate[0].description}`,
-  //           type: "warning",
-  //           duration: 5000,
-  //         });
-  //         return;
-  //       }
-
-  //       // this.login({ email, password });
-  //     }
-  //   });
-  // },
 
   addEvent: function () {
     this.root.addEventListener("submit", (e) => {
@@ -498,7 +385,7 @@ const app = {
         }
 
         if (title && content) {
-          this.newBlog({title, content, newBlogTitle, newBlogContent, time})
+          this.newBlog({ title, content, newBlogTitle, newBlogContent, time });
           newBlogTitle.value = "";
           newBlogContent.value = "";
           newBlogTime.value = "";
@@ -539,7 +426,10 @@ const app = {
         throw new Error("Email hoặc mật khẩu không chính xác");
       }
       //Thêm token vào Storage (localStorage)
-      localStorage.setItem("login_token", JSON.stringify(token));
+      // localStorage.setItem("login_token", JSON.stringify(token));
+      localStorage.setItem("access_token", token.data.accessToken);
+      localStorage.setItem("refresh_token", token.data.refreshToken);
+
       this.toast({
         title: "Thành công!",
         message: "Bạn đã đăng nhập thành công vào Blog X",
@@ -548,6 +438,7 @@ const app = {
       });
       //Render
       this.render();
+      this.refreshToken();
     } catch (e) {
       this.toast({
         title: "Thất bại!",
@@ -591,23 +482,62 @@ const app = {
     }
   },
 
-  newBlog: async function ({title, content, newBlogTitle, newBlogContent, time}) {
-    if (!time) {
-      let token = localStorage.getItem("login_token");
-      let accessToken, refreshToken;
-      if (token) {
-        accessToken = JSON.parse(token).data.accessToken;
-        refreshToken = JSON.parse(token).data.refreshToken;
+  refreshToken: async function () {
+    const { response, data: refresh } = await client.post(
+      "/auth/refresh-token",
+      {
+        refreshToken: localStorage.getItem("refresh_token"),
       }
+    );
+    if (response.ok) {
+      localStorage.setItem("access_token", refresh.data.token.accessToken);
+      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+    }
+    return response;
+  },
+
+  newBlog: async function ({
+    title,
+    content,
+    newBlogTitle,
+    newBlogContent,
+    time,
+  }) {
+    if (!time) {
+      let accessToken = localStorage.getItem("access_token");
+      let refreshToken = localStorage.getItem("refresh_token");
       client.setToken(accessToken);
-      const { data, response } = await client.get(`/blogs`, {title, content});
-      console.log(response);
+      const { response } = await client.post(`/blogs`, { title, content });
       if (response.ok) {
-        this.render();
+        this.root.querySelector(
+          ".posts"
+        ).innerHTML = `<span class="loader"></span>`;
+        this.getPosts();
+        this.toast({
+          title: "Thành công!",
+          message: "Bạn đã đăng bài thành công",
+          type: "success",
+          duration: 5000,
+        });
         newBlogTitle = "";
         newBlogContent = "";
+      } else {
+        this.refreshToken().then(async (refresh) => {
+          if (refresh.code === 200) {
+            client.setToken(localStorage.getItem("access_token"));
+            this.root.querySelector(
+              ".posts"
+            ).innerHTML = `<span class="loader"></span>`;
+            this.getPosts();
+            this.toast({
+              title: "Thành công!",
+              message: "Bạn đã đăng bài thành công",
+              type: "success",
+              duration: 5000,
+            });
+          }
+        });
       }
-
     } else {
       this.toast({
         title: "Thành công!",
@@ -682,7 +612,6 @@ const app = {
             <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
             <div class="post-timeup">${this.formatDate(blog.createdAt)}</div>
         </div>`;
-
         posts.append(blogEL);
       });
 
@@ -801,36 +730,34 @@ const app = {
 
   getProfile: async function () {
     try {
-      let token = localStorage.getItem("login_token");
-
-      let accessToken, refreshToken;
-      if (token) {
-        accessToken = JSON.parse(token).data.accessToken;
-        refreshToken = JSON.parse(token).data.refreshToken;
-      }
-
-      // if (!accessToken) {
-      //   throw new Error("accessToken not null");
-      // }
-
+      let accessToken = localStorage.getItem("access_token");
       client.setToken(accessToken);
       const { response, data: user } = await client.get("/users/profile");
       if (!response.ok) {
-        throw new Error("Unauthorize");
+        this.refreshToken().then(async (refresh) => {
+          console.log(refresh);
+          if (refresh.code === 200) {
+            client.setToken(localStorage.getItem("access_token"));
+            const { data: userRefresh } = await client.get(`/users/profile`);
+            const profileEl = this.root.querySelector(".user-name-header");
+            const profileName = this.root.querySelector(".user-name");
+            profileEl.innerText = userRefresh.data.name;
+            profileName.innerText = userRefresh.data.name;
+          }
+          this.render();
+        });
       }
       const profileEl = this.root.querySelector(".user-name-header");
       const profileName = this.root.querySelector(".user-name");
       profileEl.innerText = user.data.name;
       profileName.innerText = user.data.name;
     } catch (e) {
-      if (e.message) {
-        this.logout();
-      }
     }
   },
 
   logout: function () {
-    localStorage.removeItem("login_token");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     this.render();
     this.toast({
       title: "Thành công!",
@@ -844,9 +771,6 @@ const app = {
     //Khởi động ứng dụng
     this.render();
     this.addEvent();
-    // this.getProfile();
-    // this.addEvent();
-    // this.getProfile();
   },
 };
 
