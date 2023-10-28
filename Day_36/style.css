@@ -273,7 +273,8 @@ html {
 
 .questions .total-box .princess img {
   display: block;
-  width: 70%;
+  /* width: 100%; */
+  height: 70%;
 }
 
 .questions .total-box .total {

@@ -1,0 +1,784 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Nunito", sans-serif;
+  background: linear-gradient(-45deg, #0000ff, #00cdfc, #7fd2dd, #fff);
+  background-size: 400% 400%;
+  animation: fxgradient 15s ease infinite;
+  scroll-behavior: smooth;
+}
+
+@keyframes fxgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.container .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.container .header img {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.container .header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.container .header .logo:hover {
+  background-color: #ccc;
+}
+
+.container .header .login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.container .header .login:hover {
+  color: #0000ff;
+}
+
+.container .header .logout-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+  column-gap: 20px;
+}
+
+.container .header .logout-box .user-name {
+  font-weight: 700;
+}
+
+.container .header .logout-box .btn-logout {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #0004ffec;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0;
+  cursor: pointer;
+}
+
+.container .header .logout-box .btn-logout:hover {
+  box-shadow: rgb(0, 0, 0) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.container .header .login:hover img {
+  filter: invert(7%) sepia(77%) saturate(7420%) hue-rotate(245deg)
+    brightness(144%) contrast(138%);
+}
+
+.container .main {
+  display: flex;
+  column-gap: 20px;
+}
+
+.container .main article {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+.container .main .post-item,
+.container .main .user-post {
+  display: flex;
+  column-gap: 15px;
+  padding: 12px 16px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.container .main .post-item .avatar-user,
+.container .main .user-post .avatar-user {
+  flex-basis: 40px;
+}
+
+.container .main .post-item .avatar-user img,
+.container .main .user-post .avatar-user img {
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.container .main .user-post .user-post-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.container .main .user-post .user-post-box input {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #1ecfee;
+}
+
+.container .main .user-post .user-post-box textarea {
+  width: 100%;
+  padding: 5px 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.5rem;
+  border-width: 0 0 1px 1px;
+  border-color: #1ecfee;
+  outline: none;
+  height: 100px;
+}
+
+.container .main .user-post .user-post-box .user-name {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.container .main .user-post .user-post-box .btn-post {
+  padding: 10px 25px;
+  font-size: 1.5rem;
+  background-color: #0000ffd5;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s linear, box-shadow 0.3s linear;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .main .user-post .user-post-box .btn-post:hover {
+  background-color: #ff0040;
+  box-shadow: 0 0 0 #000;
+}
+
+.container .main .post-item .post-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.container .main .post-item .post-box .user-info {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.container .main .post-item .post-box .user-info .post-time {
+  font-style: italic;
+}
+
+.container .main .post-item .post-box .post-title {
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.container .main .post-item .post-box .post-showmore {
+  text-decoration: none;
+  color: rgb(29, 155, 240);
+}
+
+.container .main .post-item .post-box .post-img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.container .main .post-item .post-box .post-timeup {
+  margin-left: auto;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+main aside {
+  width: 300px;
+}
+
+main aside .subscribe {
+  border-radius: 10px;
+  background-color: rgb(235, 243, 243);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  font-weight: 700;
+}
+
+main aside .subscribe h3 {
+  font-size: 2rem;
+}
+
+main aside .subscribe p {
+  font-size: 1.5rem;
+}
+
+main aside .subscribe button {
+  background-color: rgb(15, 20, 25);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 99px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 5px 25px;
+  margin-right: auto;
+}
+
+main aside .trends {
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: rgb(235, 243, 243);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  font-size: 1.3rem;
+}
+
+main aside .trends h3 {
+  font-size: 2rem;
+}
+
+main aside .trends .trend {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+main aside .trends .trend:hover {
+  background-color: rgb(215, 231, 231);
+  border-radius: 10px;
+}
+
+main aside .trends .trend p {
+  font-weight: 700;
+}
+
+main aside .trends .trend span {
+  font-weight: 500;
+  color: rgb(83, 100, 113);
+}
+
+main aside .trends .btn-show {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: left;
+  color: rgb(29, 155, 240);
+  padding-left: 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.container .login-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  height: 100vh;
+  font-size: 2.8rem;
+  column-gap: 40px;
+  background-image: linear-gradient(
+    54deg,
+    #0276e7 50%,
+    #6cd9f6 50%,
+    #6cd9f6 90%,
+    #00cdfc 90%
+  );
+}
+
+.container .login-box .login-content-box {
+  flex: 2;
+  text-align: center;
+  padding: 10px;
+}
+
+.container .login-box .login-content .logo img {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.container .login-box .login-content p {
+  font-size: 2.4rem;
+}
+
+.container .login-box .login-content p a {
+  text-decoration: none;
+  color: red;
+}
+
+.container .login-box .login-content-box button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: rgb(248, 150, 167);
+  font-size: 2rem;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s linear, box-shadow 0.3s linear;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .login-box .login-content-box button:hover {
+  background-color: rgb(245, 59, 90);
+  box-shadow: 0 0 0 #000;
+}
+
+.container .login-box .login-content-box button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.container .login-box .login-form {
+  padding-right: 40px;
+  font-size: 1.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.container .login-box .login-form .form-control {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.container .login-box .login-form .form-control label {
+  font-weight: 700;
+}
+
+.container .login-box .login-form .form-control input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #000;
+  background-color: #f3e883;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .login-box .login-form .btn {
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #0000ff;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s linear, box-shadow 0.3s linear;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .login-box .login-form .btn:hover {
+  background-color: #ff00b3;
+  box-shadow: 0 0 0 #000;
+}
+
+.container .login-box .login-form .question {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.container .login-box .login-form .question a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: red;
+}
+
+/* Start signup */
+
+.container .signup-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  height: 100vh;
+  font-size: 2.8rem;
+  column-gap: 40px;
+  background-image: linear-gradient(
+    130deg,
+    #03a6d3 10%,
+    #7fd2dd 10%,
+    #7fd2dd 50%,
+    #03a6d3 50%,
+    #03a6d3 90%,
+    #7fd2dd 90%
+  );
+}
+
+.container .signup-box .signup-content-box {
+  flex: 2;
+  text-align: center;
+  padding: 10px;
+}
+
+.container .signup-box .signup-content .logo img {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.container .signup-box .signup-content p {
+  font-size: 2.4rem;
+}
+
+.container .signup-box .signup-content p a {
+  text-decoration: none;
+  color: red;
+}
+
+.container .signup-box .signup-content-box button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: rgb(248, 150, 167);
+  font-size: 2rem;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s linear, box-shadow 0.3s linear;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .signup-box .signup-content-box button:hover {
+  background-color: rgb(245, 59, 90);
+  box-shadow: 0 0 0 #000;
+}
+
+.container .signup-box .signup-content-box button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.container .signup-box .signup-form {
+  padding-right: 40px;
+  font-size: 1.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.container .signup-box .signup-form .form-control {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.container .signup-box .signup-form .form-control label {
+  font-weight: 700;
+}
+
+.container .signup-box .signup-form .form-control input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #000;
+  background-color: #f3e883;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .signup-box .signup-form .btn {
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #0000ff;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s linear, box-shadow 0.3s linear;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .signup-box .signup-form .btn:hover {
+  background-color: #ff00b3;
+  box-shadow: 0 0 0 #000;
+}
+
+.container .signup-box .signup-form .question {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.container .signup-box .signup-form .question a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: red;
+}
+
+.container .main .posts {
+  position: relative;
+}
+
+/* loader */
+.loader {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.loader.show {
+  display: flex;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  top: 0;
+  background: #ff3d00;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  animation: jump 0.5s ease-in infinite alternate;
+}
+
+.loader::after {
+  background: #0000;
+  color: #000;
+  top: 100%;
+  box-shadow: 32px -20px, -32px -20px;
+  animation: split 0.5s ease-out infinite alternate;
+}
+
+@keyframes split {
+  0% {
+    box-shadow: 8px -20px, -8px -20px;
+  }
+  100% {
+    box-shadow: 32px -20px, -32px -20px;
+  }
+}
+@keyframes jump {
+  0% {
+    transform: translate(-50%, -150%);
+  }
+  100% {
+    transform: translate(-50%, 10%);
+  }
+}
+
+.container .posts .view-blog {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+}
+
+.container .posts .view-blog p {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.container .posts .view-blog .home {
+  padding: 8px 12px;
+  font-size: 1.8rem;
+  background-color: #0000ff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s linear, box-shadow 0.3s linear;
+  box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container .posts .view-blog .home:hover {
+  background-color: #ff00b3;
+  box-shadow: 0 0 0 #000;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.container .btn-login i,
+.container .btn-signup i {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+.container .profile .user-name-header {
+    font-weight: 700;
+}
+
+#toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 999999;
+  }
+  
+  .toast {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px 0;
+    min-width: 400px;
+    max-width: 450px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear 0.3s;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(calc(100% + 32px));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .toast--success {
+    border-color: #47d864;
+  }
+  
+  .toast--success .toast__icon {
+    color: #47d864;
+  }
+  
+  .toast--info {
+    border-color: #2f86eb;
+  }
+  
+  .toast--info .toast__icon {
+    color: #2f86eb;
+  }
+  
+  .toast--warning {
+    border-color: #ffc021;
+  }
+  
+  .toast--warning .toast__icon {
+    color: #ffc021;
+  }
+  
+  .toast--error {
+    border-color: #ff623d;
+  }
+  
+  .toast--error .toast__icon {
+    color: #ff623d;
+  }
+  
+  .toast + .toast {
+    margin-top: 24px;
+  }
+  
+  .toast__icon {
+    font-size: 24px;
+  }
+  
+  .toast__icon,
+  .toast__close {
+    padding: 0 16px;
+  }
+  
+  .toast__body {
+    flex-grow: 1;
+  }
+  
+  .toast__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .toast__msg {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  
+  .toast__close {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  
