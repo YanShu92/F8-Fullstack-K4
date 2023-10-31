@@ -151,7 +151,7 @@ const app = {
     }
 
     this.getPosts();
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
     this.root.addEventListener("click", (e) => {
       if (e.target.parentElement.classList.contains("login")) {
         this.loginForm();
@@ -382,6 +382,8 @@ const app = {
           } else {
             time = String(dateBlog);
           }
+        } else {
+          newBlogTime.type = "text";
         }
 
         if (title && content) {
@@ -389,9 +391,40 @@ const app = {
           newBlogTitle.value = "";
           newBlogContent.value = "";
           newBlogTime.value = "";
+        } else {
+          this.toast({
+            title: "Thông báo!",
+            message: "Vui lòng nhập nội dung và tiêu đề bài đăng",
+            type: "info",
+            duration: 5000,
+          });
         }
       }
+
+      if (e.target.classList.contains("user-name")) {
+        this.getPostsByUser(e.target.dataset.userid, e.target.innerText);
+      }
+
+      if (e.target.classList.contains("picker")) {
+        e.target.type = "date";
+
+        // e.target.value = new Date();
+      }
+
+      if (
+        e.target.parentElement.classList.contains("logo") ||
+        e.target.classList.contains("logo")
+      ) {
+        this.render();
+      }
     });
+    if (this.isLogin()) {
+      this.root.querySelector(".picker").addEventListener("blur", (e) => {
+        if (!e.target.value) {
+          e.target.type = "text";
+        }
+      });
+    }
   },
 
   loadingLogin: function (status = true) {
@@ -426,7 +459,6 @@ const app = {
         throw new Error("Email hoặc mật khẩu không chính xác");
       }
       //Thêm token vào Storage (localStorage)
-      // localStorage.setItem("login_token", JSON.stringify(token));
       localStorage.setItem("access_token", token.data.accessToken);
       localStorage.setItem("refresh_token", token.data.refreshToken);
 
@@ -438,7 +470,7 @@ const app = {
       });
       //Render
       this.render();
-      this.refreshToken();
+      // this.refreshToken();
     } catch (e) {
       this.toast({
         title: "Thất bại!",
@@ -493,6 +525,11 @@ const app = {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
     }
+    // else {
+    //   this.logout();
+    // }
+    console.log(response);
+
     return response;
   },
 
@@ -550,12 +587,13 @@ const app = {
 
   formatDate: function (time) {
     const date = new Date(time);
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    return `${day}/${month + 1}/${year}  ${hours}h:${minutes}phút`;
+    const getTime =
+      hours < 12
+        ? `${hours}h sáng:${minutes}phút`
+        : `${hours - 12}h chiều:${minutes}phút`;
+    return getTime;
   },
 
   handleTime: function (time) {
@@ -575,6 +613,77 @@ const app = {
     }
   },
 
+  getPostsByUser: async function (userId, userName) {
+    const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log(this.isLogin());
+    if (this.isLogin()) {
+      this.root.querySelector(
+        ".user-post"
+      ).innerHTML = `<h2>View các bài đăng của ${userName}</h2>`;
+    } else {
+      this.root.querySelector("article").innerHTML = `<div class="user-post">
+      <h2>View các bài đăng của ${userName}</h2>
+      </div>
+      <div class="posts"></div>`;
+    }
+    const posts = document.querySelector(".posts");
+    posts.innerHTML = `<span class="loader"></span>`;
+    const loader = posts.querySelector(".loader");
+    loader.classList.add("show");
+    const { data: blogsByUser, response } = await client.get(
+      `/users/${userId}`
+    );
+    if (response.ok) {
+      loader.classList.remove("show");
+      blogsByUser.data.blogs.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      blogsByUser.data.blogs.forEach((blog) => {
+        const blogEL = document.createElement("div");
+        blogEL.className = "post-item";
+        blogEL.innerHTML = `<div class="avatar-user">
+            <img src="./imgs/avatar.jpg" alt="avatar-user" />
+        </div>
+        <div class="post-box">
+            <div class="user-info">
+                <h3 class="user-name" data-userid="${stripHtml(
+                  blog.userId
+                )}">${stripHtml(userName)}</h3>
+                <div class="post-time-box">
+                    <span class="dot">.</span>
+                    <span class="post-time">${this.handleTime(
+                      blog.createdAt
+                    )}</span>
+                </div>
+                <div class="post-timeup">${this.formatDate(
+                  blog.createdAt
+                )}</div>
+            </div>
+            <div class="post-title">${stripHtml(blog.title)}</div>
+            <div class="post-content">${stripHtml(blog.content)}</div>
+            <a href="#" class="post-showmore" data-index = "${stripHtml(
+              blog._id
+            )}">Show more</a>
+            <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
+        </div>`;
+        posts.append(blogEL);
+      });
+
+      const showMore = document.querySelectorAll(".post-showmore");
+      showMore.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.getPost(e.target.dataset.index);
+        });
+      });
+    } else {
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
+    }
+  },
   //call API
   getPosts: async function () {
     const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
@@ -596,13 +705,18 @@ const app = {
         </div>
         <div class="post-box">
             <div class="user-info">
-                <h3 class="user-name">${stripHtml(blog.userId.name)}</h3>
+                <h3 class="user-name" data-userid="${stripHtml(
+                  blog.userId._id
+                )}">${stripHtml(blog.userId.name)}</h3>
                 <div class="post-time-box">
                     <span class="dot">.</span>
                     <span class="post-time">${this.handleTime(
                       blog.createdAt
                     )}</span>
                 </div>
+                <div class="post-timeup">${this.formatDate(
+                  blog.createdAt
+                )}</div>
             </div>
             <div class="post-title">${stripHtml(blog.title)}</div>
             <div class="post-content">${stripHtml(blog.content)}</div>
@@ -610,7 +724,6 @@ const app = {
               blog._id
             )}">Show more</a>
             <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
-            <div class="post-timeup">${this.formatDate(blog.createdAt)}</div>
         </div>`;
         posts.append(blogEL);
       });
@@ -659,13 +772,14 @@ const app = {
                       blog.data.createdAt
                     )}</span>
                 </div>
+                <div class="post-timeup">${this.formatDate(
+                  blog.data.createdAt
+                )}</div>
             </div>
             <div class="post-title">${stripHtml(blog.data.title)}</div>
             <div class="post-content">${stripHtml(blog.data.content)}</div>
             <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
-            <div class="post-timeup">${this.formatDate(
-              blog.data.createdAt
-            )}</div>
+            
             </div>
       </div>`;
       posts.innerHTML = html;
@@ -732,39 +846,87 @@ const app = {
     try {
       let accessToken = localStorage.getItem("access_token");
       client.setToken(accessToken);
-      const { response, data: user } = await client.get("/users/profile");
-      if (!response.ok) {
-        this.refreshToken().then(async (refresh) => {
-          console.log(refresh);
-          if (refresh.code === 200) {
-            client.setToken(localStorage.getItem("access_token"));
-            const { data: userRefresh } = await client.get(`/users/profile`);
-            const profileEl = this.root.querySelector(".user-name-header");
-            const profileName = this.root.querySelector(".user-name");
-            profileEl.innerText = userRefresh.data.name;
-            profileName.innerText = userRefresh.data.name;
-          }
-          this.render();
-        });
+      let results = await client.get("/users/profile");
+      console.log(results);
+      if (!results.response.ok) {
+        this.refreshToken();
+        results = await client.get(`/users/profile`);
+        const { response, data: user } = results;
+        console.log(response);
+        if (response.ok) {
+          console.log(user);
+          const profileEl = this.root.querySelector(".user-name-header");
+          const profileName = this.root.querySelector(".user-name");
+          profileEl.innerText = user.data.name;
+          profileName.innerText = user.data.name;
+          profileName.dataset.userid = user.data._id;
+        } else {
+          console.log(1111);
+          localStorage.removeItem("access_token");
+          localStorage.removeItem("refresh_token");
+          this.loginForm();
+          this.toast({
+            title: "Thất bại!",
+            message: "Phiên làm việc hết hạn. Đăng nhập lại",
+            type: "error",
+            duration: 5000,
+          });
+        }
+      } else {
+        const { response, data: user } = results;
+        const profileEl = this.root.querySelector(".user-name-header");
+        const profileName = this.root.querySelector(".user-name");
+        profileEl.innerText = user.data.name;
+        profileName.innerText = user.data.name;
+        profileName.dataset.userid = user.data._id;
       }
-      const profileEl = this.root.querySelector(".user-name-header");
-      const profileName = this.root.querySelector(".user-name");
-      profileEl.innerText = user.data.name;
-      profileName.innerText = user.data.name;
     } catch (e) {
+      console.log(e.message);
     }
   },
 
-  logout: function () {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    this.render();
-    this.toast({
-      title: "Thành công!",
-      message: "Bạn đã đăng xuất tài khoản thành công",
-      type: "success",
-      duration: 5000,
-    });
+  logout: async function () {
+    const accessToken = localStorage.getItem("access_token");
+    client.setToken(accessToken);
+    let results = await client.post("/auth/logout");
+    console.log(results);
+    if (!results.response.ok) {
+      this.refreshToken();
+      results = await client.post(`/auth/logout`);
+      const { response } = results;
+      console.log(results);
+      if (response.ok) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        this.loginForm();
+        this.toast({
+          title: "Thành công!",
+          message: "Bạn đã đăng xuất tài khoản thành công",
+          type: "success",
+          duration: 5000,
+        });
+      } else {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        this.loginForm();
+        this.toast({
+          title: "Thất bại!",
+          message: "Phiên làm việc hết hạn. Đăng nhập lại",
+          type: "error",
+          duration: 5000,
+        });
+      }
+    } else {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      this.loginForm();
+      this.toast({
+        title: "Thành công!",
+        message: "Bạn đã đăng xuất tài khoản thành công",
+        type: "success",
+        duration: 5000,
+      });
+    }
   },
 
   start: function () {
