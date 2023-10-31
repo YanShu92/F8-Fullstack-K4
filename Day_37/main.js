@@ -365,11 +365,21 @@ const app = {
         const newBlogTime = this.root.querySelector(".picker");
         const title = stripHtml(newBlogTitle.value.trim());
         const content = stripHtml(newBlogContent.value.trim());
-        const time = stripHtml(newBlogTime.value.trim());
+        let time = stripHtml(newBlogTime.value.trim());
 
         if (time) {
           const dateNow = new Date();
           const dateBlog = new Date(time);
+          if (dateNow - dateBlog > 0) {
+            this.toast({
+              title: "Thông báo!",
+              message: "Cần đặt thời gian trong tương lai!",
+              type: "info",
+              duration: 5000,
+            });
+            return;
+          }
+
           dateBlog.setHours(dateNow.getHours());
           dateBlog.setMinutes(dateNow.getMinutes());
           dateBlog.setSeconds(dateNow.getSeconds());
@@ -525,9 +535,6 @@ const app = {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
     }
-    // else {
-    //   this.logout();
-    // }
     console.log(response);
 
     return response;
@@ -559,9 +566,9 @@ const app = {
         newBlogTitle = "";
         newBlogContent = "";
       } else {
-        this.refreshToken().then(async (refresh) => {
-          if (refresh.code === 200) {
-            client.setToken(localStorage.getItem("access_token"));
+        const res = await this.refreshToken();
+        if (res.ok) {
+          client.setToken(localStorage.getItem("access_token"));
             this.root.querySelector(
               ".posts"
             ).innerHTML = `<span class="loader"></span>`;
@@ -572,16 +579,33 @@ const app = {
               type: "success",
               duration: 5000,
             });
-          }
-        });
+        }
+        // this.refreshToken().then(async (refresh) => {
+        //   console.log(refresh);
+        //   if (refresh.code === 200) {
+        //     client.setToken(localStorage.getItem("access_token"));
+        //     this.root.querySelector(
+        //       ".posts"
+        //     ).innerHTML = `<span class="loader"></span>`;
+        //     this.getPosts();
+        //     this.toast({
+        //       title: "Thành công!",
+        //       message: "Bạn đã đăng bài thành công",
+        //       type: "success",
+        //       duration: 5000,
+        //     });
+        //   }
+        // });
       }
     } else {
       this.toast({
         title: "Thành công!",
-        message: `Bài sẽ được đăng vào ${this.formatDate(time)}`,
+        message: `Bài sẽ được đăng vào ${this.formatDatePost(time)}`,
         type: "success",
         duration: 5000,
       });
+      this.root.querySelector(".picker").type = "text";
+      this.root.querySelector(".picker").value = "";
     }
   },
 
@@ -596,6 +620,20 @@ const app = {
     return getTime;
   },
 
+  formatDatePost: function (time) {
+    const date = new Date(time);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    let timePost = ` ngày ${date.getDate()}/${
+      date.getMonth() + 1
+    }/${date.getFullYear()}`;
+    let getTime =
+      hours < 12
+        ? `${hours}h sáng:${minutes}phút`
+        : `${hours - 12}h chiều:${minutes}phút`;
+    return getTime + timePost;
+  },
+
   handleTime: function (time) {
     const timeMS = (new Date().getTime() - new Date(time).getTime()) / 1000;
     if (timeMS < 60) {
@@ -603,13 +641,13 @@ const app = {
     } else if (timeMS < 3600) {
       return `${Math.floor(timeMS / 60)} phút trước`;
     } else if (timeMS < 86400) {
-      return `${Math.floor(timeMS / 3600)} giờ trước`;
-    } else if (timeMS < 2419200) {
-      return `${Math.floor(timeMS / 86400)} ngày trước`;
+      return `khoảng ${Math.floor(timeMS / 3600)} giờ trước`;
+    } else if (timeMS < 2628000) {
+      return `khoảng ${Math.floor(timeMS / 86400)} ngày trước`;
     } else if (timeMS < 31536000) {
-      return `${Math.floor(timeMS / 2419200)} tháng trước`;
+      return `khoảng ${Math.floor(timeMS / 2419200)} tháng trước`;
     } else {
-      return `${Math.floor(timeMS / 31536000)} năm trước`;
+      return `khoảng ${Math.floor(timeMS / 31536000)} năm trước`;
     }
   },
 
@@ -849,17 +887,9 @@ const app = {
       let results = await client.get("/users/profile");
       console.log(results);
       if (!results.response.ok) {
-        this.refreshToken();
-        results = await client.get(`/users/profile`);
-        const { response, data: user } = results;
-        console.log(response);
-        if (response.ok) {
-          console.log(user);
-          const profileEl = this.root.querySelector(".user-name-header");
-          const profileName = this.root.querySelector(".user-name");
-          profileEl.innerText = user.data.name;
-          profileName.innerText = user.data.name;
-          profileName.dataset.userid = user.data._id;
+        const res = this.refreshToken();
+        if (res.ok) {
+          this.getProfile();
         } else {
           console.log(1111);
           localStorage.removeItem("access_token");
@@ -872,6 +902,28 @@ const app = {
             duration: 5000,
           });
         }
+        // results = await client.get(`/users/profile`);
+        // const { response, data: user } = results;
+        // console.log(response);
+        // if (response.ok) {
+        //   console.log(user);
+        //   const profileEl = this.root.querySelector(".user-name-header");
+        //   const profileName = this.root.querySelector(".user-name");
+        //   profileEl.innerText = user.data.name;
+        //   profileName.innerText = user.data.name;
+        //   profileName.dataset.userid = user.data._id;
+        // } else {
+        //   console.log(1111);
+        //   localStorage.removeItem("access_token");
+        //   localStorage.removeItem("refresh_token");
+        //   this.loginForm();
+        //   this.toast({
+        //     title: "Thất bại!",
+        //     message: "Phiên làm việc hết hạn. Đăng nhập lại",
+        //     type: "error",
+        //     duration: 5000,
+        //   });
+        // }
       } else {
         const { response, data: user } = results;
         const profileEl = this.root.querySelector(".user-name-header");
@@ -891,20 +943,9 @@ const app = {
     let results = await client.post("/auth/logout");
     console.log(results);
     if (!results.response.ok) {
-      this.refreshToken();
-      results = await client.post(`/auth/logout`);
-      const { response } = results;
-      console.log(results);
-      if (response.ok) {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        this.loginForm();
-        this.toast({
-          title: "Thành công!",
-          message: "Bạn đã đăng xuất tài khoản thành công",
-          type: "success",
-          duration: 5000,
-        });
+      const res = await this.refreshToken();
+      if (res.ok) {
+        this.logout();
       } else {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
@@ -916,6 +957,30 @@ const app = {
           duration: 5000,
         });
       }
+      // results = await client.post(`/auth/logout`);
+      // const { response } = results;
+      // console.log(results);
+      // if (response.ok) {
+      //   localStorage.removeItem("access_token");
+      //   localStorage.removeItem("refresh_token");
+      //   this.loginForm();
+      //   this.toast({
+      //     title: "Thành công!",
+      //     message: "Bạn đã đăng xuất tài khoản thành công",
+      //     type: "success",
+      //     duration: 5000,
+      //   });
+      // } else {
+      //   localStorage.removeItem("access_token");
+      //   localStorage.removeItem("refresh_token");
+      //   this.loginForm();
+      //   this.toast({
+      //     title: "Thất bại!",
+      //     message: "Phiên làm việc hết hạn. Đăng nhập lại",
+      //     type: "error",
+      //     duration: 5000,
+      //   });
+      // }
     } else {
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
