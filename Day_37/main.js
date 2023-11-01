@@ -569,16 +569,16 @@ const app = {
         const res = await this.refreshToken();
         if (res.ok) {
           client.setToken(localStorage.getItem("access_token"));
-            this.root.querySelector(
-              ".posts"
-            ).innerHTML = `<span class="loader"></span>`;
-            this.getPosts();
-            this.toast({
-              title: "Thành công!",
-              message: "Bạn đã đăng bài thành công",
-              type: "success",
-              duration: 5000,
-            });
+          this.root.querySelector(
+            ".posts"
+          ).innerHTML = `<span class="loader"></span>`;
+          this.getPosts();
+          this.toast({
+            title: "Thành công!",
+            message: "Bạn đã đăng bài thành công",
+            type: "success",
+            duration: 5000,
+          });
         }
         // this.refreshToken().then(async (refresh) => {
         //   console.log(refresh);
@@ -887,7 +887,8 @@ const app = {
       let results = await client.get("/users/profile");
       console.log(results);
       if (!results.response.ok) {
-        const res = this.refreshToken();
+        const res = await this.refreshToken();
+        console.log(res);
         if (res.ok) {
           this.getProfile();
         } else {
@@ -902,28 +903,6 @@ const app = {
             duration: 5000,
           });
         }
-        // results = await client.get(`/users/profile`);
-        // const { response, data: user } = results;
-        // console.log(response);
-        // if (response.ok) {
-        //   console.log(user);
-        //   const profileEl = this.root.querySelector(".user-name-header");
-        //   const profileName = this.root.querySelector(".user-name");
-        //   profileEl.innerText = user.data.name;
-        //   profileName.innerText = user.data.name;
-        //   profileName.dataset.userid = user.data._id;
-        // } else {
-        //   console.log(1111);
-        //   localStorage.removeItem("access_token");
-        //   localStorage.removeItem("refresh_token");
-        //   this.loginForm();
-        //   this.toast({
-        //     title: "Thất bại!",
-        //     message: "Phiên làm việc hết hạn. Đăng nhập lại",
-        //     type: "error",
-        //     duration: 5000,
-        //   });
-        // }
       } else {
         const { response, data: user } = results;
         const profileEl = this.root.querySelector(".user-name-header");
