@@ -417,8 +417,6 @@ const app = {
 
       if (e.target.classList.contains("picker")) {
         e.target.type = "date";
-
-        // e.target.value = new Date();
       }
 
       if (
@@ -428,43 +426,37 @@ const app = {
         this.render();
       }
     });
+
     if (this.isLogin()) {
       this.root.querySelector(".picker").addEventListener("blur", (e) => {
         if (!e.target.value) {
           e.target.type = "text";
+          // this.toast({
+          //   title: "Thành công!",
+          //   message: `Bài sẽ được đăng vào ${this.formatDatePost(time)}`,
+          //   type: "success",
+          //   duration: 5000,
+          // });
         }
       });
     }
   },
 
-  loadingLogin: function (status = true) {
-    const button = this.root.querySelector(".btn-login");
+  loadingData: function (status = true) {
+    const dataLoading = document.querySelector(".data-loading");
     if (status) {
-      button.innerHTML = `<i class="fa-solid fa-arrows-rotate"></i> Loading...`;
-      button.disabled = true;
+      dataLoading.classList.add("show");
     } else {
-      button.innerHTML = `Đăng nhập`;
-      button.disabled = false;
-    }
-  },
-
-  loadingSignup: function (status = true) {
-    const button = this.root.querySelector(".btn-signup");
-    if (status) {
-      button.innerHTML = `<i class="fa-solid fa-arrows-rotate"></i> Loading...`;
-      button.disabled = true;
-    } else {
-      button.innerHTML = `Đăng nhập`;
-      button.disabled = false;
+      dataLoading.classList.remove("show");
     }
   },
 
   login: async function (data) {
-    this.loadingLogin();
+    this.loadingData();
     try {
       //Call API
       const { response, data: token } = await client.post("/auth/login", data);
-      this.loadingLogin(false);
+      this.loadingData(false);
       if (!response.ok) {
         throw new Error("Email hoặc mật khẩu không chính xác");
       }
@@ -492,11 +484,11 @@ const app = {
   },
 
   signupPost: async function (data) {
-    this.loadingSignup();
+    this.loadingData();
     try {
       //Call API
       const { response } = await client.post("/auth/register", data);
-      this.loadingSignup(false);
+      this.loadingData(false);
 
       console.log(response);
       if (!response.ok) {
@@ -580,30 +572,8 @@ const app = {
             duration: 5000,
           });
         }
-        // this.refreshToken().then(async (refresh) => {
-        //   console.log(refresh);
-        //   if (refresh.code === 200) {
-        //     client.setToken(localStorage.getItem("access_token"));
-        //     this.root.querySelector(
-        //       ".posts"
-        //     ).innerHTML = `<span class="loader"></span>`;
-        //     this.getPosts();
-        //     this.toast({
-        //       title: "Thành công!",
-        //       message: "Bạn đã đăng bài thành công",
-        //       type: "success",
-        //       duration: 5000,
-        //     });
-        //   }
-        // });
       }
     } else {
-      this.toast({
-        title: "Thành công!",
-        message: `Bài sẽ được đăng vào ${this.formatDatePost(time)}`,
-        type: "success",
-        duration: 5000,
-      });
       this.root.querySelector(".picker").type = "text";
       this.root.querySelector(".picker").value = "";
     }
@@ -699,12 +669,15 @@ const app = {
                   blog.createdAt
                 )}</div>
             </div>
-            <div class="post-title">${stripHtml(blog.title)}</div>
-            <div class="post-content">${stripHtml(blog.content)}</div>
+            <div class="post-title">${this.handleRegex(
+              stripHtml(blog.title)
+            )}</div>
+            <div class="post-content">${this.handleRegex(
+              stripHtml(blog.content)
+            )}</div>
             <a href="#" class="post-showmore" data-index = "${stripHtml(
               blog._id
             )}">Show more</a>
-            <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
         </div>`;
         posts.append(blogEL);
       });
@@ -756,12 +729,15 @@ const app = {
                   blog.createdAt
                 )}</div>
             </div>
-            <div class="post-title">${stripHtml(blog.title)}</div>
-            <div class="post-content">${stripHtml(blog.content)}</div>
+            <div class="post-title">${this.handleRegex(
+              stripHtml(blog.title)
+            )}</div>
+            <div class="post-content">${this.handleRegex(
+              stripHtml(blog.content)
+            )}</div>
             <a href="#" class="post-showmore" data-index = "${stripHtml(
               blog._id
             )}">Show more</a>
-            <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
         </div>`;
         posts.append(blogEL);
       });
@@ -783,6 +759,10 @@ const app = {
   getPost: async function (blogId) {
     const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    if (this.isLogin()) {
+      const userPost = this.root.querySelector(".user-post");
+      userPost.style.display = "none";
+    }
     const posts = document.querySelector(".posts");
     posts.innerHTML = "";
     const loader = document.createElement("span");
@@ -814,10 +794,12 @@ const app = {
                   blog.data.createdAt
                 )}</div>
             </div>
-            <div class="post-title">${stripHtml(blog.data.title)}</div>
-            <div class="post-content">${stripHtml(blog.data.content)}</div>
-            <img class="post-img" src="./imgs/ngoctrinh.png" alt="picture">
-            
+            <div class="post-title">${this.handleRegex(
+              stripHtml(blog.data.title)
+            )}</div>
+            <div class="post-content">${this.handleRegex(
+              stripHtml(blog.data.content)
+            )}</div>            
             </div>
       </div>`;
       posts.innerHTML = html;
@@ -916,6 +898,54 @@ const app = {
     }
   },
 
+  handleRegex: function (content) {
+    //regex space
+    const patternSpace = /\s+/g;
+    content = content.replace(patternSpace, " ");
+
+    //regex line
+    const patternLine = /\n+/g;
+    content = content.replace(patternLine, "\n");
+
+    //regex mail
+    const partternMail = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
+    content = content.replace(
+      partternMail,
+      `<a href= "mailto:$1" target="_blank">$1</a>`
+    );
+    console.log(content);
+
+    //regex phone
+    const partternPhone = /((?:0|\+84)\d{9})/gi;
+    content = content.replace(
+      partternPhone,
+      `<a href= "tel:$1" target="_blank">$1</a>`
+    );
+    console.log(content);
+
+    // regex link
+    const partternLink =
+      /((?:(?:http|https):\/\/)(?:(?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9-_\.]*\.[a-z]{2,}(?::\d{2,}|))(?:\/[^\s]*|))/gi;
+    console.log(content.match(partternLink));
+    content = content.replace(
+      partternLink,
+      `<a href= "$1" target="_blank"><div>$1</div></a>`
+    );
+
+    //regex Youtobe
+    const patternYoutube =
+      /<div>((?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?(?:.+|))<\/div>/g;
+    content = content.replace(
+      patternYoutube,
+      ` <div>$1
+    <iframe src="https://www.youtube.com/embed/$2" width="420" height="315"></iframe>
+    </div>`
+    );
+    console.log(content);
+
+    return content;
+  },
+
   logout: async function () {
     const accessToken = localStorage.getItem("access_token");
     client.setToken(accessToken);
@@ -936,30 +966,6 @@ const app = {
           duration: 5000,
         });
       }
-      // results = await client.post(`/auth/logout`);
-      // const { response } = results;
-      // console.log(results);
-      // if (response.ok) {
-      //   localStorage.removeItem("access_token");
-      //   localStorage.removeItem("refresh_token");
-      //   this.loginForm();
-      //   this.toast({
-      //     title: "Thành công!",
-      //     message: "Bạn đã đăng xuất tài khoản thành công",
-      //     type: "success",
-      //     duration: 5000,
-      //   });
-      // } else {
-      //   localStorage.removeItem("access_token");
-      //   localStorage.removeItem("refresh_token");
-      //   this.loginForm();
-      //   this.toast({
-      //     title: "Thất bại!",
-      //     message: "Phiên làm việc hết hạn. Đăng nhập lại",
-      //     type: "error",
-      //     duration: 5000,
-      //   });
-      // }
     } else {
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
