@@ -934,7 +934,9 @@ const app = {
 
     //regex Youtobe
     const patternYoutube =
-      /<div>((?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?(?:.+|))<\/div>/g;
+      /<div>((?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?[^>]*(?:watch|embed)?(?:[^>]*v=|v\/|\/)([\w\-_]+)\&?(?:[^>]+|))<\/div>/g;
+    console.log(content.match(patternYoutube));
+
     content = content.replace(
       patternYoutube,
       ` <div>$1
