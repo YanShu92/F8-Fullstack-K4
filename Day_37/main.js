@@ -908,12 +908,11 @@ const app = {
     content = content.replace(patternLine, "\n");
 
     //regex mail
-    const partternMail = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
-    content = content.replace(
-      partternMail,
-      `<a href= "mailto:$1" target="_blank">$1</a>`
-    );
-    console.log(content);
+    // const partternMail = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
+    // content = content.replace(
+    //   partternMail,
+    //   `<a href= "mailto:$1" target="_blank">$1</a>`
+    // );
 
     //regex phone
     const partternPhone = /((?:0|\+84)\d{9})/gi;
@@ -921,21 +920,32 @@ const app = {
       partternPhone,
       `<a href= "tel:$1" target="_blank">$1</a>`
     );
-    console.log(content);
 
     // regex link
     const partternLink =
-      /((?:(?:http|https):\/\/)(?:(?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9-_\.]*\.[a-z]{2,}(?::\d{2,}|))(?:\/[^\s]*|))/gi;
-    console.log(content.match(partternLink));
+      /((?:(?:http|https):\/\/|)(?:(?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9@-_\.]*\.[a-z]{2,}(?::\d{2,}|))(?:\/[^\s]*|))/gi;
     content = content.replace(
       partternLink,
       `<a href= "$1" target="_blank"><div>$1</div></a>`
     );
 
+    //regex mail
+    // const partternMail = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
+    // content = content.replace(
+    //   partternMail,
+    //   `<a href= "mailto:$1" target="_blank">$1</a>`
+    // );
+
+    const partternMail =
+      /<a href= "((?:[\w\.-]{3,})@(?:[\w\.-]{1,}\.[a-z]{2,}))" target="_blank">/gi;
+    content = content.replace(
+      partternMail,
+      `<a href= "mailto:$2" target="_blank">`
+    );
+
     //regex Youtobe
     const patternYoutube =
       /<div>((?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?[^>]*(?:watch|embed)?(?:[^>]*v=|v\/|\/)([\w\-_]+)\&?(?:[^>]+|))<\/div>/g;
-    console.log(content.match(patternYoutube));
 
     content = content.replace(
       patternYoutube,
@@ -943,7 +953,6 @@ const app = {
     <iframe src="https://www.youtube.com/embed/$2" width="420" height="315"></iframe>
     </div>`
     );
-    console.log(content);
 
     return content;
   },
