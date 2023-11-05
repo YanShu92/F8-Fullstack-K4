@@ -923,10 +923,10 @@ const app = {
 
     // regex link
     const partternLink =
-      /((?:(?:http|https):\/\/|)(?:(?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9@-_\.]*\.[a-z]{2,}(?::\d{2,}|))(?:\/[^\s]*|))/gi;
+      /(?:(?:http|https):\/\/|)((?:(?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z@0-9-_\.]*\.[a-z]{2,}(?::\d{2,}|))(?:\/[^\s]*|))/gi;
     content = content.replace(
       partternLink,
-      `<a href= "$1" target="_blank"><div>$1</div></a>`
+      `<a href= "https://$1" target="_blank"><div>$1</div></a>`
     );
 
     //regex mail
