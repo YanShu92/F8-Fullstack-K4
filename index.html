@@ -1,497 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./landpage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./landpage.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Bai tap thuc hanh</title>
-</head>
-<body>
+  </head>
+  <body>
     <section class="info">
-        <header class="info__detail">
-            <div class="info__avatar">
-                <img src="./img/avatar-hero.jpg" alt="avatar">
+      <header class="info__detail">
+        <div class="info__avatar">
+          <img src="./img/avatar-hero.jpg" alt="avatar" />
+        </div>
+        <div>
+          <p>YanShu</p>
+          <p><b>Z</b>er0 to Fullstack <b>H</b>er0</p>
+        </div>
+      </header>
+      <div class="info__title"><p>F8-K4 Full stack</p></div>
+      <section class="project">
+        <p>Projects</p>
+        <input
+          type="radio"
+          value="0"
+          id="selected-html"
+          name="project"
+          class="selected"
+        />
+        <input
+          type="radio"
+          value="1"
+          id="selected-css"
+          name="project"
+          class="selected"
+        />
+        <input
+          type="radio"
+          value="2"
+          id="selected-js"
+          name="project"
+          class="selected"
+          checked
+        />
+        <div class="project-name">
+          <label
+            class="selected-name html-label"
+            for="selected-html"
+            onclick="changeDisplayHtml()"
+          >
+            <div class="project-html__img">
+              <i class="fa-brands fa-html5"></i>
             </div>
-            <div>
-                <p>YanShu</p>
-                <p><b>Z</b>er0 to Fullstack <b>H</b>er0</p>
+            <p>HTML</p>
+          </label>
+          <label
+            class="selected-name css-label"
+            for="selected-css"
+            onclick="changeDisplayCss()"
+          >
+            <div class="project-css__img">
+              <i class="fa-brands fa-css3-alt"></i>
             </div>
-        </header>
-        <div class="info__title"><p>F8-K4 Full stack</p></div>
-        <section class="project">
-            <p>Projects</p>
-            <input type="radio" value="0" id="selected-html" name="project" class="selected" >
-            <input type="radio" value="1" id="selected-css" name="project" class="selected" >
-            <input type="radio" value="2" id="selected-js" name="project" class="selected" checked>
-            <div class="project-name">
-                <label class="selected-name html-label" for="selected-html" onclick="changeDisplayHtml()">
-                    <div class="project-html__img">
-                        <i class="fa-brands fa-html5"></i>
-                    </div>
-                    <p>HTML</p>
-                </label>
-                <label class="selected-name css-label" for="selected-css" onclick="changeDisplayCss()">
-                    <div class="project-css__img">
-                        <i class="fa-brands fa-css3-alt"></i>
-                    </div>
-                    <p>CSS</p>
-                </label>
-                <label class="selected-name js-label" for="selected-js" onclick="changeDisplayJs()">
-                    <div class="project-js__img">
-                        <i class="fa-brands fa-js"></i>
-                    </div>
-                    <p>Javascript</p>
-                </label>
+            <p>CSS</p>
+          </label>
+          <label
+            class="selected-name js-label"
+            for="selected-js"
+            onclick="changeDisplayJs()"
+          >
+            <div class="project-js__img">
+              <i class="fa-brands fa-js"></i>
             </div>
-        </section>
+            <p>Javascript</p>
+          </label>
+        </div>
+      </section>
     </section>
     <section class="form-exercises form-html">
-        <h1>Bài tập thực hành HTML</h1>    
-        <div class="list-exercises">
-            <article class="exercises-by-day">
-                <p>Day_1</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_1/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_1/Bai2_icon.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_1/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_1" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_2</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai4.html" target="_blank">Bài 4</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai5.html" target="_blank">Bài 5</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_2" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_3</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai4.html" target="_blank">Bài 4</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai5.html" target="_blank">Bài 5</a>
-                    </li>
-                </ul>       
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_3" target="_blank">code &gt&gt</a></span>
-            </article>            
-        </div>
+      <h1>Bài tập thực hành HTML</h1>
+      <div class="list-exercises">
+        <article class="exercises-by-day">
+          <p>Day_1</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_1/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_1/Bai2_icon.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_1/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_1"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_2</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai4.html"
+                target="_blank"
+                >Bài 4</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_2/Bai5.html"
+                target="_blank"
+                >Bài 5</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_2"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_3</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai4.html"
+                target="_blank"
+                >Bài 4</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_3/Bai5.html"
+                target="_blank"
+                >Bài 5</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_3"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+      </div>
     </section>
     <section class="form-exercises form-css">
-        <h1>Bài tập thực hành CSS</h1>    
-        <div class="list-exercises">
-            <article class="exercises-by-day">
-                <p>Day_4</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_4/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_4/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_4/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_4" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_5</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_5/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_5/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_5/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_5" target="_blank">code &gt&gt</a></span>
-            </article>       
-            <article class="exercises-by-day">
-                <p>Day_6</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_6/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_6/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_6/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_6" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_7</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_7/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_7/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_7/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_7" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_8</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_8/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_8/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_8/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_8" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_9</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_9/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_9/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_9/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_9" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_10</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_10/Bai1.html" target="_blank">Bài 1</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_10/Bai2.html" target="_blank">Bài 2</a>
-                    </li>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_10/Bai3.html" target="_blank">Bài 3</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_10" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_11</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_11/grover.html" target="_blank">Grover</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_11" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_12</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_12/landing.html" target="_blank">Landing</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_12" target="_blank">code &gt&gt</a></span>
-            </article>
-            <article class="exercises-by-day">
-                <p>Day_13</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_13/figma.html" target="_blank">Figma</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_13" target="_blank">code &gt&gt</a></span>
-            </article>   
-            <article class="exercises-by-day">
-                <p>Day_14</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_14/index.html" target="_blank">Greenchop</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_14" target="_blank">code &gt&gt</a></span>
-            </article>                         
-        </div>
+      <h1>Bài tập thực hành CSS</h1>
+      <div class="list-exercises">
+        <article class="exercises-by-day">
+          <p>Day_4</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_4/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_4/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_4/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_4"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_5</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_5/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_5/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_5/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_5"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_6</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_6/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_6/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_6/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_6"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_7</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_7/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_7/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_7/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_7"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_8</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_8/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_8/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_8/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_8"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_9</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_9/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_9/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_9/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_9"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_10</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_10/Bai1.html"
+                target="_blank"
+                >Bài 1</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_10/Bai2.html"
+                target="_blank"
+                >Bài 2</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_10/Bai3.html"
+                target="_blank"
+                >Bài 3</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_10"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_11</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_11/grover.html"
+                target="_blank"
+                >Grover</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_11"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_12</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_12/landing.html"
+                target="_blank"
+                >Landing</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_12"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_13</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_13/figma.html"
+                target="_blank"
+                >Figma</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_13"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_14</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_14/index.html"
+                target="_blank"
+                >Greenchop</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_14"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+      </div>
     </section>
     <section class="form-exercises form-js">
-        <h1>Bài tập thực hành JS</h1>    
-        <div class="list-exercises">
-            <article class="exercises-by-day">
-                <p>Day_15</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_15/index.html" target="_blank">JS No1</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_15" target="_blank">code &gt&gt</a></span>
-            </article>   
-            <article class="exercises-by-day">
-                <p>Day_16</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_16/index.html" target="_blank">JS No2</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_16" target="_blank">code &gt&gt</a></span>
-            </article>   
-            <article class="exercises-by-day">
-                <p>Day_16a</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_16a/index.html" target="_blank">About Function</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_16a" target="_blank">code &gt&gt</a></span>
-            </article>  
-            <article class="exercises-by-day">
-                <p>Day_17</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_17/index.html" target="_blank">Js Karaoke</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_17" target="_blank">code &gt&gt</a></span>
-            </article>    
-            <article class="exercises-by-day">
-                <p>Day_19</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_19/index.html" target="_blank">JS Array1</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_19" target="_blank">code &gt&gt</a></span>
-            </article>    
-            <article class="exercises-by-day">
-                <p>Day_20</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_20/index.html" target="_blank">JS Array2</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_20" target="_blank">code &gt&gt</a></span>
-            </article>       
-            <article class="exercises-by-day">
-                <p>Day_21</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_21/index.html" target="_blank">JS Object</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_21" target="_blank">code &gt&gt</a></span>
-            </article>      
-            <article class="exercises-by-day">
-                <p>Day_22</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_22/index.html" target="_blank">JS Object</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_22" target="_blank">code &gt&gt</a></span>
-            </article>    
-            <article class="exercises-by-day">
-                <p>Day_23</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_23/index.html" target="_blank">JS Number</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_23" target="_blank">code &gt&gt</a></span>
-            </article>  
-            <article class="exercises-by-day">
-                <p>Day_23DOM</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_23DOM/index.html" target="_blank">Login DOM</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_23DOM" target="_blank">code &gt&gt</a></span>
-            </article>  
-            <article class="exercises-by-day">
-                <p>Day_24</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_24/index.html" target="_blank">Todolist</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_24" target="_blank">code &gt&gt</a></span>
-            </article>  
-            <article class="exercises-by-day">
-                <p>Day_26</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_25/index.html" target="_blank">Carousel</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_25" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_26</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_26/index.html" target="_blank">Player</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_26" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_27</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_27/index.html" target="_blank">Add Cart</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_27" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_28</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_28/index.html" target="_blank">Karaoke</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_28" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_29</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_29/index.html" target="_blank">Sortable</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_29" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_30</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_30/index.html" target="_blank">DocEditor</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_30" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_31</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_31/index.html" target="_blank">GetLink</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_31" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_32</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_32/index.html" target="_blank">CustomEl</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_32" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_33</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_33/index.html" target="_blank">Voice</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_33" target="_blank">code &gt&gt</a></span>
-            </article> 
+      <h1>Bài tập thực hành JS</h1>
+      <div class="list-exercises">
+        <article class="exercises-by-day">
+          <p>Day_15</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_15/index.html"
+                target="_blank"
+                >JS No1</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_15"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_16</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_16/index.html"
+                target="_blank"
+                >JS No2</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_16"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_16a</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_16a/index.html"
+                target="_blank"
+                >About Function</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_16a"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_17</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_17/index.html"
+                target="_blank"
+                >Js Karaoke</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_17"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_19</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_19/index.html"
+                target="_blank"
+                >JS Array1</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_19"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_20</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_20/index.html"
+                target="_blank"
+                >JS Array2</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_20"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_21</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_21/index.html"
+                target="_blank"
+                >JS Object</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_21"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_22</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_22/index.html"
+                target="_blank"
+                >JS Object</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_22"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_23</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_23/index.html"
+                target="_blank"
+                >JS Number</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_23"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_23DOM</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_23DOM/index.html"
+                target="_blank"
+                >Login DOM</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_23DOM"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_24</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_24/index.html"
+                target="_blank"
+                >Todolist</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_24"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_26</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_25/index.html"
+                target="_blank"
+                >Carousel</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_25"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_26</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_26/index.html"
+                target="_blank"
+                >Player</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_26"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_27</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_27/index.html"
+                target="_blank"
+                >Add Cart</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_27"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_28</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_28/index.html"
+                target="_blank"
+                >Karaoke</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_28"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_29</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_29/index.html"
+                target="_blank"
+                >Sortable</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_29"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_30</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_30/index.html"
+                target="_blank"
+                >DocEditor</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_30"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_31</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_31/index.html"
+                target="_blank"
+                >GetLink</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_31"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_32</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_32/index.html"
+                target="_blank"
+                >CustomEl</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_32"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_33</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_33/index.html"
+                target="_blank"
+                >Voice</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_33"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
 
-            <article class="exercises-by-day">
-                <p>Day_34</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_34/index.html" target="_blank">Todo API</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_34" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_35</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_35/index.html" target="_blank">Scroll</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_35" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_36</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_36/index.html" target="_blank">Game</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_36" target="_blank">code &gt&gt</a></span>
-            </article> 
-            <article class="exercises-by-day">
-                <p>Day_37</p>
-                <ul>
-                    <li>
-                        <a href="https://yanshu92.github.io/F8-Fullstack-K4/Day_37/index.html" target="_blank">Blog</a>
-                    </li>
-                </ul>
-                <span class="link-repo"><a href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_37" target="_blank">code &gt&gt</a></span>
-            </article> 
-        </div>
+        <article class="exercises-by-day">
+          <p>Day_34</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_34/index.html"
+                target="_blank"
+                >Todo API</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_34"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_35</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_35/index.html"
+                target="_blank"
+                >Scroll</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_35"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_36</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_36/index.html"
+                target="_blank"
+                >Game</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_36"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_37</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_37/index.html"
+                target="_blank"
+                >Blog</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_37"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+        <article class="exercises-by-day">
+          <p>Day_40</p>
+          <ul>
+            <li>
+              <a
+                href="https://yanshu92.github.io/F8-Fullstack-K4/Day_40/index.html"
+                target="_blank"
+                >Navigo</a
+              >
+            </li>
+          </ul>
+          <span class="link-repo"
+            ><a
+              href="https://github.com/YanShu92/F8-Fullstack-K4/tree/main/Day_40"
+              target="_blank"
+              >code &gt&gt</a
+            ></span
+          >
+        </article>
+      </div>
     </section>
-    <script>    
-        function changeDisplayHtml() {
-            document.querySelector('.form-html').setAttribute("style","display : block;");
-            document.querySelector('.form-css').setAttribute("style","display : none;");
-            document.querySelector('.form-js').setAttribute("style","display : none;");          
-        }
-        function changeDisplayCss() {
-            document.querySelector('.form-html').setAttribute("style","display : none;");
-            document.querySelector('.form-css').setAttribute("style","display : block;");
-            document.querySelector('.form-js').setAttribute("style","display : none;");          
-        }
-        function changeDisplayJs() {
-            document.querySelector('.form-html').setAttribute("style","display : none;");
-            document.querySelector('.form-css').setAttribute("style","display : none;");
-            document.querySelector('.form-js').setAttribute("style","display : block;");          
-        }
+    <script>
+      function changeDisplayHtml() {
+        document
+          .querySelector(".form-html")
+          .setAttribute("style", "display : block;");
+        document
+          .querySelector(".form-css")
+          .setAttribute("style", "display : none;");
+        document
+          .querySelector(".form-js")
+          .setAttribute("style", "display : none;");
+      }
+      function changeDisplayCss() {
+        document
+          .querySelector(".form-html")
+          .setAttribute("style", "display : none;");
+        document
+          .querySelector(".form-css")
+          .setAttribute("style", "display : block;");
+        document
+          .querySelector(".form-js")
+          .setAttribute("style", "display : none;");
+      }
+      function changeDisplayJs() {
+        document
+          .querySelector(".form-html")
+          .setAttribute("style", "display : none;");
+        document
+          .querySelector(".form-css")
+          .setAttribute("style", "display : none;");
+        document
+          .querySelector(".form-js")
+          .setAttribute("style", "display : block;");
+      }
     </script>
-</body>
+  </body>
 </html>
