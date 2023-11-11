@@ -1,0 +1,36 @@
+.form-add {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(203, 216, 16, 0.8);
+  width: 400px;
+  display: flex;
+}
+input {
+  flex: 1;
+  font-size: 1.6rem;
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  color: #fff;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background-color: rgb(20, 184, 166);
+  font-weight: 700;
+  font-size: 1.6rem;
+  border-radius: 8px;
+  color: #fff;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(8, 126, 112);
+}
