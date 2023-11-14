@@ -18,6 +18,7 @@ export class App extends Component {
       status: 0,
       isLogin: false,
     };
+    // this.changeButton = this.changeButton.blind(this);
   }
 
   async getList(apiKey) {
@@ -202,32 +203,74 @@ export class App extends Component {
     }
   }
 
-  // onSearch = async (value) => {
-  //   this.setState({ isLoading: true });
-  //   client.setApi(apiKey);
-  //   const query = `?q=${value}`
-  //   const { data } = await client.get(`/todos/${query}`);
-  //   console.log(data);
-  //   if (data.code === 200) {
-  //     const newArr = [...this.state.listTodo].map((item) =>
-  //       item._id === idTodo ? data.data : item
-  //     );
-  //     this.setState({
-  //       message: data.message,
-  //       status: 1,
-  //       isLoading: false,
-  //       listTodo: newArr,
-  //     });
-  //     return;
-  //   } else {
-  //     this.setState({
-  //       message: data.message,
-  //       status: 0,
-  //       isLoading: false,
-  //     });
-  //     return;
-  //   }
-  // };
+  onSearch = async (value) => {
+    this.setState({ isLoading: true });
+    const query = `?q=${value}`;
+    console.log(query);
+    const { data } = await client.get(`/todos/${query}`);
+    console.log(data);
+    if (data.code === 200) {
+      const newArr = data.data.listTodo;
+      if (newArr.length) {
+        this.setState({
+          message: "Tìm kiếm thành công",
+          status: 1,
+          isLoading: false,
+          listTodo: newArr,
+        });
+      } else {
+        this.setState({
+          message: "Không có kết quả tìm kiếm",
+          status: 3,
+          isLoading: false,
+          listTodo: newArr,
+        });
+      }
+      return;
+    } else {
+      this.setState({
+        message: data.message,
+        status: 0,
+        isLoading: false,
+      });
+      return;
+    }
+  };
+  updateDebounce = this.debounce((text) => {
+    this.onSearch(text);
+  }, 500);
+
+  debounce(cb, delay = 250) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        cb(...args);
+      }, delay);
+    };
+  }
+
+  changeButton = (onside) => {
+    if (!onside) {
+      this.setState({
+        message: "Chuyển chế độ tìm kiếm thành công",
+        status: 3,
+      });
+    } else {
+      client.get("/todos").then(({ data }) => {
+        if (data.code === 200) {
+          console.log(data);
+
+          this.setState({
+            listTodo: data.data.listTodo,
+            isLoading: false,
+            message: "Chuyển chế độ add todo thành công",
+            status: 3,
+          });
+        }
+      });
+    }
+  };
 
   componentDidMount() {
     this.checkUser();
@@ -245,7 +288,11 @@ export class App extends Component {
             Welcome <span>{this.getEmailCookie()}</span> to TodoList
           </h1>
         )}
-        <TodoForm onGetList={this.addTodo} onSearch={this.onSearch} />
+        <TodoForm
+          onGetList={this.addTodo}
+          updateDebounce={this.updateDebounce}
+          changeButton={this.changeButton}
+        />
         <TodoList
           listTodo={listTodo}
           onDelete={this.onDelete}

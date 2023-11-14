@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import "../../assets/scss/FormTodo.scss";
-const TodoForm = ({ onGetList, onSearch }) => {
+const TodoForm = ({ onGetList, updateDebounce, changeButton }) => {
   const [todoName, setTodoName] = useState("");
+  const [onside, setOnSide] = useState(true);
   const handleTodoName = (e) => {
     e.preventDefault();
     onGetList(todoName.trim());
     setTodoName("");
+    setOnSide(true);
+    changeButton(true);
   };
 
   const handleValue = (e) => {
     setTodoName(e.target.value);
-    onSearch(todoName);
+    if (!onside) {
+      updateDebounce(todoName);
+      if (e.target.value === "") updateDebounce("");
+    }
+  };
+
+  const handleChange = () => {
+    setOnSide(false);
+    changeButton(false);
   };
 
   return (
@@ -23,8 +34,17 @@ const TodoForm = ({ onGetList, onSearch }) => {
         onChange={handleValue}
         value={todoName}
       />
-      <button className="btn-submit">Thêm mới</button>
-      <button type="button" className="btn-search" onChange={handleValue}>
+      <button
+        type="submit"
+        className={onside ? "btn-submit onside" : "btn-submit"}
+      >
+        Thêm mới
+      </button>
+      <button
+        type="button"
+        className={onside ? "btn-search" : "btn-search onside"}
+        onClick={handleChange}
+      >
         Tìm kiếm
       </button>
     </form>

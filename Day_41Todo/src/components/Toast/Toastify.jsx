@@ -22,6 +22,9 @@ const Toastify = ({ message, status, isLoading }) => {
     if (status === 2) {
       toast.warn(message, css);
     }
+    if (status === 3) {
+      toast.info(message, css);
+    }
   }
   return (
     <ToastContainer

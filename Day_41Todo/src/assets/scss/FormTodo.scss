@@ -22,7 +22,7 @@ input::placeholder {
 button {
   padding: 8px 16px;
   border: none;
-  background-color: rgb(20, 184, 166);
+  background-color: #ccc;
   font-weight: 700;
   font-size: 1.6rem;
   border-radius: 8px;
@@ -31,15 +31,34 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: rgb(8, 126, 112);
-}
-
 button.btn-search {
-  background-color: rgb(184, 133, 38);
   margin-left: 10px;
 }
 
-button.btn-search:hover {
-  background-color: rgb(150, 99, 3);
+button.btn-submit.onside {
+  background-color: rgb(8, 126, 112);
+  box-shadow: 5px 5px #222222;
+  transition: all ease-in 0.2s !important;
+}
+
+button.btn-submit:hover,
+button.btn-submit.onside:hover {
+  box-shadow: none;
+  transform: translateY(2px) !important;
+  transition: all ease-in 0.2s;
+  opacity: 1 !important;
+}
+
+button.btn-search.onside {
+  background-color: rgb(38, 184, 45);
+  box-shadow: 5px 5px #222222;
+  transition: all ease-in 0.2s !important;
+}
+
+button.btn-search:hover,
+button.btn-search.onside:hover {
+  box-shadow: none;
+  transform: translateY(2px) !important;
+  transition: all ease-in 0.2s;
+  opacity: 1 !important;
 }
