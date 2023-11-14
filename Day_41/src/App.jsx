@@ -83,12 +83,32 @@ export class App extends Component {
     this.checkUser();
   }
 
-  handleUpdateToast(message, status) {
-    this.setState({
-      messageToast: message,
-      statusToast: status,
-    });
-  }
+  // async deleteTodo(_id) {
+  //   const { response } = await client.delete(`/todos/${_id}`);
+  //   console.log(response);
+  //   if (response.ok) {
+  //     console.log(this);
+  //     const listTodo = this?.state.todoArr;
+  //     console.log(1111);
+  //     console.log(listTodo);
+  //     const index = arrTodo.findIndex((todo) => todo.id === _id);
+  //     listTodo.splice(index, 1);
+  //     this.setState({
+  //       todoArr: listTodo,
+  //     });
+  //     this.handleUpdateToast("Xóa Todo thành công", 1);
+  //   } else {
+  //     this.handleUpdateToast("Xóa Thất bại, thử lại", 0);
+  //     this.getApiKey();
+  //   }
+  // }
+
+  // handleUpdateToast(message, status) {
+  //   this.setState({
+  //     messageToast: message,
+  //     statusToast: status,
+  //   });
+  // }
 
   async getUpdateList(apiKey) {
     const { data } = await client.get("/todos");
@@ -123,11 +143,12 @@ export class App extends Component {
   };
 
   render() {
+    console.log(this.state.todoArr);
     return (
       <div className="container">
         <h1>Welcome to TodoList</h1>
         <FormTodo onAddTodo={this.addTodo} />
-        <TodoList onTodo={this.state.todoArr} />
+        <TodoList onTodo={this.state.todoArr} deleteTodo={this.deleteTodo} />
         <Toastify
           message={this.state.messageToast}
           status={this.state.statusToast}

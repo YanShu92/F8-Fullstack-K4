@@ -14,7 +14,7 @@ export const getApiKey = async () => {
     console.log(data);
     if (data.code === 200) {
       const { apiKey } = data.data;
-      client.setApi = apiKey;
+      client.setApi(apiKey);
       document.cookie = `apiKey=${apiKey}`;
       document.cookie = `email=${email}`;
       //     getList(getApiKeyCookie()).then((data) => {

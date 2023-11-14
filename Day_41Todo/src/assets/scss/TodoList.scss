@@ -1,0 +1,100 @@
+.list-todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8px;
+  list-style: none inside;
+  max-width: 780px;
+  width: 100%;
+  text-align: left;
+}
+
+.todo {
+  margin: 8px 0 16px;
+  padding: 24px 32px;
+  background-color: #fff;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  border-radius: 5px;
+  width: 100%;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  max-width: 800px;
+}
+
+.todo input {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 1.6rem;
+  line-height: 20px;
+  color: #000;
+  font-weight: 700;
+  // cursor: not-allowed;s
+}
+
+.todo input.text-modify {
+  color: #000;
+  cursor: default;
+}
+
+.todo input.completed {
+  text-decoration-line: line-through;
+}
+.todo .btn-wapper {
+  display: flex;
+  column-gap: 10px;
+}
+
+.todo .btn-wapper label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 10px;
+  cursor: pointer;
+}
+.todo button {
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.todo .btn-wapper button.btn-out {
+  margin-left: auto;
+}
+
+.todo button.btn-modify {
+  background-color: rgb(20, 184, 166);
+}
+
+.todo button.btn-modify:hover {
+  background-color: rgb(4, 114, 101);
+}
+
+.todo button.btn-out {
+  background-color: rgb(47, 73, 189);
+}
+
+.todo button.btn-out:hover {
+  background-color: rgb(14, 44, 179);
+}
+
+.todo button.btn-update {
+  background-color: rgb(56, 197, 56);
+}
+
+.todo button.btn-update:hover {
+  background-color: rgb(12, 180, 12);
+}
+
+.todo button.btn-delete {
+  background-color: rgb(239, 68, 68);
+}
+
+.todo button.btn-delete:hover {
+  background-color: rgb(226, 19, 19);
+}
