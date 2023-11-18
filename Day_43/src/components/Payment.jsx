@@ -1,13 +1,47 @@
 import React from "react";
 import "../assets/scss/payment.scss";
-import { useSelector } from "../core/hook";
+import { useDispatch, useSelector } from "../core/hook";
+import { client } from "./configs/client";
 const Payment = () => {
   const listCart = useSelector((state) => state.listCart);
+  console.log(listCart);
+  const dispatch = useDispatch();
   const getUserCookie = () => {
     const str = document.cookie + ";";
     const pattern = /userName=([^;]*)/;
     const strSub = str.match(pattern);
     return strSub[1];
+  };
+
+  // const getCartCookie = () => {
+  //   const str = document.cookie + ";";
+  //   const pattern = /cart=([^;]*)/;
+  //   const strSub = str.match(pattern);
+  //   return strSub[1];
+  // };
+  // const cartPayment = getCartCookie();
+
+  const handlePayment = async () => {
+    dispatch({
+      type: "loading/show",
+    });
+    const bodyCart = listCart.map((item) => {
+      return {
+        productId: item.id,
+        quantity: item.quantity,
+      };
+    });
+    const { data } = await client.post(`/orders`, bodyCart);
+    if (data.code === 200) {
+      dispatch({
+        type: "pay-cart",
+      });
+    } else {
+      document.cookie = `userName=;expires=${new Date().toUTCString()}`;
+      document.cookie = `email=;expires=${new Date().toUTCString()}`;
+      document.cookie = `apiKey=;expires=${new Date().toUTCString()}`;
+      window.location.reload();
+    }
   };
   return (
     <div className="payment">
@@ -28,7 +62,7 @@ const Payment = () => {
             </thead>
             <tbody>
               {listCart.map((item) => (
-                <tr key={item._id}>
+                <tr key={item.id}>
                   <th>{item.name}</th>
                   <th>{item.count}</th>
                   <th>{item.quantity}</th>
@@ -37,7 +71,14 @@ const Payment = () => {
               ))}
             </tbody>
           </table>
-          <button className="btn-payment">Thanh toán</button>
+          <button
+            className="btn-payment"
+            onClick={() => {
+              handlePayment();
+            }}
+          >
+            Thanh toán
+          </button>
         </div>
       ) : (
         <div className="no-cart">Không có sản phẩm</div>

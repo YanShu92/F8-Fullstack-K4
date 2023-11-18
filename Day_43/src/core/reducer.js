@@ -38,6 +38,31 @@ export const reducer = (state, action) => {
     case "logout": {
       return { ...state, isLogin: false, isToast: false };
     }
+    case "pay-cart": {
+      return {
+        ...state,
+        isLogin: true,
+        isLoading: false,
+        listCart: [],
+        isToast: true,
+        toast: {
+          message: "Bạn thanh toán thành công",
+          status: 1,
+        },
+      };
+    }
+
+    case "error-addCart": {
+      return {
+        ...state,
+        isLoading: false,
+        isToast: true,
+        toast: {
+          message: "Sản phẩm hết hàng. Vui lòng nhập sản phẩm khác",
+          status: 3,
+        },
+      };
+    }
 
     case "addCart": {
       return {
