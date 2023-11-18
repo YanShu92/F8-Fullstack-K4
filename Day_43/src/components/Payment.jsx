@@ -13,14 +13,6 @@ const Payment = () => {
     return strSub[1];
   };
 
-  // const getCartCookie = () => {
-  //   const str = document.cookie + ";";
-  //   const pattern = /cart=([^;]*)/;
-  //   const strSub = str.match(pattern);
-  //   return strSub[1];
-  // };
-  // const cartPayment = getCartCookie();
-
   const handlePayment = async () => {
     dispatch({
       type: "loading/show",

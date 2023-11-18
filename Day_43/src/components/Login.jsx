@@ -6,8 +6,6 @@ import { useSelector, useDispatch } from "../core/hook";
 const Login = () => {
   const isLogin = useSelector((state) => state.isLogin);
   const [email, setEmail] = useState("");
-
-  const toast = useSelector((state) => state.toast);
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +13,6 @@ const Login = () => {
       type: "loading/show",
     });
     const pattern = /((?:[\w\.-]{3,})@(?:[\w\.-]{1,}\.[a-z]{2,}))/gi;
-    console.log(email.match(pattern));
     if (email.match(pattern)) {
       var emailPath = email.replace(/@/g, "%40");
       const url = `/api-key?email=${emailPath}`;
@@ -28,6 +25,18 @@ const Login = () => {
         client.setApi(apiKey);
         document.cookie = `apiKey=${apiKey}`;
         document.cookie = `email=${email}`;
+        const { data: user } = await client.get(`/users/profile`);
+        if (user.code === 200) {
+          document.cookie = `userName=${user.data.emailId.name}`;
+        } else {
+          dispatch({
+            type: "logout",
+          });
+          document.cookie = `userName=;expires=${new Date().toUTCString()}`;
+          document.cookie = `email=;expires=${new Date().toUTCString()}`;
+          document.cookie = `apiKey=;expires=${new Date().toUTCString()}`;
+        }
+
         dispatch({
           type: "login",
         });
@@ -65,6 +74,7 @@ const Login = () => {
     const strSub = str.match(pattern);
     return strSub[1];
   };
+
   const getEmailCookie = () => {
     const str = document.cookie + ";";
     const pattern = /email=(([\w\.-]{3,})@(?:[\w\.-]{1,}\.[a-z]{2,}))/;

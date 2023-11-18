@@ -10,16 +10,18 @@ const ListItems = () => {
     dispatch({
       type: "loading/show",
     });
-    const { data } = await client.get(`/products?limit=8&page=10`);
+    const { data } = await client.get(`/products?limit=8`);
+    console.log(data);
     if (data.code === 200) {
       dispatch({
         type: "loading/hide",
       });
       setList(data.data.listProduct);
-      const { data: user } = await client.get(`/users/profile`);
-      document.cookie = `userName=${user.data.emailId.name}`;
     } else {
-      document.cookie = "";
+      document.cookie = `userName=;expires=${new Date().toUTCString()}`;
+      document.cookie = `email=;expires=${new Date().toUTCString()}`;
+      document.cookie = `apiKey=;expires=${new Date().toUTCString()}`;
+      document.cookie = `cart=;expires=${new Date().toUTCString()}`;
       window.location.reload();
     }
   };
@@ -67,9 +69,6 @@ const ListItems = () => {
     getData();
   }, []);
 
-  useEffect(() => {
-    document.cookie = `cart=${listCart}`;
-  }, [listCart]);
   return (
     <div className="product-list">
       {list.map((item) => (

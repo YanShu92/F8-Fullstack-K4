@@ -36,7 +36,16 @@ export const reducer = (state, action) => {
     }
 
     case "logout": {
-      return { ...state, isLogin: false, isToast: false };
+      return {
+        ...state,
+        isLogin: false,
+        isToast: true,
+        toast: {
+          message: "Vui lòng đăng nhập lại",
+          status: 0,
+        },
+        listCart: [],
+      };
     }
     case "pay-cart": {
       return {
@@ -48,6 +57,17 @@ export const reducer = (state, action) => {
         toast: {
           message: "Bạn thanh toán thành công",
           status: 1,
+        },
+      };
+    }
+    case "noAdd-more": {
+      return {
+        ...state,
+        isLoading: false,
+        isToast: true,
+        toast: {
+          message: "Sản phẩm hết hàng. Không thể add thêm",
+          status: 3,
         },
       };
     }

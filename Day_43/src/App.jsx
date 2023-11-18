@@ -10,12 +10,15 @@ const App = () => {
   const isLogin = useSelector((state) => state.isLogin);
   return (
     <div>
-      <div className="container">
-        <h1>Welcome to Shopping Home</h1>
-        <ListItems />
-        <Payment />
-      </div>
-      {!isLogin && <Login />}
+      {!isLogin ? (
+        <Login />
+      ) : (
+        <div className="container">
+          <h1>Welcome to Shopping Home</h1>
+          <ListItems />
+          <Payment />
+        </div>
+      )}
       <Loading />
       <Toastify />
     </div>
