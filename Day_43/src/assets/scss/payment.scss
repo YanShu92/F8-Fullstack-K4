@@ -1,0 +1,71 @@
+.payment {
+  margin-top: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  h2 {
+    font-size: 1.8rem;
+    span {
+      color: red;
+      font-weight: 700;
+    }
+  }
+
+  .no-cart {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #9b9898;
+  }
+  table {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    caption {
+      font-weight: 700;
+      color: rgb(5, 5, 128);
+    }
+    thead {
+      font-weight: 700;
+      color: #630606;
+      background-color: #ddd;
+      th {
+        border: 1px solid #ccc;
+        padding: 5px;
+      }
+      th:nth-child(1) {
+        text-align: left;
+      }
+    }
+    tbody {
+      font-weight: 700;
+      th {
+        border: 1px solid #ccc;
+        padding: 5px;
+      }
+      th:nth-child(1) {
+        text-align: left;
+      }
+
+      th:not(:nth-child(1)) {
+        font-weight: 500;
+      }
+    }
+  }
+
+  button {
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    background-color: green;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}
