@@ -6,7 +6,7 @@ import emailjs from "@emailjs/browser";
 
 const Profile = () => {
   const { logout, user, isAuthenticated, isLoading } = useAuth0();
-  const form = useRef();
+  // const form = useRef();
   const [email, SetEmail] = useState("");
   const [message, setMessage] = useState("");
   if (isLoading) {
