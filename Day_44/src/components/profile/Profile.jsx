@@ -17,6 +17,7 @@ const Profile = () => {
   if (isLoading) {
     return <Loading />;
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const serviceId = "service_h8ckkuo";
