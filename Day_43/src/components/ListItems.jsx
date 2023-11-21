@@ -10,7 +10,7 @@ const ListItems = () => {
     dispatch({
       type: "loading/show",
     });
-    const { data } = await client.get(`/products?limit=8`);
+    const { data } = await client.get(`/products?limit=8&page=99`);
     console.log(data);
     if (data.code === 200) {
       dispatch({

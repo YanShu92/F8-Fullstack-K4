@@ -8,6 +8,13 @@ import Toastify from "./components/Toast/Toastify";
 import { useSelector } from "./core/hook";
 const App = () => {
   const isLogin = useSelector((state) => state.isLogin);
+  const getApiKeyCookie = () => {
+    const str = document.cookie + ";";
+    const pattern = /apiKey=([^;]*)/;
+    const strSub = str.match(pattern);
+    return strSub[1];
+  };
+  console.log(isLogin);
   return (
     <div>
       {!isLogin ? (

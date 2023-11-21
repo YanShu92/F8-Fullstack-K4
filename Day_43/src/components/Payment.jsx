@@ -20,9 +20,10 @@ const Payment = () => {
     const bodyCart = listCart.map((item) => {
       return {
         productId: item.id,
-        quantity: item.quantity,
+        quantity: item.count,
       };
     });
+    console.log(bodyCart);
     const { data } = await client.post(`/orders`, bodyCart);
     if (data.code === 200) {
       dispatch({
@@ -32,6 +33,7 @@ const Payment = () => {
       document.cookie = `userName=;expires=${new Date().toUTCString()}`;
       document.cookie = `email=;expires=${new Date().toUTCString()}`;
       document.cookie = `apiKey=;expires=${new Date().toUTCString()}`;
+      document.cookie = `cart=;expires=${new Date().toUTCString()}`;
       window.location.reload();
     }
   };

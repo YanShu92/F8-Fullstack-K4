@@ -47,6 +47,7 @@ export const reducer = (state, action) => {
         listCart: [],
       };
     }
+
     case "pay-cart": {
       return {
         ...state,
