@@ -1,9 +1,9 @@
 import React from "react";
 import { CubeSpinner } from "react-spinners-kit";
 import "../Loading/loading.scss";
-const Loading = ({ isLoading = false }) => {
+const LoadingForm = ({ isLoadingForm = false }) => {
   return (
-    isLoading && (
+    isLoadingForm && (
       <div className="loadingBox">
         <div className="overlay-loading"></div>
         <div className="loading">
@@ -14,4 +14,4 @@ const Loading = ({ isLoading = false }) => {
   );
 };
 
-export default Loading;
+export default LoadingForm;

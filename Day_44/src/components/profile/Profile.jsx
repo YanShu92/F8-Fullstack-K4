@@ -1,24 +1,61 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
 import Loading from "../Loading/Loading";
+import LoadingForm from "../Loading/LoadingForm";
 import "./profile.scss";
 import { Fragment, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import emailjs from "@emailjs/browser";
 
+import "react-toastify/dist/ReactToastify.css";
 const Profile = () => {
   const { logout, user, isAuthenticated, isLoading } = useAuth0();
   // const form = useRef();
-  const [email, SetEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoadingForm, setLoadingForm] = useState(false);
   if (isLoading) {
     return <Loading />;
   }
   const handleSubmit = (e) => {
     e.preventDefault();
+    const serviceId = "service_h8ckkuo";
     const publicKey = "9e9v64tbejx0GU17u";
-    const privateKey = "qRm51l7L7L6kzyFTuIWBW";
     const templateID = "template_t5a7iib";
-  };
 
+    const templateParams = {
+      from_name: user?.name,
+      from_email: email,
+      to_name: "Hoang Thanh",
+      message: message,
+    };
+    if (!email) {
+      toast.error("Vui lòng nhập email của bạn");
+      return;
+    }
+    const pattern = /((?:[\w\.-]{3,})@(?:[\w\.-]{1,}\.[a-z]{2,}))/gi;
+    if (!email.match(pattern)) {
+      toast.error("Vui lòng nhập đúng định dạng email");
+      return;
+    }
+    if (!message) {
+      toast.error("Nhập đầy đủ yêu cầu để hỗ trợ tốt nhất");
+      return;
+    }
+    setLoadingForm(true);
+    emailjs
+      .send(serviceId, templateID, templateParams, publicKey)
+      .then((response) => {
+        setLoadingForm(false);
+        toast.success("Gửi email thành công! Cảm ơn bạn đã đóng góp");
+        setEmail("");
+        setMessage("");
+      })
+      .catch((error) => {
+        setLoadingForm(false);
+        toast.error("Gửi email thất bại! Vui lòng gửi lại");
+      });
+  };
   return (
     isAuthenticated && (
       <Fragment>
@@ -35,11 +72,11 @@ const Profile = () => {
           >
             <label htmlFor="email">
               <input
-                type="email"
+                type="text"
                 id="email"
-                value="example@email.com"
+                placeholder="example@email.com"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
               <span> Email của bạn *</span>
             </label>
@@ -50,8 +87,8 @@ const Profile = () => {
                 cols="30"
                 rows="10"
                 onChange={(e) => setMessage(e.target.value)}
-                value="Tôi cần trợ giúp bài tập về nhà"
-                required
+                placeholder="Tôi cần trợ giúp bài tập về nhà"
+                value={message}
               ></textarea>
               <span> Tin nhắn *</span>
             </label>
@@ -60,12 +97,18 @@ const Profile = () => {
         </article>
         <button
           className="logout"
-          onClick={() =>
-            logout({ logoutParams: { returnTo: window.location.origin } })
-          }
+          onClick={() => {
+            setLoadingForm(true);
+            setTimeout(() => {
+              setLoadingForm(false);
+            }, 1000);
+            logout({ logoutParams: { returnTo: window.location.origin } });
+          }}
         >
           ĐĂNG XUẤT
         </button>
+        <ToastContainer />
+        <LoadingForm isLoadingForm={isLoadingForm} />
       </Fragment>
     )
   );
