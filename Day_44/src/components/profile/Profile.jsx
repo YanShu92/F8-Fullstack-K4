@@ -25,9 +25,9 @@ const Profile = () => {
     const templateID = "template_t5a7iib";
 
     const templateParams = {
-      from_name: user?.name,
-      from_email: email,
-      to_name: "Hoang Thanh",
+      to_name: user?.name,
+      to_email: email,
+      from_name: "Hoang Thanh",
       message: message,
     };
     if (!email) {
