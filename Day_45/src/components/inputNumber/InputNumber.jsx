@@ -5,7 +5,8 @@ import "../inputNumber/InputNumber.scss";
 import InputForm from "../inputForm/InputForm";
 const InputNumber = () => {
   const remainingTime = useSelector((state) => state.remainingTime);
-  const maxNumber = useSelector((state) => state.maxNumber);
+//   const maxNumber = useSelector((state) => state.maxNumber);
+  const maxNumber = localStorage.getItem("maxNumber")
   const dispatch = useDispatch();
   const maxNumberAll = 2048;
   const listNumber = [100, 512, 1024, 1536, 2048];
@@ -18,7 +19,7 @@ const InputNumber = () => {
   const progressBarSpan = useRef();
   const timing = useRef();
   const inputRef = useRef();
-  const [timingNumber, setTimingNumber] = useState(0);
+  const [timingNumber, setTimingNumber] = useState(512);
   let initialClientX,
     currentValue = 0,
     value,
