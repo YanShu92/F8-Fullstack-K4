@@ -8,6 +8,8 @@ const initialState = {
   theme: "light",
   remainingTime: 9,
   maxNumber: 512,
+  status: 3,
+  message: "Chào mừng bạn đến với trò chơi đoán chữ",
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -24,7 +26,17 @@ const rootReducer = (state = initialState, action) => {
         remainingTime: maxTime,
         correctNumber: random,
         listInput: [],
+        status: 1,
+        message: "Bạn đã xóa thành công",
         isCorrect: false,
+      };
+    }
+
+    case "input/invalid": {
+      return {
+        ...state,
+        status: 0,
+        message: "Bạn đã từng nhập số này",
       };
     }
 
@@ -37,21 +49,14 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case "input/addNumberCorrect": {
-      //   if (state.remainingTime === 1) {
-      //     return {
-      //       ...state,
-      //       isCorrect: true,
-      //       remainingTime: state.remainingTime - 1,
-      //       listInput: [...state.listInput, action.payload],
-      //       data: [...state.data, [...state.listInput, action.payload]],
-      //     };
-      //   }
       return {
         ...state,
         isCorrect: true,
         remainingTime: state.remainingTime - 1,
         listInput: [...state.listInput, action.payload],
         data: [[...state.listInput, action.payload], ...state.data],
+        status: 1,
+        message: "Bạn dự đoán chính xác",
       };
     }
 
@@ -61,15 +66,19 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           remainingTime: state.remainingTime - 1,
           isCorrect: false,
-          listInput: [...state.listInput, action.payload],
-          data: [[...state.listInput, action.payload], ...state.data],
+          listInput: [...state.listInput, action.payload.element],
+          data: [[...state.listInput, action.payload.element], ...state.data],
+          status: 0,
+          message: "Chúc bạn may mắn lần sau",
         };
       }
       return {
         ...state,
         isCorrect: false,
         remainingTime: state.remainingTime - 1,
-        listInput: [...state.listInput, action.payload],
+        listInput: [...state.listInput, action.payload.element],
+        status: 2,
+        message: action.payload.message,
       };
     }
 
@@ -88,6 +97,8 @@ const rootReducer = (state = initialState, action) => {
         remainingTime: maxTime,
         isCorrect: false,
         listInput: [],
+        status: 1,
+        message: "Chào mừng đến đoán số",
       };
     }
 
@@ -100,6 +111,8 @@ const rootReducer = (state = initialState, action) => {
         remainingTime: maxTime,
         isCorrect: false,
         listInput: [],
+        status: 3,
+        message: "Cùng thử lại nào",
       };
     }
     default:

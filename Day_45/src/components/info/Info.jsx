@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../info/Info.scss";
 const Info = () => {
   const maxNumber = useSelector((state) => state.maxNumber);
+  const message = useSelector((state) => state.message);
   const remainingTime = useSelector((state) => state.remainingTime);
   const isCorrect = useSelector((state) => state.isCorrect);
   const data = useSelector((state) => state.data);
@@ -21,7 +22,7 @@ const Info = () => {
   const maxTime = Math.ceil(Math.log2(maxNumber));
   return (
     <Fragment>
-      <h2>Chào mừng bạn đến với trò chơi đoán số</h2>
+      <h2>{message}</h2>
       <h2>
         Còn {remainingTime}/{maxTime} lần
       </h2>

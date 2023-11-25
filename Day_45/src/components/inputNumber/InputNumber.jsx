@@ -33,7 +33,8 @@ const InputNumber = () => {
     value = (e.offsetX / widthSelectBar.current) * 100;
     progressBar.current.style.width = `${value}%`;
     isDrag = true;
-    timing.current.style.left = `${(value * widthSelectBar.current) / 100}px`;
+    timing.current.style.left = `${value}%`;
+
     setTimingNumber(numberUpdate(value));
   };
 
@@ -51,7 +52,7 @@ const InputNumber = () => {
       if (value < 0) value = 0;
       if (value > 100) value = 100;
       progressBar.current.style.width = `${value}%`;
-      timing.current.style.left = `${(value * widthSelectBar.current) / 100}px`;
+      timing.current.style.left = `${value}%`;
       setTimingNumber(numberUpdate(value));
     }
   };

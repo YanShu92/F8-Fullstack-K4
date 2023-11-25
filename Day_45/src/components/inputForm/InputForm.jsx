@@ -15,7 +15,7 @@ const InputForm = forwardRef(function InputForm(props, ref) {
   const maxNumber = useSelector((state) => state.maxNumber);
   const correctNumber = useSelector((state) => state.correctNumber);
   const maxTime = Math.ceil(Math.log2(maxNumber));
-
+  let messageEl = "";
   const dispatch = useDispatch();
   const listInput = useSelector((state) => state.listInput);
   const remainingTime = useSelector((state) => state.remainingTime);
@@ -48,11 +48,12 @@ const InputForm = forwardRef(function InputForm(props, ref) {
       if (
         listInput.map((item) => item.number).includes(inputRef.current.value)
       ) {
-        console.log("đã nhập");
+        dispatch({
+          type: "input/invalid",
+        });
         return;
       }
       if (correctNumber === +inputRef.current.value) {
-        console.log("chính xác");
         dispatch({
           type: "input/addNumberCorrect",
           payload: !listInput.length
@@ -60,11 +61,19 @@ const InputForm = forwardRef(function InputForm(props, ref) {
             : { number: inputRef.current.value, right: true },
         });
       } else {
+        if (correctNumber > +inputRef.current.value) {
+          messageEl = "Bạn cần tăng lên 1 chút";
+        } else {
+          messageEl = "Bạn cần giảm xuống 1 chút";
+        }
         dispatch({
           type: "input/addNumber",
-          payload: !listInput.length
-            ? { number: inputRef.current.value, maxTime: maxTime }
-            : { number: inputRef.current.value },
+          payload: {
+            element: !listInput.length
+              ? { number: inputRef.current.value, maxTime: maxTime }
+              : { number: inputRef.current.value },
+            message: messageEl,
+          },
         });
       }
     }

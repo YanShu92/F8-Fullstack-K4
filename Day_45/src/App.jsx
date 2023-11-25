@@ -6,6 +6,7 @@ import Info from "./components/info/Info";
 import "./assets/sass/main.scss";
 import InputNumber from "./components/inputNumber/InputNumber";
 import Histories from "./components/histories/Histories";
+import Toastify from "./components/toastify/Toastify";
 const App = () => {
   const themeDefault = useSelector((state) => state.theme);
   const theme = localStorage.getItem("theme");
@@ -16,6 +17,7 @@ const App = () => {
       <Info />
       <InputNumber />
       <Histories />
+      <Toastify />
     </div>
   );
 };
