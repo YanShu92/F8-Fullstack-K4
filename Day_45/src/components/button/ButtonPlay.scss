@@ -1,0 +1,14 @@
+.play-again {
+  background-color: rgb(4, 114, 4);
+  border-radius: 5px;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  margin-top: 40px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+  &:hover {
+    background-color: rgb(6, 77, 6);
+  }
+}
