@@ -40,7 +40,12 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, theme: action.payload === "light" ? "dark" : "light" };
     }
     case "inputNumber/maxNumber": {
-      return { ...state, maxNumber: action.payload };
+      const maxTime = Math.ceil(Math.log2(action.payload));
+      return {
+        ...state,
+        maxNumber: action.payload,
+        remainingTime: maxTime,
+      };
     }
     default:
       return state;
