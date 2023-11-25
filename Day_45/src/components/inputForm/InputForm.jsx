@@ -34,7 +34,6 @@ const InputForm = forwardRef(function InputForm(props, ref) {
   });
   // regex nhập vào input
   const handleInput = useCallback((e) => {
-    // console.log(e.key);
     // ngăn nhập e,E, +, -
     ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
 
@@ -52,7 +51,6 @@ const InputForm = forwardRef(function InputForm(props, ref) {
         console.log("đã nhập");
         return;
       }
-      console.log(correctNumber, inputRef.current.value);
       if (correctNumber === +inputRef.current.value) {
         console.log("chính xác");
         dispatch({
@@ -75,13 +73,6 @@ const InputForm = forwardRef(function InputForm(props, ref) {
   const handleInputCopy = useCallback((e) => {
     inputRef.current.value = inputRef.current.value.replace(/[e\+\-\E]/gi, "");
   });
-
-  // const data = useSelector((state) => state.data);
-
-  // if (remainingTime === 0) {
-  //   console.log("đã nhập hết");
-  //   localStorage.setItem("data", JSON.stringify(data));
-  // }
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
     inputRef?.current?.addEventListener("keydown", handleInput);

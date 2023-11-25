@@ -6,8 +6,8 @@ import InputForm from "../inputForm/InputForm";
 const InputNumber = () => {
   const remainingTime = useSelector((state) => state.remainingTime);
   const isCorrect = useSelector((state) => state.isCorrect);
-  console.log(isCorrect);
-  const maxNumber = localStorage.getItem("maxNumber");
+  const correctNumber = useSelector((state) => state.correctNumber);
+  console.log(correctNumber);
   const dispatch = useDispatch();
   const maxNumberAll = 2048;
   const listNumber = [100, 512, 1024, 1536, 2048];
@@ -34,13 +34,11 @@ const InputNumber = () => {
     progressBar.current.style.width = `${value}%`;
     isDrag = true;
     timing.current.style.left = `${(value * widthSelectBar.current) / 100}px`;
-    // console.log(numberUpdate(value));
     setTimingNumber(numberUpdate(value));
   };
 
   const handleProgressSpan = (e) => {
     e.stopPropagation();
-    // value = (maxNumber / maxNumberAll) * 100;
     initialClientX = e.clientX;
     isDrag = true;
   };
@@ -62,11 +60,13 @@ const InputNumber = () => {
     if (isDrag) {
       currentValue = value;
       isDrag = false;
-      inputRef.current.focus();
       dispatch({
         type: "inputNumber/maxNumber",
         payload: numberUpdate(value),
       });
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 200);
     }
   };
   useEffect(() => {
@@ -77,13 +77,6 @@ const InputNumber = () => {
     progressBarSpan.current.addEventListener("mousemove", (e) => {
       e.stopPropagation();
     });
-    // selectNumber.current.addEventListener("mousemove", (e) => {
-    //   //   console.log("mousemove");
-    // });
-
-    // selectNumber.current.addEventListener("mouseout", (e) => {
-    //   //   console.log("mouseout");
-    // });
 
     document.addEventListener("mousemove", handleDrag);
     document.addEventListener("mouseup", handleUpdateValue);

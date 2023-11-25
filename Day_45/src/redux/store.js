@@ -2,7 +2,7 @@ import { legacy_createStore as createStore } from "redux";
 const initialState = {
   count: 0,
   data: [],
-  correctNumber: 10,
+  correctNumber: Math.floor(Math.random() * 512) + 1,
   isCorrect: false,
   listInput: [],
   theme: "light",
@@ -17,11 +17,12 @@ const rootReducer = (state = initialState, action) => {
 
     case "histories/delete": {
       const maxTime = Math.ceil(Math.log2(+localStorage.getItem("maxNumber")));
-
+      const random = Math.floor(Math.random() * state.maxNumber) + 1;
       return {
         ...state,
         data: [],
         remainingTime: maxTime,
+        correctNumber: random,
         listInput: [],
         isCorrect: false,
       };
@@ -31,25 +32,26 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isCorrect: false,
-        data: [...state.data, state.listInput],
+        data: [state.listInput, ...state.data],
       };
     }
 
     case "input/addNumberCorrect": {
-      if (state.remainingTime === 1) {
-        return {
-          ...state,
-          isCorrect: true,
-          remainingTime: state.remainingTime - 1,
-          listInput: [...state.listInput, action.payload],
-          data: [...state.data, [...state.listInput, action.payload]],
-        };
-      }
+      //   if (state.remainingTime === 1) {
+      //     return {
+      //       ...state,
+      //       isCorrect: true,
+      //       remainingTime: state.remainingTime - 1,
+      //       listInput: [...state.listInput, action.payload],
+      //       data: [...state.data, [...state.listInput, action.payload]],
+      //     };
+      //   }
       return {
         ...state,
         isCorrect: true,
         remainingTime: state.remainingTime - 1,
         listInput: [...state.listInput, action.payload],
+        data: [[...state.listInput, action.payload], ...state.data],
       };
     }
 
@@ -60,7 +62,7 @@ const rootReducer = (state = initialState, action) => {
           remainingTime: state.remainingTime - 1,
           isCorrect: false,
           listInput: [...state.listInput, action.payload],
-          data: [...state.data, [...state.listInput, action.payload]],
+          data: [[...state.listInput, action.payload], ...state.data],
         };
       }
       return {
@@ -74,10 +76,14 @@ const rootReducer = (state = initialState, action) => {
     case "mode/change": {
       return { ...state, theme: action.payload === "light" ? "dark" : "light" };
     }
+
     case "inputNumber/maxNumber": {
       const maxTime = Math.ceil(Math.log2(action.payload));
+      const random = Math.floor(Math.random() * action.payload) + 1;
+
       return {
         ...state,
+        correctNumber: random,
         maxNumber: action.payload,
         remainingTime: maxTime,
         isCorrect: false,
@@ -87,8 +93,10 @@ const rootReducer = (state = initialState, action) => {
 
     case "button/playAgain": {
       const maxTime = Math.ceil(Math.log2(state.maxNumber));
+      const random = Math.floor(Math.random() * state.maxNumber) + 1;
       return {
         ...state,
+        correctNumber: random,
         remainingTime: maxTime,
         isCorrect: false,
         listInput: [],

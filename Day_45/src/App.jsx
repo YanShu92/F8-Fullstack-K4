@@ -7,9 +7,10 @@ import "./assets/sass/main.scss";
 import InputNumber from "./components/inputNumber/InputNumber";
 import Histories from "./components/histories/Histories";
 const App = () => {
-  const theme = useSelector((state) => state.theme);
+  const themeDefault = useSelector((state) => state.theme);
+  const theme = localStorage.getItem("theme");
   return (
-    <div className="container" id={theme}>
+    <div className="container" id={theme ? theme : themeDefault}>
       <Progress />
       <DarkMode />
       <Info />

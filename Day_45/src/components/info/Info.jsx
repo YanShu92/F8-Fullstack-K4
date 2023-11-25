@@ -4,11 +4,19 @@ import "../info/Info.scss";
 const Info = () => {
   const maxNumber = useSelector((state) => state.maxNumber);
   const remainingTime = useSelector((state) => state.remainingTime);
+  const isCorrect = useSelector((state) => state.isCorrect);
   const data = useSelector((state) => state.data);
+  console.log(data);
   if (remainingTime === 0) {
     console.log("đã nhập hết");
     localStorage.setItem("data", JSON.stringify(data));
   }
+
+  if (isCorrect) {
+    console.log("chính xác");
+    localStorage.setItem("data", JSON.stringify(data));
+  }
+
   localStorage.setItem("maxNumber", maxNumber);
   const maxTime = Math.ceil(Math.log2(maxNumber));
   return (

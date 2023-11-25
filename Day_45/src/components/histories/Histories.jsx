@@ -2,13 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import "../histories/Histories.scss";
 import { v4 as uuidv4 } from "uuid";
 import Modal from "../modal/Modal";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 // const { v4: uuidv4 } = require("uuid");
 
 const Histories = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const dataObj = useSelector((state) => state.data);
+  console.log(dataObj);
   const data = JSON.parse(localStorage.getItem("data"));
+  console.log(data);
   const deleteHistories = () => {
     localStorage.removeItem("data");
     dispatch({
@@ -31,10 +34,18 @@ const Histories = () => {
                   Số lần nhập tối đa: {dataItem[0].maxTime}
                 </caption>
                 <caption className="rate">
-                  Tỉ lệ đúng:{" "}
-                  {100 -
-                    Math.ceil((dataItem.length - 1) / dataItem[0].maxTime) *
-                      100}
+                  Tỉ lệ đúng:
+                  {dataItem[dataItem.length - 1]?.right
+                    ? (
+                        ((dataItem[0].maxTime - dataItem.length + 1) /
+                          dataItem[0].maxTime) *
+                        100
+                      ).toFixed(2)
+                    : (
+                        ((dataItem[0].maxTime - dataItem.length) /
+                          dataItem[0].maxTime) *
+                        100
+                      ).toFixed(2)}
                   %
                 </caption>
                 <thead>

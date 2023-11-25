@@ -66,3 +66,15 @@
     }
   }
 }
+
+#dark {
+  .histories-list {
+    .histories-item {
+      border: 2px solid rgb(179, 142, 142);
+
+      .histories-table {
+        color: #ccc;
+      }
+    }
+  }
+}
