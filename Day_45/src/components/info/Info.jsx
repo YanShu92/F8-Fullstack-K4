@@ -2,17 +2,13 @@ import React, { Fragment, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../info/Info.scss";
 const Info = () => {
-  // const { remainingTime, maxNumber } = useSelector((state) => ({
-  //   remainingTime: state.remainingTime,
-  //   maxNumber: state.maxNumber,
-  // }));
   const maxNumber = useSelector((state) => state.maxNumber);
   const remainingTime = useSelector((state) => state.remainingTime);
-  // if (remainingTime === 0) {
-  //   console.log("đã nhập hết");
-  //   const data = useSelector((state) => state.data);
-  //   localStorage.setItem("data", JSON.stringify(data));
-  // }
+  const data = useSelector((state) => state.data);
+  if (remainingTime === 0) {
+    console.log("đã nhập hết");
+    localStorage.setItem("data", JSON.stringify(data));
+  }
   localStorage.setItem("maxNumber", maxNumber);
   const maxTime = Math.ceil(Math.log2(maxNumber));
   return (

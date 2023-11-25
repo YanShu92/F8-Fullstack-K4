@@ -13,7 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 const InputForm = forwardRef(function InputForm(props, ref) {
   const inputRef = useRef();
   const maxNumber = useSelector((state) => state.maxNumber);
+  const correctNumber = useSelector((state) => state.correctNumber);
   const maxTime = Math.ceil(Math.log2(maxNumber));
+
   const dispatch = useDispatch();
   const listInput = useSelector((state) => state.listInput);
   const remainingTime = useSelector((state) => state.remainingTime);
@@ -50,13 +52,23 @@ const InputForm = forwardRef(function InputForm(props, ref) {
         console.log("đã nhập");
         return;
       }
-
-      dispatch({
-        type: "input/addNumber",
-        payload: !listInput.length
-          ? { number: inputRef.current.value, maxTime: maxTime }
-          : { number: inputRef.current.value },
-      });
+      console.log(correctNumber, inputRef.current.value);
+      if (correctNumber === +inputRef.current.value) {
+        console.log("chính xác");
+        dispatch({
+          type: "input/addNumberCorrect",
+          payload: !listInput.length
+            ? { number: inputRef.current.value, maxTime: maxTime, right: true }
+            : { number: inputRef.current.value, right: true },
+        });
+      } else {
+        dispatch({
+          type: "input/addNumber",
+          payload: !listInput.length
+            ? { number: inputRef.current.value, maxTime: maxTime }
+            : { number: inputRef.current.value },
+        });
+      }
     }
   });
   // Ngăn copy/paste e,E
@@ -64,6 +76,12 @@ const InputForm = forwardRef(function InputForm(props, ref) {
     inputRef.current.value = inputRef.current.value.replace(/[e\+\-\E]/gi, "");
   });
 
+  // const data = useSelector((state) => state.data);
+
+  // if (remainingTime === 0) {
+  //   console.log("đã nhập hết");
+  //   localStorage.setItem("data", JSON.stringify(data));
+  // }
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
     inputRef?.current?.addEventListener("keydown", handleInput);

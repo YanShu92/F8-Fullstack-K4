@@ -5,8 +5,9 @@ import "../inputNumber/InputNumber.scss";
 import InputForm from "../inputForm/InputForm";
 const InputNumber = () => {
   const remainingTime = useSelector((state) => state.remainingTime);
-//   const maxNumber = useSelector((state) => state.maxNumber);
-  const maxNumber = localStorage.getItem("maxNumber")
+  const isCorrect = useSelector((state) => state.isCorrect);
+  console.log(isCorrect);
+  const maxNumber = localStorage.getItem("maxNumber");
   const dispatch = useDispatch();
   const maxNumberAll = 2048;
   const listNumber = [100, 512, 1024, 1536, 2048];
@@ -39,6 +40,7 @@ const InputNumber = () => {
 
   const handleProgressSpan = (e) => {
     e.stopPropagation();
+    // value = (maxNumber / maxNumberAll) * 100;
     initialClientX = e.clientX;
     isDrag = true;
   };
@@ -117,7 +119,11 @@ const InputNumber = () => {
           </div>
         ))}
       </div>
-      {remainingTime ? <InputForm ref={inputRef} /> : <ButtonPlay />}
+      {remainingTime && !isCorrect ? (
+        <InputForm ref={inputRef} />
+      ) : (
+        <ButtonPlay />
+      )}
     </Fragment>
   );
 };

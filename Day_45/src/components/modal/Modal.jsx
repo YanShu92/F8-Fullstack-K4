@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import "./Modal.scss";
 
-function Modal({ setOpenModal }) {
-  const handlePress = useCallback((e) => {
-    if ((e.key = "Backspace")) setOpenModal(false);
-  });
+function Modal({ setOpenModal, deleteHistories }) {
+  const handlePress = (e) => {
+    console.log(e.key);
+    if (e.key === "Escape") setOpenModal(false);
+  };
   useEffect(() => {
     document.addEventListener("keydown", handlePress);
     return () => {
@@ -49,7 +50,14 @@ function Modal({ setOpenModal }) {
           >
             Giữ lại
           </button>
-          <button>Xóa luôn</button>
+          <button
+            onClick={() => {
+              deleteHistories();
+              setOpenModal(false);
+            }}
+          >
+            Xóa luôn
+          </button>
         </div>
       </div>
     </div>
