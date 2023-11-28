@@ -31,8 +31,13 @@
       fill: white;
       display: block;
       width: 100%;
-      filter: invert(98%) sepia(0%) saturate(72%) hue-rotate(38deg)
-        brightness(115%) contrast(100%);
+      filter: invert(61%) sepia(91%) saturate(1515%) hue-rotate(357deg)
+        brightness(103%) contrast(110%);
+      transition: filter 0.3 ease;
+      &:hover {
+        filter: invert(26%) sepia(21%) saturate(1858%) hue-rotate(1deg)
+          brightness(99%) contrast(92%);
+      }
     }
   }
 

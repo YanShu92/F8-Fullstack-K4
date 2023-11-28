@@ -66,6 +66,8 @@
         transition: scale 0.3s ease;
         &:hover {
           scale: 1.2;
+          filter: invert(61%) sepia(91%) saturate(1515%) hue-rotate(357deg)
+            brightness(103%) contrast(110%);
         }
       }
     }

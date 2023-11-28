@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getProducts = createAsyncThunk("getProducts", async () => {
+export const getProducts = createAsyncThunk("getProducts", async (page = 1) => {
   const query = {
     limit: 16,
-    page: 1,
+    page: page,
   };
   let queryString = new URLSearchParams(query).toString();
   queryString = queryString ? "?" + queryString : "";
@@ -16,7 +16,7 @@ export const getProducts = createAsyncThunk("getProducts", async () => {
 
 export const getProduct = createAsyncThunk("getProduct", async (id) => {
   const response = await fetch(
-    `https://api-exercise-sopi.vercel.app/api/v1/products${id}`
+    `https://api-exercise-sopi.vercel.app/api/v1/products/${id}`
   );
   const data = await response.json();
   return data;
