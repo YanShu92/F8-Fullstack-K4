@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "../histories/Histories.scss";
 import { v4 as uuidv4 } from "uuid";
 import Modal from "../modal/Modal";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 // const { v4: uuidv4 } = require("uuid");
 
 const Histories = () => {
+  const historiesRef = useRef();
   const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const dataObj = useSelector((state) => state.data);
@@ -18,8 +19,20 @@ const Histories = () => {
       type: "histories/delete",
     });
   };
+  const handleArrow = (e) => {
+    console.log(e.key);
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft")
+      historiesRef.current.focus();
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", handleArrow);
+    return () => {
+      document.removeEventListener("keydown", handleArrow);
+    };
+  }, [handleArrow]);
+
   return (
-    <div className="histories-list">
+    <div className="histories-list" ref={historiesRef}>
       {!data || !data.length ? (
         <div></div>
       ) : (

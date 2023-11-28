@@ -34,7 +34,6 @@ const InputNumber = () => {
     progressBar.current.style.width = `${value}%`;
     isDrag = true;
     timing.current.style.left = `${value}%`;
-
     setTimingNumber(numberUpdate(value));
   };
 
