@@ -13,10 +13,12 @@ const Cart = () => {
   const cartList = useSelector((state) => state.cart.cartList);
   const handleIncrement = (item) => {
     dispatch(increment(item));
+    localStorage.setItem("cart", JSON.stringify(cartList));
   };
 
   const handleDecrement = (item) => {
     dispatch(decrement(item));
+    localStorage.setItem("cart", JSON.stringify(cartList));
   };
   if (!cartList || !cartList?.length)
     return (
@@ -94,6 +96,7 @@ const Cart = () => {
                 alt="trash"
                 onClick={() => {
                   dispatch(remove(item));
+                  localStorage.setItem("cart", JSON.stringify(cartList));
                 }}
               />
             </div>
