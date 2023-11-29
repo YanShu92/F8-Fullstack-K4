@@ -7,6 +7,7 @@ import { numberFormat } from "../utils/numberFormat";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSlice } from "../redux/slice/cartSlice";
+import { ConfirmToast } from "react-confirm-toast";
 const { increment, decrement, checkout, remove } = cartSlice.actions;
 const Cart = () => {
   const navigate = useNavigate();
@@ -17,6 +18,14 @@ const Cart = () => {
   };
   const handleDecrement = (item) => {
     dispatch(decrement(item));
+  };
+  const handleRemoveProduct = (item) => {
+    toast.warning(`Bạn có chắc không mua ${item.name} không? Nhấn vào đây!`, {
+      onClick: () => {
+        dispatch(remove(item));
+        localStorage.setItem("cart", JSON.stringify(cartList));
+      },
+    });
   };
 
   useEffect(() => {
@@ -99,8 +108,7 @@ const Cart = () => {
                 src={Trash}
                 alt="trash"
                 onClick={() => {
-                  dispatch(remove(item));
-                  localStorage.setItem("cart", JSON.stringify(cartList));
+                  handleRemoveProduct(item);
                 }}
               />
             </div>
