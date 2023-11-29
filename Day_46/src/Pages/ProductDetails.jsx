@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import { getProduct } from "../redux/middlewares/productMiddleware";
+import { toast } from "react-toastify";
 import "../assets/scss/productDetails.scss";
+import { cartSlice } from "../redux/slice/cartSlice";
+const { add } = cartSlice.actions;
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -14,6 +17,17 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(getProduct(id));
   }, []);
+  const cartList = useSelector((state) => state.cart.cartList);
+
+  const handleAddCart = (item) => {
+    dispatch(add(item));
+    toast.success(`${item.name} đã được thêm vào giỏ hàng`);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartList));
+  }, [cartList]);
+
   const productInfo = useSelector((state) => state.productItem.productInfo);
   const status = useSelector((state) => state.productItem.status);
   if (status === "error") return <h3>Đang gặp sự cố, thử lại sau</h3>;
@@ -36,7 +50,7 @@ const ProductDetails = () => {
               "{productInfo.data.description}"
             </div>
             <div className="product-details-category">
-              {productInfo.data.category}
+              Category: {productInfo.data.category}
             </div>
             <div className="product-details-price">
               <span>$</span>
@@ -45,12 +59,18 @@ const ProductDetails = () => {
             <div className="products-details-btn">
               <button
                 onClick={() => {
-                  navigate(`/product`);
+                  navigate(`/product/1`);
                 }}
               >
                 Go Home
               </button>
-              <button>Add to Cart</button>
+              <button
+                onClick={() => {
+                  handleAddCart(productInfo.data);
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

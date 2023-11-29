@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 
-const Error = () => {
+const DefaultPages = () => {
   return <Navigate to={"/product/1"} />;
 };
 
-export default Error;
+export default DefaultPages;

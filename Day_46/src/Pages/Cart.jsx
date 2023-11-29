@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
 import Trash from "../assets/images/trash.svg";
 import "../assets/scss/cart.scss";
 import { numberFormat } from "../utils/numberFormat";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSlice } from "../redux/slice/cartSlice";
 const { increment, decrement, checkout, remove } = cartSlice.actions;
@@ -13,13 +14,15 @@ const Cart = () => {
   const cartList = useSelector((state) => state.cart.cartList);
   const handleIncrement = (item) => {
     dispatch(increment(item));
-    localStorage.setItem("cart", JSON.stringify(cartList));
   };
-
   const handleDecrement = (item) => {
     dispatch(decrement(item));
-    localStorage.setItem("cart", JSON.stringify(cartList));
   };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartList));
+  }, [cartList]);
+
   if (!cartList || !cartList?.length)
     return (
       <>
@@ -39,7 +42,7 @@ const Cart = () => {
             marginLeft: "auto",
           }}
           onClick={() => {
-            navigate(`/product`);
+            navigate(`/product/1`);
           }}
         >
           Go home
@@ -52,6 +55,7 @@ const Cart = () => {
       <h2 style={{ textAlign: "center", fontSize: "2rem" }}>SHOPPING CART</h2>
       {cartList.map((item) => (
         <div className="cart-item" key={item._id}>
+          {console.log(item)}
           <div className="cart-item-box">
             <img src={item.image} alt={item.name} />
             <div className="cart-item-info">
@@ -112,7 +116,7 @@ const Cart = () => {
       <div className="cart-btn">
         <button
           onClick={() => {
-            navigate(`/product`);
+            navigate(`/product/1`);
           }}
         >
           Go home
@@ -120,6 +124,7 @@ const Cart = () => {
         <button
           onClick={() => {
             dispatch(checkout());
+            toast.success("Cảm ơn bạn đã mua hàng");
             localStorage.removeItem("cart");
           }}
         >

@@ -29,9 +29,14 @@
       color: rebeccapurple;
     }
     .product-details-price {
+      font-size: 1.6rem;
       span {
         color: orange;
       }
+    }
+    .product-details-category {
+      font-size: 1.2rem;
+      color: rgb(165, 34, 121);
     }
   }
 

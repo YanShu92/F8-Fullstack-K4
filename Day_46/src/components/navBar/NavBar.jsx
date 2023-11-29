@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import LogoBrand from "../../assets/images/logo-brand.png";
 import CartIcon from "../../assets/images/cart.svg";
 import { useNavigate } from "react-router-dom";

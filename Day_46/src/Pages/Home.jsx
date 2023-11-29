@@ -7,27 +7,43 @@ import "../assets/scss/home.scss";
 import { useNavigate } from "react-router-dom";
 import { numberFormat } from "../utils/numberFormat";
 import { cartSlice } from "../redux/slice/cartSlice";
+import { useParams } from "react-router-dom";
+import ScrollToTop from "../components/ScrollToTop";
+import Paginate from "../components/Paginate/Paginate";
+import { toast } from "react-toastify";
 const { add } = cartSlice.actions;
+
 const Home = () => {
+  const { page } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartList = useSelector((state) => state.cart.cartList);
-  // const countTotal = cartList.reduce((total, curr) => total + curr.count, 0);
 
   const handleAddItem = (item) => {
     dispatch(add(item));
+    toast.success(`${item.name} đã được thêm vào giỏ hàng`);
     localStorage.setItem("cart", JSON.stringify(cartList));
   };
 
   const status = useSelector((state) => state.product.status);
+
   useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+    // page <= totalPage && page >= 1
+    //   ? dispatch(getProducts(page))
+    //   : navigate("/product/1");
+    dispatch(getProducts(page));
+  }, [page]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartList));
+  }, [cartList]);
 
   const listProduct = useSelector((state) => state.product.listProduct);
+
   if (status === "error") return <h3>Đang gặp sự cố, thử lại sau</h3>;
   return (
     <>
+      <ScrollToTop />
       <h2 className="title-products">PRODUCTS</h2>
       {status !== "idle" && status === "pending" ? (
         <Loading />
@@ -63,6 +79,7 @@ const Home = () => {
           ))}
         </div>
       )}
+      <Paginate />
     </>
   );
 };

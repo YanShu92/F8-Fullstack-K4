@@ -3,6 +3,7 @@ import { getProducts } from "../middlewares/productMiddleware";
 const initialState = {
   listProduct: [],
   status: "idle",
+  totalPage: 0,
 };
 export const productSlice = createSlice({
   name: "products",
@@ -18,6 +19,8 @@ export const productSlice = createSlice({
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.listProduct = action.payload;
+      state.totalPage = action.payload.data.totalPage;
+
       state.status = "success";
     });
     builder.addCase(getProducts.rejected, (state, action) => {
