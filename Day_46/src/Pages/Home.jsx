@@ -5,27 +5,23 @@ import CartIcon from "../assets/images/cart.svg";
 import Loading from "../components/Loading/Loading";
 import "../assets/scss/home.scss";
 import { useNavigate } from "react-router-dom";
+import { numberFormat } from "../utils/numberFormat";
+import { cartSlice } from "../redux/slice/cartSlice";
+const { add } = cartSlice.actions;
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleAddItem = (item) => {
-    const localCart = JSON.parse(localStorage.getItem("cart"));
+  const cartList = useSelector((state) => state.cart.cartList);
+  // const countTotal = cartList.reduce((total, curr) => total + curr.count, 0);
 
-    const index = cartItem.findIndex(({ _id }) => +_id === +item._id);
-    console.log(cartItem);
-    if (index > 0) {
-      ++cartItem[index].count;
-    } else {
-      cartItem.push({ ...item, count: 1 });
-    }
-    localStorage.setItem("cart", JSON.stringify(cartItem));
+  const handleAddItem = (item) => {
+    dispatch(add(item));
+    localStorage.setItem("cart", JSON.stringify(cartList));
   };
 
   const status = useSelector((state) => state.product.status);
   useEffect(() => {
     dispatch(getProducts());
-    const localCart = JSON.parse(localStorage.getItem("cart"));
-    !localCart ? setCart(localCart) : setCart([]);
   }, []);
 
   const listProduct = useSelector((state) => state.product.listProduct);
@@ -53,7 +49,7 @@ const Home = () => {
               <div className="info-item">
                 <h3 className="price-item">
                   <span>$</span>
-                  {item.price}
+                  {numberFormat(item.price)}
                 </h3>
                 <img
                   src={CartIcon}

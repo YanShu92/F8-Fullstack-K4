@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Logger } from "sass";
 
 export const getProducts = createAsyncThunk("getProducts", async (page = 1) => {
   const query = {

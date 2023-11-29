@@ -43,9 +43,16 @@
 
   #number-of-products {
     position: absolute;
+    padding: 4px;
+    border-radius: 99%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    background-color: #ccc;
     bottom: 10px;
+    color: orange;
     right: 20px;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }

@@ -6,9 +6,11 @@ import { getProduct } from "../redux/middlewares/productMiddleware";
 import "../assets/scss/productDetails.scss";
 
 const ProductDetails = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const { id } = useParams();
   useEffect(() => {
     dispatch(getProduct(id));
   }, []);
@@ -18,7 +20,7 @@ const ProductDetails = () => {
   return (
     <>
       <h2 className="title-product"></h2>
-      {status !== "idle" && status === "pending" ? (
+      {status === "idle" || status === "pending" ? (
         <Loading />
       ) : (
         <div className="product-details">
