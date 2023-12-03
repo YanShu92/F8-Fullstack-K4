@@ -1,11 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "../../utils/client";
-export const getApiKey = createAsyncThunk("getApiKey", async (email) => {
-  const response = await client.get(`/api-key?email=${email}`);
-  const data = await response.json();
-  console.log(data);
-  return data;
-});
+// export const getApiKey = createAsyncThunk("getApiKey", async (email) => {
+//   const response = await client.get(`/api-key?email=${email}`);
+//   const data = await response.json();
+//   return response;
+// });
 
 export const getTask = createAsyncThunk("getTask", async (body) => {
   const response = await client.get(`/tasks`, body);
