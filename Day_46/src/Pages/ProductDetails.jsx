@@ -24,9 +24,9 @@ const ProductDetails = () => {
     toast.success(`${item.name} đã được thêm vào giỏ hàng`);
   };
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartList));
-  }, [cartList]);
+  // useEffect(() => {
+  //   localStorage.setItem("cart", JSON.stringify(cartList));
+  // }, [cartList]);
 
   const productInfo = useSelector((state) => state.productItem.productInfo);
   const status = useSelector((state) => state.productItem.status);

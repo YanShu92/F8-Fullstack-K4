@@ -28,9 +28,6 @@ const Home = () => {
   const status = useSelector((state) => state.product.status);
 
   useEffect(() => {
-    // page <= totalPage && page >= 1
-    //   ? dispatch(getProducts(page))
-    //   : navigate("/product/1");
     dispatch(getProducts(page));
   }, [page]);
 
