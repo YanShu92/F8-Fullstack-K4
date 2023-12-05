@@ -1,0 +1,68 @@
+:root {
+  --loader-width: 200px;
+  --loader-height: 200px;
+  --loader-color-primary: #27ae60;
+  --loader-color-secondary: #eee;
+  --line-width: 5px;
+  --animation-duration: 2s;
+  --loader-initial-scale: 0.1;
+}
+.loader,
+.loader:before,
+.loader:after {
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+  color: rgb(170, 116, 16);
+}
+
+@keyframes rect-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fill-rect {
+  0%,
+  50% {
+    height: 0px;
+  }
+  100% {
+    height: inherit;
+  }
+}
+
+.loading-box {
+  position: fixed;
+  inset: 0;
+  background-color: #000000a9;
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader.box-rotation {
+  transform-origin: center center;
+  color: var(--loader-color-primary, #33f);
+  width: var(--loader-width, 100px);
+  height: var(--loader-height, 100px);
+  position: relative;
+  border: var(--line-width, 4px) solid;
+  display: inline-block;
+  animation: rect-rotate var(--animation-duration, 1s) linear infinite;
+}
+
+.loader.box-rotation::after {
+  content: "";
+  height: 0px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--loader-color-primary, #33f);
+  opacity: 0.5;
+  animation: fill-rect var(--animation-duration, 1s) linear infinite;
+}

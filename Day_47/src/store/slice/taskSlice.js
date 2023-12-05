@@ -1,21 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getTask } from "../middlewares/productMiddleware";
+import { arrayMove } from "../../utils/formatters";
 const initialState = {
-  cartList: [],
+  columns: [],
+  taskList: [],
 };
 export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    add: (state, action) => {
-      const index = state.cartList.findIndex(
-        ({ _id }) => _id === action.payload._id
+    dragColumn: (state, action) => {
+      state.columns = arrayMove(
+        state.columns,
+        action.payload.from,
+        action.payload.to
       );
-      if (index >= 0) {
-        state.cartList[index].count++;
-      } else {
-        const newItem = { ...action.payload, count: 1 };
-        state.cartList = [...state.cartList, newItem];
-      }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getTask.pending, (state, action) => {
+      state.status = "pending";
+    });
+    builder.addCase(getTask.fulfilled, (state, action) => {
+      state.status = "success";
+      state.columns = action.payload.data.columns;
+      state.taskList = action.payload.data.tasks;
+    });
+    builder.addCase(getTask.rejected, (state, action) => {
+      state.status = "error";
+    });
   },
 });

@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./login.scss";
-import { getApiKey } from "../../services/userService";
-import { client } from "../../utils/client";
-// import { getApiKey } from "../../store/middlewares/productMiddleware";
-
+import { getApiKey } from "../../store/middlewares/productMiddleware";
+import Loading from "../../components/loading/Loading";
+import { toast } from "react-toastify";
+import { apiKeySlice } from "../../store/slice/apiKeySlice";
+const { setStatus } = apiKeySlice.actions;
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const pattern = /((?:[\w\.-]{3,})@(?:[\w\.-]{1,}\.[a-z]{2,}))/gi;
     if (email.match(pattern)) {
-      setLoading(true);
-      const data = await getApiKey(email);
-      if (data.code === 200) {
-        setLoading(false);
-        const apiKey = data.data.apiKey;
-        localStorage.setItem("apiKey", apiKey);
-        client.setApi = apiKey;
-      } else {
-        setLoading(false);
-      }
+      dispatch(getApiKey(email));
+    } else {
+      toast.error("Email không hợp lệ");
     }
   };
-
+  const status = useSelector((state) => state.apiKey.status);
+  console.log(status);
+  if (status === "success") toast.success("Wellcome to Chello");
+  if (status === "errorMail") {
+    toast.error("Email chưa đăng kí");
+    dispatch(setStatus());
+  }
   return (
     <div className="login-page">
       <form action="" className="login-form" onSubmit={handleSubmit}>
@@ -39,7 +38,8 @@ const Login = () => {
           autoFocus
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">{!isLoading ? "Submit" : "Loading..."}</button>
+        <button type="submit">Submit</button>
+        {status === "pending" && <Loading />}
       </form>
     </div>
   );
