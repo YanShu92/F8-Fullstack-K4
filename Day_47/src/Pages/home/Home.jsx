@@ -91,10 +91,11 @@ const Home = () => {
     setActiveDragType(null);
     setActiveDragData(null);
     const body = taskList.map((task) => {
+      // console.log(columns.find((column) => column.column === task.column));
       return {
         content: task.content,
         columnName: columns.find((column) => column.column === task.column)
-          .columnName,
+          ?.columnName,
         column: task.column,
       };
     });
