@@ -14,8 +14,6 @@ export const getTask = createAsyncThunk("getTask", async () => {
 });
 
 export const postTask = createAsyncThunk("postTask", async (body) => {
-  const response = await client.post(`/tasks`, body);
-  const data = await response.json();
-  console.log(data);
-  return data;
+  const { response } = await client.post(`/tasks`, body);
+  return response.ok;
 });

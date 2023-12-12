@@ -7,10 +7,13 @@ import {
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { taskSlice } from "../../store/slice/taskSlice";
+const { createCol } = taskSlice.actions;
 const ListColumns = ({ columns }) => {
+  const dispatch = useDispatch();
   return (
     <SortableContext
-      items={columns?.map((a) => a.column)}
+      items={columns?.map((a) => a?.column)}
       strategy={horizontalListSortingStrategy}
     >
       <Box
@@ -36,8 +39,9 @@ const ListColumns = ({ columns }) => {
           },
         }}
       >
+        {/* rải columns */}
         {columns?.map((item) => (
-          <Columns key={item._id} column={item} />
+          <Columns key={item?._id} column={item} />
         ))}
 
         {/* add new column */}
@@ -65,6 +69,9 @@ const ListColumns = ({ columns }) => {
                 bgcolor: "#51bd7e",
                 color: "#000",
               },
+            }}
+            onClick={() => {
+              dispatch(createCol());
             }}
           >
             Add new Column

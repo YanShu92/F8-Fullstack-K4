@@ -1,13 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Card from "./card/Card";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useRef, useEffect } from "react";
 
 function ListCards({ columnId }) {
+  const taskRef = useRef(null);
   const taskList = useSelector((state) => state.task.taskList);
+  const taskColumn = taskList?.filter((task) => task.column === columnId);
+  useEffect(() => {
+    taskRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [taskColumn.length]);
   return (
     <SortableContext
       items={taskList?.map((a) => a._id)}
@@ -43,6 +52,7 @@ function ListCards({ columnId }) {
           ?.map((task) => (
             <Card key={task._id} card={task} />
           ))}
+        <div ref={taskRef}></div>
       </Box>
     </SortableContext>
   );

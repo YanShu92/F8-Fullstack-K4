@@ -4,9 +4,17 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ListCards from "./listCards/ListCards";
+import TextField from "@mui/material/TextField";
 import { useSortable } from "@dnd-kit/sortable";
+import Input from "@mui/material/Input";
 import { CSS } from "@dnd-kit/utilities";
+const ariaLabel = { "aria-label": "description" };
+import { useRef, useState } from "react";
+import { taskSlice } from "../../../store/slice/taskSlice";
+import { useDispatch } from "react-redux";
+const { updateCol, delCol, createTask } = taskSlice.actions;
 const Columns = ({ column }) => {
+  const [editMode, setEditMode] = useState(false);
   const {
     attributes,
     listeners,
@@ -14,10 +22,15 @@ const Columns = ({ column }) => {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: column.column, data: { ...column } });
-
+  } = useSortable({
+    id: column.column,
+    data: { ...column },
+    disabled: editMode,
+  });
+  const [update, updateColumn] = useState(column.columnName);
+  const dispatch = useDispatch();
   const dndKitColumnStyle = {
-    // touchAction: "none",
+    touchAction: "none",
     transform: CSS.Translate.toString(transform),
     transition,
     height: "100%",
@@ -44,17 +57,62 @@ const Columns = ({ column }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setEditMode(true);
           }}
         >
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            {column.columnName}
-          </Typography>
+          {!editMode && (
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: "bold",
+                cursor: "pointer",
+                px: 1,
+              }}
+            >
+              {column.columnName}
+            </Typography>
+          )}
+          {editMode && (
+            <Input
+              defaultValue={column.columnName}
+              inputProps={ariaLabel}
+              autoFocus
+              sx={{
+                fontSize: "21.25px",
+                fontWeight: "bold",
+                color: "#000",
+                bgcolor: "#fff",
+                px: 1,
+                borderRadius: "6px",
+              }}
+              onBlur={() => {
+                setEditMode(false);
+                dispatch(
+                  updateCol({
+                    column: column.column,
+                    columnName: update,
+                  })
+                );
+              }}
+              onKeyDown={(e) => {
+                if (e.key !== "Enter") {
+                  dispatch(
+                    updateCol({
+                      column: column.column,
+                      columnName: update,
+                    })
+                  );
+                  return;
+                }
+                setEditMode(false);
+              }}
+              onChange={(e) => updateColumn(e.target.value)}
+            />
+          )}
+
           <DeleteForeverIcon
             sx={{
               cursor: "pointer",
@@ -66,10 +124,15 @@ const Columns = ({ column }) => {
                 bgcolor: "#ccc",
               },
             }}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(delCol(column.column));
+            }}
           />
         </Box>
         {/* Box Column body */}
         <ListCards columnId={column.column} />
+
         {/* Box Column footer */}
         <Box
           sx={{
@@ -87,6 +150,9 @@ const Columns = ({ column }) => {
               },
               justifyContent: "flex-start",
               pl: 2.5,
+            }}
+            onClick={() => {
+              dispatch(createTask(column.column));
             }}
           >
             Add Task
