@@ -1,8 +1,8 @@
+import {
+  GithubButton,
+  GoogleButton,
+} from "@/app/components/loginButton/loginButton";
 import { Box, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
-import GoogleIcon from "@mui/icons-material/Google";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import { signIn, useSession } from "next-auth/react";
 export const metadata = {
   title: "Đăng nhập",
 };
@@ -40,42 +40,8 @@ const Login = () => {
         >
           Đăng nhập
         </Typography>
-        <Button
-          startIcon={<GoogleIcon />}
-          variant="contained"
-          sx={{
-            py: "5px",
-            width: "300px",
-            fontStyle: "italic",
-            fontSize: "normal",
-            color: "#000",
-            textTransform: "none",
-          }}
-          //   onClick={() => {
-          //     signIn("google", { callbackUrl: "/profile" });
-          //   }}
-        >
-          Đăng nhập với Google
-        </Button>
-        <Button
-          startIcon={<GitHubIcon />}
-          variant="contained"
-          sx={{
-            my: 2,
-            bgcolor: "#000",
-            fontStyle: "italic",
-            textTransform: "none",
-            fontSize: "normal",
-            width: "300px",
-            py: "5px",
-            ":hover": {
-              bgcolor: "#2d1b04c9",
-            },
-          }}
-          //   onClick={signIn("github", { callbackUrl: "/profile" })}
-        >
-          Đăng nhập với Github
-        </Button>
+        <GoogleButton />
+        <GithubButton />
         <Typography
           sx={{
             fontSize: "13px",
