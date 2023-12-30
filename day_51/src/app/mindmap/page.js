@@ -17,7 +17,7 @@ const Mindmap = () => {
   const [mindmap, setMindmap] = useState(null);
   console.log(mindmap);
   const [modal, setModal] = useState(false);
-  const index = 1;
+  let index = 1;
   const handleDelete = (data) => {
     setModal(false);
     deleteMindmapById(data);
