@@ -18,6 +18,7 @@ const Mindmap = () => {
   console.log(mindmap);
   const [modal, setModal] = useState(false);
   let index = 1;
+  let indexMap = 0;
   const handleDelete = (data) => {
     setModal(false);
     deleteMindmapById(data);
@@ -65,7 +66,10 @@ const Mindmap = () => {
         </div>
         {mindmap &&
           mindmap?.map((item) => (
-            <div className="hover:bg-gray-200 cursor-pointer bg-white shadow flex items-center mb-5 rounded-lg">
+            <div
+              className="hover:bg-gray-200 cursor-pointer bg-white shadow flex items-center mb-5 rounded-lg"
+              key={++indexMap}
+            >
               <div className="w-1/6 text-center">
                 <input type="checkbox" />
               </div>
