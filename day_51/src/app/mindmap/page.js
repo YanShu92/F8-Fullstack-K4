@@ -17,6 +17,7 @@ const Mindmap = () => {
   const [mindmap, setMindmap] = useState(null);
   console.log(mindmap);
   const [modal, setModal] = useState(false);
+  const index = 1;
   const handleDelete = (data) => {
     setModal(false);
     deleteMindmapById(data);
@@ -88,7 +89,7 @@ const Mindmap = () => {
               <div className="w-1/4">
                 <Link href={`/mindmap/${item.id}`}>
                   <span className="text-gray-600 text-sm px-2">
-                    <FontAwesomeIcon icon={faPenSquare} />
+                    <FontAwesomeIcon icon={faPenSquare} key={++index} />
                   </span>
                 </Link>
                 <span
@@ -98,7 +99,7 @@ const Mindmap = () => {
                     // handleDelete(item);
                   }}
                 >
-                  <FontAwesomeIcon icon={faTrash} />
+                  <FontAwesomeIcon icon={faTrash} key={++index} />
                   {modal && (
                     <main class="fixed top-0 left-0 right-0 antialiased bg-gray-200 text-gray-900 font-sans overflow-x-hidden cursor-default">
                       <div class="relative px-4 min-h-screen md:flex md:items-center md:justify-center">
@@ -110,6 +111,7 @@ const Mindmap = () => {
                                 icon={faTriangleExclamation}
                                 className="fa-2x"
                                 style={{ color: "red" }}
+                                key={++index}
                               />
                             </div>
                             <div class="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
