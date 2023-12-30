@@ -12,7 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NextSeo } from "next-seo";
 const MindmapHeader = ({ data }) => {
-  const url = process.env.AUTH0_BASE_URL;
+  // const url = process.env.AUTH0_BASE_URL;
+  const url = "http://localhost:3000";
   const nameRef = useRef(null);
   const descRef = useRef(null);
   const [imgMindmap, setImg] = useState(data?.openGraph?.images[0]);
